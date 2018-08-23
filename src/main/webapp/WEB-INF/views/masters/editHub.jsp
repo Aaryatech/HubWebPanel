@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
 <html>
@@ -206,20 +207,45 @@
 								<div class="form-group">
 									<spring:message code="label.userType" />
 
-									<div class="input-group">
+									<c:choose>
+										<c:when test="${editHs.isAdmin==1}">
+											<div class="input-group">
 
-										<input type="radio" name="userType" id="userType" value="0"
-											checked>
-										<spring:message code="label.staff" />
-										<br> &nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="radio" name="userType" id="userType" value="0">
+												<spring:message code="label.staff" />
+												<br> &nbsp;&nbsp;&nbsp;&nbsp;
 
-									</div>
+											</div>
 
-									<div class="input-group">
-										<input type="radio" name="userType" value="1">
-										<spring:message code="label.admin" />
-										<br> &nbsp;&nbsp;&nbsp;&nbsp;
-									</div>
+
+
+											<div class="input-group">
+												<input type="radio" name="userType" value="1" checked>
+												<spring:message code="label.admin" />
+												<br> &nbsp;&nbsp;&nbsp;&nbsp;
+											</div>
+										</c:when>
+										<c:when test="${editHs.isAdmin==0}">
+											<div class="input-group">
+
+												<input type="radio" name="userType" id="userType" value="0"
+													checked>
+												<spring:message code="label.staff" />
+												<br> &nbsp;&nbsp;&nbsp;&nbsp;
+
+											</div>
+
+
+
+											<div class="input-group">
+												<input type="radio" name="userType" value="1">
+												<spring:message code="label.admin" />
+												<br> &nbsp;&nbsp;&nbsp;&nbsp;
+											</div>
+										</c:when>
+									</c:choose>
+
+
 								</div>
 
 								<div class="col-lg-12" align="center">
