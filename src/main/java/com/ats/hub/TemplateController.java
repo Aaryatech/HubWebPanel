@@ -53,7 +53,15 @@ public class TemplateController {
 	}
 
 	
-	
+	@RequestMapping(value = "/imagePicker", method = RequestMethod.GET)
+	public ModelAndView imagePicker(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("templates/imagepicker");
+
+		return model;
+
+	}
+
 	
 	
 }
