@@ -57,6 +57,7 @@ public class TemplateController {
 	public ModelAndView imagePicker(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("templates/imagepicker");
+		model.addObject("url", "home/ats/");
 
 		return model;
 
