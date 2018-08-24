@@ -39,6 +39,22 @@
 	rel='stylesheet' type='text/css'>
 
 
+
+
+<!-- DatePicker -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
+
+<!-- DatePicker -->
+
 </head>
 <body>
 
@@ -66,8 +82,9 @@
 			<div class="page-header float-right">
 				<div class="page-title">
 					<ol class="breadcrumb text-right">
-						<li><a href="${pageContext.request.contextPath}/showHubUser"><spring:message
-									code="label.addNewHubUser" /></a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/showOrderHistory"><spring:message
+									code="label.orderHistory" /></a></li>
 
 						<li class="active"></li>
 					</ol>
@@ -84,22 +101,206 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.hubUserList" /></strong>
+									code="label.orderHistory" /></strong>
 						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+
+							<div class="col-lg-6">
+								<spring:message code="label.date" />
+								<input type="text" id="datepicker" />
+
+							</div>
+
+
+							<div class="form-group"></div>
+							<div class="col-xs-6 col-sm-6">
+								<label> <spring:message code="label.selectRoute" /></label>
+								<div class="card">
+
+									<div class="card-body">
+										<select name="distId" id="distId" class="standardSelect"
+											tabindex="1" required>
+											<option value=""><spring:message
+													code="label.selectDist" /></option>
+											<c:forEach items="${distList}" var="distList">
+												<option value="${distList.distId}">${distList.distEngName}
+												</option>
+											</c:forEach>
+										</select>
+										<!-- <select data-placeholder="Choose a Country...">
+												<option value=""></option>
+
+											</select> -->
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-12" align="center">
+
+
+								<button type="submit" class="btn btn-primary"
+									style="align-content: center; width: 226px; margin-left: 80px;">
+									<spring:message code="label.search" />
+								</button>
+							</div>
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-4">
+								<div>
+									<div class="input-group">
+										<spring:message code="label.orderDate" />
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${editDist.distAmtPending}" required
+											oninvalid="setCustomValidity('Please enter Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+
+								<div>
+									<div class="input-group">
+
+										<spring:message code="label.orderDeliveryDate" />
+										<input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" required
+											oninvalid="setCustomValidity('Please enter crates limit ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+
+								<div>
+
+
+
+									<div class="input-group">
+										<spring:message code="label.distCratesPending" />
+
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${editDist.distAmtPending}" required
+											oninvalid="setCustomValidity('Please enter Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="form-group"></div>
+						<div class="form-group">
+
+							<div class="col-lg-4">
+
+								<div>
+									<div class="input-group">
+										<spring:message code="label.distAmtPending" />
+										<input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" required
+											oninvalid="setCustomValidity('Please enter crates limit ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+
+
+
+
+							<div class="col-lg-4">
+
+								<div>
+
+
+
+									<div class="input-group">
+										<spring:message code="label.distCratesPending" />
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${editDist.distAmtPending}" required
+											oninvalid="setCustomValidity('Please enter Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+
+								<div>
+									<div class="input-group">
+										<spring:message code="label.amtReceived" />
+										<input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" required
+											oninvalid="setCustomValidity('Please enter crates limit ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-4">
+
+								<div>
+									<div class="input-group">
+										<spring:message code="label.balanceAmt" />
+
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${editDist.distAmtPending}" required
+											oninvalid="setCustomValidity('Please enter Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div>
+									<div class="input-group">
+										<spring:message code="label.orderTotal" />
+
+										<input class="form-control" name="orderTotal" id="orderTotal"
+											type="text" value="${editDist.distCratesLimit}" required
+											oninvalid="setCustomValidity('Please enter crates limit ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<div class="card-body">
 							<table id="bootstrap-data-table"
 								class="table table-striped table-bordered">
+
 								<thead>
 									<tr>
 										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.userName" /></th>
-										<th><spring:message code="label.userType" /></th>
+										<th><spring:message code="label.orderDate" /></th>
+										<th><spring:message code="label.orderDeliveryDate" /></th>
+										<th><spring:message code="label.distCratesPending" /></th>
+										<th><spring:message code="label.distAmtPending" /></th>
+
+										<th><spring:message code="label.distCratesLimit" /></th>
+
+										<th><spring:message code="label.distAmtLimit" /></th>
+
 										<th><spring:message code="label.hsContactNo" /></th>
+
 
 										<th><spring:message code="label.action" /></th>
 									</tr>
 								</thead>
-								<tbody>
+								<%-- 	<tbody>
 
 									<c:forEach items="${hubUserList}" var="hubUserList"
 										varStatus="count">
@@ -143,7 +344,7 @@
 										</tr>
 									</c:forEach>
 
-								</tbody>
+								</tbody> --%>
 
 							</table>
 						</div>
@@ -208,7 +409,5 @@
 			$('#bootstrap-data-table-export').DataTable();
 		});
 	</script>
-
-
 </body>
 </html>
