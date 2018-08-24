@@ -43,4 +43,17 @@ public class TemplateController {
 
 	}
 
+	@RequestMapping(value = "/datepicker", method = RequestMethod.GET)
+	public ModelAndView datepicker(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("templates/datepicker");
+
+		return model;
+
+	}
+
+	
+	
+	
+	
 }
