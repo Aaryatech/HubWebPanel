@@ -331,4 +331,17 @@ public class MasterController {
 		return "redirect:/showDistList";
 	}
 
+	@RequestMapping(value = "/showHubNotification", method = RequestMethod.GET)
+	public ModelAndView showHubNotification(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("masters/hubNotification");
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
 }

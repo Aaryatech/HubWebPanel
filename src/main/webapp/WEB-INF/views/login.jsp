@@ -46,8 +46,8 @@
 
 	<div align="right" style="margin-right: 15px;">
 
-		<a href="?lang=en" style="color: #fff;"> English | </a> <a href="?lang=mr" style="color: #fff;">
-			मराठी</a>
+		<a href="?lang=en" style="color: #fff;"> English | </a> <a
+			href="?lang=mr" style="color: #fff;"> मराठी</a>
 
 	</div>
 
@@ -62,7 +62,7 @@
 
 				<div align="center"></div>
 
-				<form action="getLogin">
+				<form action="loginProcess" method="post">
 					<div class="col-lg-12">
 						<div class="card">
 							<spring:message code="label.login" var="login" />
@@ -71,40 +71,38 @@
 								<spring:message code="label.login" />
 							</div>
 							<div class="card-body card-block">
-								<form action="" method="post" class="">
-									<div class="form-group">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-user"></i>
-											</div>
-											<spring:message code="label.userName" var="userName" />
 
-											<input type="text" id="username" name="username"
-												placeholder="${userName}" class="form-control">
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
 										</div>
+										<spring:message code="label.userName" var="userName" />
+
+										<input type="text" id="username" name="username"
+											placeholder="${userName}" class="form-control">
 									</div>
+								</div>
 
-									<div class="form-group">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-asterisk"></i>
-											</div>
-											<spring:message code="label.password" var="password" />
-
-											<input type="password" id="password" name="password"
-												placeholder="${password}" class="form-control">
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-asterisk"></i>
 										</div>
+										<spring:message code="label.password" var="password" />
+
+										<input type="password" id="password" name="password"
+											placeholder="${password}" class="form-control">
 									</div>
-									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;"><spring:message
-								code="label.login" /></button>
-								</form>
+								</div>
+								<button type="submit" class="btn btn-primary"
+									style="align-content: center; width: 226px; margin-left: 80px;">
+									<spring:message code="label.login" />
+								</button>
 							</div>
-
 						</div>
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
