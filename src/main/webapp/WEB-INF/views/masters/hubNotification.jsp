@@ -92,21 +92,18 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.userName" /></th>
-										<th><spring:message code="label.userType" /></th>
-										<th><spring:message code="label.hsContactNo" /></th>
+										<th><spring:message code="label.noti" /></th>
 
-										<th><spring:message code="label.action" /></th>
+
+
 									</tr>
 								</thead>
 								<tbody>
 
-									<c:forEach items="${hubUserList}" var="hubUserList"
-										varStatus="count">
+									<c:forEach items="${notiList}" var="notiList" varStatus="count">
 										<tr>
 
-											<td><c:out value="${count.index+1}" /></td>
+											<%-- <td><c:out value="${count.index+1}" /></td>
 
 											<td><c:if test="${langSelected == 0}">
 													<c:out value="${hubUserList.hsEngName}" />
@@ -124,9 +121,9 @@
 													</c:when>
 												</c:choose></td>
 
-
-											<td><c:out value="${hubUserList.hsContactNo}" /></td>
-											<td>
+ --%>
+											<td><c:out value="${notiList.notifiText}" /></td>
+											<%-- 	<td>
 												<div class="fa-hover col-lg-3 col-md-6">
 													<a
 														href="${pageContext.request.contextPath}/editHubUser/${hubUserList.hsId}"><i
@@ -139,7 +136,7 @@
 														onClick="return confirm('Are you sure want to delete this record');"><i
 														class="fa fa-trash-o"></i></a>
 												</div>
-											</td>
+											</td> --%>
 
 										</tr>
 									</c:forEach>

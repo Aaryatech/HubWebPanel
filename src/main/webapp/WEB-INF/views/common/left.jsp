@@ -56,6 +56,10 @@
 							href="${pageContext.request.contextPath}/editHubUser"><spring:message
 									code="label.userProfile" /></a></li>
 
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showHubNotification"><spring:message
+									code="label.hubNoti" /></a></li>
+
 
 
 						<li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>

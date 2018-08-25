@@ -24,6 +24,7 @@ import com.ats.hub.commons.Constants;
 import com.ats.hub.model.Distributor;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.HubUser;
+import com.ats.hub.model.Notification;
 import com.ats.hub.model.Route;
 
 @Controller
@@ -33,6 +34,7 @@ public class MasterController {
 	List<HubUser> hubUserList = new ArrayList<>();
 	List<Distributor> distList = new ArrayList<>();
 	List<Route> routeList = new ArrayList<>();
+	List<Notification> notiList = new ArrayList<>();
 
 	@RequestMapping(value = "/showHubUser", method = RequestMethod.GET)
 	public ModelAndView showHubUser(HttpServletRequest request, HttpServletResponse response) {
@@ -336,7 +338,14 @@ public class MasterController {
 
 		ModelAndView model = new ModelAndView("masters/hubNotification");
 		try {
-
+			int notifiTo = 1;
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("notifiTo", notifiTo);
+			Notification[] getRoute = rest.postForObject(Constants.url + "/getNotiForHubByHubId", map,
+					Notification[].class);
+			notiList = new ArrayList<Notification>(Arrays.asList(getRoute));
+			model.addObject("notiList", notiList);
+			System.out.println("NotiList" + notiList.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
