@@ -61,6 +61,11 @@
 									code="label.hubNoti" /></a></li>
 
 
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/sendNotification"><spring:message
+									code="label.sendNoti" /></a></li>
+
+
 
 						<li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
 						<li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>

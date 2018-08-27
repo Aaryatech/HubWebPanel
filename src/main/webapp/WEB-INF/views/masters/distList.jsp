@@ -135,12 +135,6 @@
 
 												</c:if></td>
 
-
-
-
-
-
-
 											<td><c:out value="${distList.distContactNo}" /></td>
 											<td><c:out value="${distList.routeDistSeqNo}" /></td>
 											<td><c:out value="${distList.distCratesPending}" /></td>

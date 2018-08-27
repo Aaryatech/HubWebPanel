@@ -42,6 +42,17 @@ public class MasterController {
 		ModelAndView model = new ModelAndView("masters/hub");
 		try {
 
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+			model.addObject("langSelected", langSelected);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -179,6 +190,17 @@ public class MasterController {
 
 		ModelAndView model = new ModelAndView("masters/addDist");
 		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+			model.addObject("langSelected", langSelected);
 
 			Route[] getRoute = rest.getForObject(Constants.url + "/getAllRouteByIsUsed", Route[].class);
 			routeList = new ArrayList<Route>(Arrays.asList(getRoute));
@@ -346,6 +368,39 @@ public class MasterController {
 			notiList = new ArrayList<Notification>(Arrays.asList(getRoute));
 			model.addObject("notiList", notiList);
 			System.out.println("NotiList" + notiList.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/sendNotification", method = RequestMethod.GET)
+	public ModelAndView sendNotification(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("masters/sendNotification");
+		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+
+			Distributor[] getDist = rest.getForObject(Constants.url + "/getAllDistByIsUsed", Distributor[].class);
+			distList = new ArrayList<Distributor>(Arrays.asList(getDist));
+
+			model.addObject("distList", distList);
+			model.addObject("langSelected", langSelected);
+
+			Route[] getRoute = rest.getForObject(Constants.url + "/getAllRouteByIsUsed", Route[].class);
+			routeList = new ArrayList<Route>(Arrays.asList(getRoute));
+			model.addObject("routeList", routeList);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
