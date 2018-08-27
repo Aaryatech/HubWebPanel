@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.hub.commons.Constants;
 import com.ats.hub.model.Distributor;
-import com.ats.hub.model.HubUser;
 
 @Controller
 public class OrderController {
@@ -39,15 +38,6 @@ public class OrderController {
 
 			if (locale.toString().equalsIgnoreCase("mr")) {
 				langSelected = 1;
-			}
-
-			int userType = 1;
-			String user = "0";
-
-			if (userType == 0) {
-				user = "0";
-			} else {
-				user = "0,1";
 			}
 
 			Distributor[] getHubUser = rest.getForObject(Constants.url + "/getAllDistByIsUsed", Distributor[].class);
