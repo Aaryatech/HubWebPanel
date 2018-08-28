@@ -173,7 +173,7 @@
 						</div>
 						<div class="card-body card-block">
 							<form
-								action="${pageContext.request.contextPath}/insertDistributor"
+								action="${pageContext.request.contextPath}/insertNotification"
 								method="post">
 
 
@@ -206,7 +206,10 @@
 
 										</div>
 									</div>
+
 								</div>
+								OR
+
 
 								<div class="form-group"></div>
 								<div class="col-xs-6 col-sm-6">

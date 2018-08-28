@@ -1,8 +1,10 @@
 package com.ats.hub.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -406,6 +408,60 @@ public class MasterController {
 		}
 
 		return model;
+	}
+
+	@RequestMapping(value = "/insertNotification", method = RequestMethod.POST)
+	public String insertNotification(HttpServletRequest request, HttpServletResponse response) {
+
+		// ModelAndView model = new ModelAndView("masters/addEmployee");
+		try {
+
+			String routeId = request.getParameter("routeId");
+
+			String distIdList = request.getParameter("distIdList");
+			String notifi = request.getParameter("notifi");
+
+			Notification noti = new Notification();
+
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String currDate = sdf.format(now.getTime());
+
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String datetime = sdf1.format(now.getTime());
+
+			noti.setIsRead(1);
+			noti.setNotifiDate(currDate);
+			noti.setNotifiDatetime(datetime);
+			noti.setNotifiFrom(1);
+			noti.setNotifiText(notifi);
+			noti.setNotifiTo(Integer.parseInt(routeId));
+			noti.setNotifiType(1);
+			if (routeId != null && distIdList == null) {
+
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("routeId", routeId);
+
+			//	Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId", map, noti,
+						//Notification.class);
+
+			} else if (distIdList != null && routeId == null) {
+
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("distIdList", distIdList);
+
+				//Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", map, noti,
+						//Notification.class);
+			} else {
+				Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", noti,
+						Notification.class);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/showHubUserList";
 	}
 
 }
