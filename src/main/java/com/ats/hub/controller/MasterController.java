@@ -1,6 +1,7 @@
 package com.ats.hub.controller;
 
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -67,6 +68,10 @@ public class MasterController {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
+
+		/*	HttpSession session = request.getSession();
+			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			login.getHubUser().getHubId();*/
 
 			String hsId = request.getParameter("hsId");
 
@@ -442,16 +447,18 @@ public class MasterController {
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("routeId", routeId);
 
-			//	Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId", map, noti,
-						//Notification.class);
+				// Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId",
+				// map, noti,
+				// Notification.class);
 
 			} else if (distIdList != null && routeId == null) {
 
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("distIdList", distIdList);
 
-				//Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", map, noti,
-						//Notification.class);
+				// Notification res = rest.postForObject(Constants.url +
+				// "/saveNotifiByDistIdList", map, noti,
+				// Notification.class);
 			} else {
 				Notification res = rest.postForObject(Constants.url + "/saveNotifi", noti, Notification.class);
 			}
