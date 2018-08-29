@@ -453,8 +453,7 @@ public class MasterController {
 				//Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", map, noti,
 						//Notification.class);
 			} else {
-				Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", noti,
-						Notification.class);
+				Notification res = rest.postForObject(Constants.url + "/saveNotifi", noti, Notification.class);
 			}
 
 		} catch (Exception e) {
