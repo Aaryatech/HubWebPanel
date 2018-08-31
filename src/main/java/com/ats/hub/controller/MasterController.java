@@ -69,9 +69,11 @@ public class MasterController {
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
 
-		/*	HttpSession session = request.getSession();
-			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
-			login.getHubUser().getHubId();*/
+			/*
+			 * HttpSession session = request.getSession(); LoginResHubUser login =
+			 * (LoginResHubUser) session.getAttribute("user");
+			 * login.getHubUser().getHubId();
+			 */
 
 			String hsId = request.getParameter("hsId");
 
@@ -440,34 +442,35 @@ public class MasterController {
 			noti.setNotifiDatetime(datetime);
 			noti.setNotifiFrom(1);
 			noti.setNotifiText(notifi);
-			noti.setNotifiTo(Integer.parseInt(routeId));
+
 			noti.setNotifiType(1);
 			if (routeId != null && distIdList == null) {
 
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("routeId", routeId);
+				map.add("noti", noti);
 
-				// Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId",
-				// map, noti,
-				// Notification.class);
+				System.out.println("noti" + noti);
+
+				Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId", map, Notification.class);
+				System.out.println("res " + res.toString());
 
 			} else if (distIdList != null && routeId == null) {
 
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("distIdList", distIdList);
+				map.add("noti", noti);
 
-				// Notification res = rest.postForObject(Constants.url +
-				// "/saveNotifiByDistIdList", map, noti,
-				// Notification.class);
-			} else {
-				Notification res = rest.postForObject(Constants.url + "/saveNotifi", noti, Notification.class);
+				Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", map,
+						Notification.class);
+				System.out.println("res " + res.toString());
+
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/showHubUserList";
+		return "redirect:/showHubNotification";
 	}
 
 }

@@ -186,7 +186,7 @@
 
 										<div class="card-body">
 											<select name="routeId" id="routeId" class="standardSelect"
-												tabindex="1" required>
+												tabindex="1">
 												<option value=""><spring:message
 														code="label.selectRoute" /></option>
 												<c:forEach items="${routeList}" var="routeList">
@@ -208,8 +208,8 @@
 									</div>
 
 								</div>
-								OR
 
+								OR
 
 								<div class="form-group"></div>
 								<div class="col-xs-6 col-sm-6">
@@ -217,8 +217,8 @@
 									<div class="card">
 
 										<div class="card-body">
-											<select name="routeId" id="routeId" multiple
-												class="standardSelect" tabindex="1" required>
+											<select name="distIdList" id="distIdList" multiple
+												class="standardSelect" tabindex="1">
 												<option value="0"><spring:message code="label.all" /></option>
 												<c:forEach items="${distList}" var="distList">
 													<c:if test="${langSelected == 0}">
