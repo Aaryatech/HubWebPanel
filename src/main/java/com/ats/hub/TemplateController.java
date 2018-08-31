@@ -63,5 +63,15 @@ public class TemplateController {
 
 	}
 	
+	@RequestMapping(value = "/advancedForm", method = RequestMethod.GET)
+	public ModelAndView advanceForm(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("templates/advancedform");
+		model.addObject("url", "home/ats/");
+
+		return model;
+
+	}
+	
 	
 }

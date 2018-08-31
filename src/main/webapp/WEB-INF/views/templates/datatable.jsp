@@ -92,6 +92,7 @@
 										<th>Position</th>
 										<th>Office</th>
 										<th>Salary</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -128,7 +129,6 @@
 
 								</tbody>
 							</table>
-
 
 
 						</div>
@@ -215,7 +215,7 @@ function dummyDataCall(){
 		  $.each(testData, function(i, v) {
 
 
-	/* 	    if (i == 0) {
+	 	    if (i == 0) {
 		      //setting the data in first row itself
 		      setDataOnRow($("#bootstrap-data-table tbody").find("tr").first(), v);
 
@@ -227,10 +227,10 @@ function dummyDataCall(){
 
 		      $("#bootstrap-data-table tbody").append(clonnedRow);
 
-		    } */
+		    } 
 		    
 
-			  dataTable.row.add(  [ v.ProductName,  v.OrderQty ] ).draw();
+			 // dataTable.row.add(  [ v.ProductName,  v.OrderQty ] ).draw();
 
 
 			  });
