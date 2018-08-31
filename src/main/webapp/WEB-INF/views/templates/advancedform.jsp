@@ -285,6 +285,8 @@
                                                 <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-home" role="tab" aria-controls="custom-nav-home" aria-selected="true">Home</a>
                                                 <a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab" href="#custom-nav-profile" role="tab" aria-controls="custom-nav-profile" aria-selected="false">Profile</a>
                                                 <a class="nav-item nav-link" id="custom-nav-contact-tab" data-toggle="tab" href="#custom-nav-contact" role="tab" aria-controls="custom-nav-contact" aria-selected="false">Contact</a>
+                                                <a class="nav-item nav-link" id="custom-nav-day4-tab" data-toggle="tab" href="#custom-nav-day4" role="tab" aria-controls="custom-nav-day4" aria-selected="false">Day4</a>
+                                           <a class="nav-item nav-link" id="custom-nav-day5-tab" data-toggle="tab" href="#custom-nav-day5" role="tab" aria-controls="custom-nav-day5" aria-selected="false">Day5</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
@@ -296,6 +298,12 @@
                                             </div>
                                             <div class="tab-pane fade" id="custom-nav-contact" role="tabpanel" aria-labelledby="custom-nav-contact-tab">
                                                 <p>Some sample text 3.</p>
+                                            </div>
+                                             <div class="tab-pane fade" id="custom-nav-day4" role="tabpanel" aria-labelledby="custom-nav-day4-tab">
+                                                <p>Some sample text 4.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="custom-nav-day5" role="tabpanel" aria-labelledby="custom-nav-day5-tab">
+                                                <p>Some sample text 5.</p>
                                             </div>
                                         </div>
 
