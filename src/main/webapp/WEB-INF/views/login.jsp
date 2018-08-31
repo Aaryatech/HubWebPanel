@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
 
@@ -71,7 +72,12 @@
 								<spring:message code="label.login" />
 							</div>
 							<div class="card-body card-block">
-
+							
+							<c:if test="${not empty errorMessage}">
+    <div class="alert alert-danger" role="alert">${errorMessage}</div>
+</c:if>
+								
+								
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-addon">

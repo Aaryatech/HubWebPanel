@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ats.hub.model.HubUser;
+
+
 
 
 @Controller
@@ -24,20 +28,44 @@ public class WelcomeController {
 	private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 	
 	
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public ModelAndView landingPage(HttpServletRequest request, HttpServletResponse response) {
 		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
+		ModelAndView model = new ModelAndView("login");
+		try {
+
 		
-		return "/login";
+			HttpSession session = request.getSession();
+			HubUser userObj = null;
+			try {
+
+				userObj = (HubUser) session.getAttribute("user");
+				
+				if (userObj != null) {
+
+					model = new ModelAndView("home");
+					
+				} 
+
+
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
 	}
+	
+	
+
 	
 	
 	@RequestMapping(value = "/getLogin", method = RequestMethod.GET)
