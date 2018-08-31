@@ -97,6 +97,8 @@ public class OrderController {
 		ModelAndView model = new ModelAndView("order/todayOrder");
 		try {
 
+			Date now = new Date();
+
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 			Locale locale = LocaleContextHolder.getLocale();
@@ -109,7 +111,9 @@ public class OrderController {
 				langSelected = 1;
 			}
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
 			map.add("orderHeaderId", orderHeaderId);
+			map.add("orderDate", sdf.format(now));
 
 			GetOrder res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrder.class);
 

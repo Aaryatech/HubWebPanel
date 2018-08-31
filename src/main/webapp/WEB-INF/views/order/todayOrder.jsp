@@ -61,7 +61,7 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.todaysOrder" /> : ${orderHeader.orderDate}</strong>
+									code="label.todaysOrder" /> : ${orderDate}</strong>
 						</div>
 						<div class="form-group"></div>
 						<div class="form-group">
@@ -166,11 +166,7 @@
 										<th><spring:message code="label.wt" /></th>
 										<th><spring:message code="label.uom" /></th>
 										<th><spring:message code="label.orderQty" /></th>
-										<th><spring:message code="label.itemTotal" /></th>
-
-
-
-
+										<th><spring:message code="label.item" /></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -188,9 +184,6 @@
 													<c:out value="${orderDetail.itemMarName}" />
 
 												</c:if></td>
-
-
-
 											<td><c:out value="${orderDetail.itemWt}" /></td>
 
 											<td><c:out value="${orderDetail.uomName}" /></td>

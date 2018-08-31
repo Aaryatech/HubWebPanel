@@ -61,9 +61,6 @@
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
 
-
-
-
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
@@ -134,10 +131,10 @@
 									<div class="input-group" style="align-items: center;">
 
 
-										<spring:message code="label.orderDate" />&nbsp;
-
-										<input class="form-control" name="orderDate" id="orderDate"
-											type="text" value="${editDist.distAmtPending}" disabled />
+										<spring:message code="label.orderDate" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled />
 
 									</div>
 								</div>
@@ -147,89 +144,11 @@
 								<div>
 									<div class="input-group" style="align-items: center;">
 
-										<spring:message code="label.orderDeliveryDate" />&nbsp;
-										<input class="form-control" name="orderDeliveryDate"
+										<spring:message code="label.orderDeliveryDate" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
 											id="orderDeliveryDate" type="text"
 											value="${editDist.distCratesLimit}" disabled />
 
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-
-								<div>
-
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distCratesPending" />&nbsp;
-
-										<input class="form-control" name="orderDate" id="orderDate"
-											type="text" value="${editDist.distAmtPending}" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-						<div class="form-group"></div>
-						<div class="form-group">
-
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distAmtPending" />&nbsp;
-										<input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text"
-											value="${editDist.distCratesLimit}" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-
-
-
-							<div class="col-lg-4">
-
-								<div>
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distCratesPending" />&nbsp;
-										<input class="form-control" name="orderDate" id="orderDate"
-											type="text" value="${editDist.distAmtPending}" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.amtReceived" />&nbsp;
-										<input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text"
-											value="${editDist.distCratesLimit}" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.balanceAmt" />&nbsp;
-
-										<input class="form-control" name="orderDate" id="orderDate"
-											type="text" value="${editDist.distAmtPending}" disabled /> <span
-											class="error" aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -244,6 +163,122 @@
 									</div>
 								</div>
 							</div>
+
+						</div>
+
+
+
+						<div class="form-group"></div>
+						<div class="form-group">
+
+							<div class="col-lg-3">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.distCratesPending" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" disabled /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+
+
+
+
+							<div class="col-lg-3">
+
+								<div>
+
+
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.cratesIssued" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.cratesReceived" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" disabled /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.cratesBalance" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${editDist.distCratesLimit}" disabled /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-3">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.distAmtPending" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3">
+
+								<div>
+
+
+
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.orderTotal" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+
+								<div>
+
+
+
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.amtReceived" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.amountBalanced" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${editDist.distAmtPending}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+
 						</div>
 
 						<div class="card-body">
