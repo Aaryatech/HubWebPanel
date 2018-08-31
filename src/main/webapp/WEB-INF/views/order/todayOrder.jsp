@@ -51,110 +51,111 @@
 	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
-
-
-
-	<div class="breadcrumbs">
-		<div class="col-sm-4">
-			<div class="page-header float-left">
-				<div class="page-title">
-					<h1>Dashboard</h1>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-8">
-			<div class="page-header float-right">
-				<div class="page-title">
-					<ol class="breadcrumb text-right">
-						<li><a href="${pageContext.request.contextPath}/"></a></li>
-
-						<li class="active"></li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
 
-				<div class="form-group"></div>
-				<div class="form-group">
-
-					<div class="col-lg-6">
-
-						<div>
-
-
-							<spring:message code="label.distName" />
-							<div class="input-group">
-
-								<input class="form-control" name="routeSeqNo" id="routeSeqNo"
-									type="text" value="${orderHeader.distEngName}" required
-									oninvalid="setCustomValidity('Please enter Route Sequnce No')"
-									onchange="try{setCustomValidity('')}catch(e){}" readonly /> <span
-									class="error" aria-live="polite"></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-
-						<div>
-							<spring:message code="label.orderTotal" />
-							<div class="input-group">
-
-								<input class="form-control" name="distAmtPending"
-									id="distAmtPending" type="text"
-									value="${orderHeader.orderTotal}" required
-									oninvalid="setCustomValidity('Please enter Crates Pending ')"
-									onchange="try{setCustomValidity('')}catch(e){}" readonly /> <span
-									class="error" aria-live="polite"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="form-group"></div>
-				<div class="form-group">
-
-					<div class="col-lg-6">
-
-						<div>
-
-
-							<spring:message code="label.distCratesPending" />
-							<div class="input-group">
-
-								<input class="form-control" name="routeSeqNo" id="routeSeqNo"
-									type="text" value="${orderHeader.prevPendingCrateBal}" required
-									oninvalid="setCustomValidity('Please enter Route Sequnce No')"
-									onchange="try{setCustomValidity('')}catch(e){}" readonly /> <span
-									class="error" aria-live="polite"></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-
-						<div>
-							<spring:message code="label.distAmtPending" />
-							<div class="input-group">
-
-								<input class="form-control" name="distAmtPending"
-									id="distAmtPending" type="text"
-									value="${orderHeader.prevPendingAmt}" required
-									oninvalid="setCustomValidity('Please enter Crates Pending ')"
-									onchange="try{setCustomValidity('')}catch(e){}" readonly /> <span
-									class="error" aria-live="polite"></span>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="col-md-12">
+
+
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.todaysOrder" /></strong>
+									code="label.todaysOrder" /> : ${orderHeader.orderDate}</strong>
 						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-6">
+								<div>
+									<div class="input-group" style="align-items: center;">
+
+
+										<spring:message code="label.distName" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${orderHeader.distEngName}"
+											disabled />
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+
+										<spring:message code="label.distContactNo" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${orderHeader.distContactNo}" disabled />
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-6">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.itemTotal" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text" value="${orderDetail.size()}"
+											disabled /> <span class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+
+										<spring:message code="label.orderTotal" />
+										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											id="orderDeliveryDate" type="text"
+											value="${orderHeader.orderTotal}" disabled />
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-lg-6">
+
+								<div>
+									<div class="input-group" style="align-items: center;">
+										<spring:message code="label.distCratesPending" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text"
+											value="${orderHeader.prevPendingCrateBal}" disabled /> <span
+											class="error" aria-live="polite"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div>
+									<div class="input-group" style="align-items: center;">
+
+
+										<spring:message code="label.distAmtPending" />
+										&nbsp; <input class="form-control" name="orderDate"
+											id="orderDate" type="text"
+											value="${orderHeader.prevPendingAmt}" disabled />
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="card">
+
 						<div class="card-body">
 							<table id="bootstrap-data-table"
 								class="table table-striped table-bordered">
@@ -181,34 +182,21 @@
 											<td><c:out value="${count.index+1}" /></td>
 
 											<td><c:if test="${langSelected == 0}">
-													<c:out value="${orderList.distEngName}" />
+													<c:out value="${orderDetail.itemEngName}" />
 
 												</c:if> <c:if test="${langSelected == 1}">
-													<c:out value="${orderList.distMarName}" />
+													<c:out value="${orderDetail.itemMarName}" />
 
 												</c:if></td>
-											<%-- <td><c:choose>
-													<c:when test="${hubUserList.isAdmin==1}">
-														<spring:message code="label.admin" />
-													</c:when>
-													<c:when test="${hubUserList.isAdmin==0}">
-														<spring:message code="label.staff" />
-													</c:when>
-												</c:choose></td> --%>
 
 
-											<td><c:out value="${orderList.prevPendingCrateBal}" /></td>
 
-											<td><c:out value="${orderList.prevPendingAmt}" /></td>
-											<td><c:out value="${orderList.orderTotal}" /></td>
-											<td>
-												<div class="fa-hover col-lg-3 col-md-6">
-													<a
-														href="${pageContext.request.contextPath}/editHubUser/${orderList.orderHeaderId}"><i
-														class="fa  fa-stack-exchange"></i> <span
-														class="text-muted"></span></a>
-												</div>
-											</td>
+											<td><c:out value="${orderDetail.itemWt}" /></td>
+
+											<td><c:out value="${orderDetail.uomName}" /></td>
+											<td><c:out value="${orderDetail.orderQty}" /></td>
+											<td><c:out value="${orderDetail.itemTotal}" /></td>
+
 
 										</tr>
 									</c:forEach>
@@ -278,7 +266,5 @@
 			$('#bootstrap-data-table-export').DataTable();
 		});
 	</script>
-
-
 </body>
 </html>

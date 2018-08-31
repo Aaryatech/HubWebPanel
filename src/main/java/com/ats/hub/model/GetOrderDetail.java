@@ -24,6 +24,7 @@ public class GetOrderDetail {
 	private String itemEngDesc;
 	private String itemMarDesc;
 	private String uomName;
+	private int itemWt;
 
 	public int getOrderDetailId() {
 		return orderDetailId;
@@ -169,6 +170,14 @@ public class GetOrderDetail {
 		this.uomName = uomName;
 	}
 
+	public int getItemWt() {
+		return itemWt;
+	}
+
+	public void setItemWt(int itemWt) {
+		this.itemWt = itemWt;
+	}
+
 	@Override
 	public String toString() {
 		return "GetOrderDetail [orderDetailId=" + orderDetailId + ", orderHeaderId=" + orderHeaderId + ", itemId="
@@ -176,7 +185,7 @@ public class GetOrderDetail {
 				+ msQty + ", itemTotal=" + itemTotal + ", deliverQty=" + deliverQty + ", itemCgst=" + itemCgst
 				+ ", itemSgst=" + itemSgst + ", itemIgst=" + itemIgst + ", itemBasicValue=" + itemBasicValue
 				+ ", itemEngName=" + itemEngName + ", itemMarName=" + itemMarName + ", itemEngDesc=" + itemEngDesc
-				+ ", itemMarDesc=" + itemMarDesc + ", uomName=" + uomName + "]";
+				+ ", itemMarDesc=" + itemMarDesc + ", uomName=" + uomName + ", itemWt=" + itemWt + "]";
 	}
 
 }

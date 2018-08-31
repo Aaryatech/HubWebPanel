@@ -29,6 +29,7 @@ public class GetOrder {
 	private String supMarName;
 	private String distEngName;
 	private String distMarName;
+	private String distContactNo;
 
 	List<GetOrderDetail> getOrderDetailList;
 
@@ -224,6 +225,14 @@ public class GetOrder {
 		this.getOrderDetailList = getOrderDetailList;
 	}
 
+	public String getDistContactNo() {
+		return distContactNo;
+	}
+
+	public void setDistContactNo(String distContactNo) {
+		this.distContactNo = distContactNo;
+	}
+
 	@Override
 	public String toString() {
 		return "GetOrder [orderHeaderId=" + orderHeaderId + ", orderType=" + orderType + ", distId=" + distId
@@ -234,7 +243,8 @@ public class GetOrder {
 				+ ", remark=" + remark + ", orderEntryDatetime=" + orderEntryDatetime + ", orderReceivedDatetime="
 				+ orderReceivedDatetime + ", orderDeliveryLocation=" + orderDeliveryLocation + ", orderStatus="
 				+ orderStatus + ", supEngName=" + supEngName + ", supMarName=" + supMarName + ", distEngName="
-				+ distEngName + ", distMarName=" + distMarName + ", getOrderDetailList=" + getOrderDetailList + "]";
+				+ distEngName + ", distMarName=" + distMarName + ", distContactNo=" + distContactNo
+				+ ", getOrderDetailList=" + getOrderDetailList + "]";
 	}
 
 }

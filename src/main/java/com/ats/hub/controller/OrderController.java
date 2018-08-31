@@ -1,7 +1,9 @@
 package com.ats.hub.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -95,6 +97,8 @@ public class OrderController {
 		ModelAndView model = new ModelAndView("order/todayOrder");
 		try {
 
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
 			Locale locale = LocaleContextHolder.getLocale();
 
 			System.err.println("current language is - " + locale.toString());
@@ -108,10 +112,10 @@ public class OrderController {
 			map.add("orderHeaderId", orderHeaderId);
 
 			GetOrder res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrder.class);
+
 			model.addObject("orderHeader", res);
 			model.addObject("orderDetail", res.getGetOrderDetailList());
 
-			System.out.println("orderHeader   ");
 			model.addObject("langSelected", langSelected);
 
 		} catch (Exception e) {
