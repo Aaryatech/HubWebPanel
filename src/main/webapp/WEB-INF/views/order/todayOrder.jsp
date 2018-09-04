@@ -54,154 +54,189 @@
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
+				<form action="${pageContext.request.contextPath}/editOrder"
+					method="post">
 
-				<div class="col-md-12">
-
-
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title"><spring:message
-									code="label.todaysOrder" /> : ${orderDate}</strong>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-6">
-								<div>
-									<div class="input-group" style="align-items: center;">
+					<div class="col-md-12">
 
 
-										<spring:message code="label.distName" />
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text" value="${orderHeader.distEngName}"
-											disabled />
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title"><spring:message
+										code="label.todaysOrder" /> : ${orderDate}</strong>
+							</div>
 
+
+							<div class="form-group"></div>
+							<div class="form-group">
+								<div class="col-lg-6">
+									<div>
+										<div class="input-group" style="align-items: center;">
+
+
+											<spring:message code="label.distName" />
+											&nbsp; <input class="form-control" name="orderDate"
+												id="orderDate" type="text"
+												value="${orderHeader.distEngName}" disabled />
+											<%-- <c:if test="${langSelected == 0}">
+											<c:out value="${orderHeader.distEngName}" />
+
+										</c:if>
+										<c:if test="${langSelected == 1}">
+											<c:out value="${orderHeader.distMarName}" />
+
+										</c:if> --%>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+
+									<div>
+										<div class="input-group" style="align-items: center;">
+
+											<spring:message code="label.distContactNo" />
+											&nbsp; <input class="form-control" name="orderDeliveryDate"
+												id="orderDeliveryDate" type="text"
+												value="${orderHeader.distContactNo}" disabled />
+
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6">
+							<div class="form-group"></div>
+							<div class="form-group">
+								<div class="col-lg-6">
 
-								<div>
-									<div class="input-group" style="align-items: center;">
-
-										<spring:message code="label.distContactNo" />
-										&nbsp; <input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text"
-											value="${orderHeader.distContactNo}" disabled />
-
+									<div>
+										<div class="input-group" style="align-items: center;">
+											<spring:message code="label.itemTotal" />
+											&nbsp; <input class="form-control" name="orderDate"
+												id="orderDate" type="text" value="${orderDetail.size()}"
+												disabled /> <span class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-6">
+								<div class="col-lg-6">
 
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.itemTotal" />
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text" value="${orderDetail.size()}"
-											disabled /> <span class="error" aria-live="polite"></span>
+									<div>
+										<div class="input-group" style="align-items: center;">
+
+											<spring:message code="label.orderTotal" />
+											&nbsp; <input class="form-control" name="orderDeliveryDate"
+												id="orderDeliveryDate" type="text"
+												value="${orderHeader.orderTotal}" disabled />
+
+										</div>
 									</div>
 								</div>
+
 							</div>
-							<div class="col-lg-6">
 
-								<div>
-									<div class="input-group" style="align-items: center;">
+							<div class="form-group"></div>
+							<div class="form-group">
+								<div class="col-lg-6">
 
-										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text"
-											value="${orderHeader.orderTotal}" disabled />
-
+									<div>
+										<div class="input-group" style="align-items: center;">
+											<spring:message code="label.distCratesPending" />
+											&nbsp; <input class="form-control" name="orderDate"
+												id="orderDate" type="text"
+												value="${orderHeader.prevPendingCrateBal}" disabled /> <span
+												class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
-							</div>
+								<div class="col-lg-6">
+									<div>
+										<div class="input-group" style="align-items: center;">
 
-						</div>
 
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-6">
+											<spring:message code="label.distAmtPending" />
+											&nbsp; <input class="form-control" name="orderDate"
+												id="orderDate" type="text"
+												value="${orderHeader.prevPendingAmt}" disabled />
 
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distCratesPending" />
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text"
-											value="${orderHeader.prevPendingCrateBal}" disabled /> <span
-											class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
+
 							</div>
-							<div class="col-lg-6">
-								<div>
-									<div class="input-group" style="align-items: center;">
 
-
-										<spring:message code="label.distAmtPending" />
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text"
-											value="${orderHeader.prevPendingAmt}" disabled />
-
-									</div>
-								</div>
-							</div>
 
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-12">
-					<div class="card">
+					<div class="col-md-12">
+						<div class="card">
 
-						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.itemName" /></th>
-										<th><spring:message code="label.wt" /></th>
-										<th><spring:message code="label.uom" /></th>
-										<th><spring:message code="label.orderQty" /></th>
-										<th><spring:message code="label.item" /></th>
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach items="${orderDetail}" var="orderDetail"
-										varStatus="count">
+							<div class="card-body">
+								<table id="bootstrap-data-table"
+									class="table table-striped table-bordered">
+									<thead>
 										<tr>
-
-											<td><c:out value="${count.index+1}" /></td>
-
-											<td><c:if test="${langSelected == 0}">
-													<c:out value="${orderDetail.itemEngName}" />
-
-												</c:if> <c:if test="${langSelected == 1}">
-													<c:out value="${orderDetail.itemMarName}" />
-
-												</c:if></td>
-											<td><c:out value="${orderDetail.itemWt}" /></td>
-
-											<td><c:out value="${orderDetail.uomName}" /></td>
-											<td><c:out value="${orderDetail.orderQty}" /></td>
-											<td><c:out value="${orderDetail.itemTotal}" /></td>
-
-
+											<th><spring:message code="label.srNo" /></th>
+											<th><spring:message code="label.itemName" /></th>
+											<th><spring:message code="label.wt" /></th>
+											<th><spring:message code="label.uom" /></th>
+											<th><spring:message code="label.itemRate" /></th>
+											<th><spring:message code="label.orderQty" /></th>
+											<th><spring:message code="label.item" /></th>
 										</tr>
-									</c:forEach>
+									</thead>
+									<tbody>
 
-								</tbody>
+										<c:forEach items="${orderDetail}" var="orderDetail"
+											varStatus="count">
+											<tr>
 
-							</table>
+												<td><c:out value="${count.index+1}" /></td>
+
+												<td><c:if test="${langSelected == 0}">
+														<c:out value="${orderDetail.itemEngName}" />
+
+													</c:if> <c:if test="${langSelected == 1}">
+														<c:out value="${orderDetail.itemMarName}" />
+
+													</c:if></td>
+												<td><c:out value="${orderDetail.itemWt}" /></td>
+
+												<td><c:out value="${orderDetail.uomName}" /></td>
+												<td><c:out value="${orderDetail.itemRate}" /></td>
+												<td><input class="form-control"
+													id="orderQty${orderDetail.orderDetailId}"
+													placeholder="Order Qty" type="text"
+													name="orderQty${orderDetail.orderDetailId}"
+													value="${orderDetail.orderQty}"
+													onchange="check(this.value,${orderDetail.orderDetailId},${orderDetail.itemRate})" /></td>
+												<td><input class="form-control"
+													id="itemTotal${orderDetail.orderDetailId}"
+													placeholder="Item Total" type="text"
+													name="itemTotal${orderDetail.orderDetailId}"
+													value="${orderDetail.itemTotal}" readonly /></td>
+
+
+											</tr>
+										</c:forEach>
+
+									</tbody>
+
+								</table>
+							</div>
 						</div>
+
 					</div>
-				</div>
+					<div class="col-lg-12" align="center">
 
 
+						<button type="submit" class="btn btn-primary"
+							style="align-content: center; width: 226px; margin-left: 80px;">
+							<spring:message code="label.submit" />
+						</button>
+					</div>
+
+
+				</form>
 			</div>
 		</div>
 		<!-- .animated -->
@@ -252,7 +287,15 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.colVis.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
+	<script>
+		function check(qty ,key,rate) {
 
+			
+				 var tot=rate*qty;
+				document.getElementById("itemTotal"+key).value =tot;
+			
+		}
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

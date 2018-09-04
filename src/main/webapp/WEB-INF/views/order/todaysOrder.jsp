@@ -53,9 +53,6 @@
 	<!-- Header-->
 
 
-
-
-
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
@@ -64,7 +61,7 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.todaysOrder" /></strong>
+									code="label.todaysOrder" />: ${orderDate}</strong>
 						</div>
 						<div class="card-body">
 							<table id="bootstrap-data-table"

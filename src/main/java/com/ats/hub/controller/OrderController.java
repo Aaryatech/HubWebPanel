@@ -22,8 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.hub.commons.Constants;
 import com.ats.hub.model.Distributor;
+import com.ats.hub.model.EditOrder;
+import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.HubUser;
+import com.ats.hub.model.Order;
+import com.ats.hub.model.OrderDetail;
 
 @Controller
 public class OrderController {
@@ -31,6 +35,7 @@ public class OrderController {
 	RestTemplate rest = new RestTemplate();
 	List<Distributor> distList = new ArrayList<>();
 	List<GetOrder> orderList = new ArrayList<>();
+	GetOrder res = new GetOrder();
 
 	@RequestMapping(value = "/showOrderHistory", method = RequestMethod.GET)
 	public ModelAndView showOrderHistory(HttpServletRequest request, HttpServletResponse response) {
@@ -66,7 +71,9 @@ public class OrderController {
 
 		ModelAndView model = new ModelAndView("order/todaysOrder");
 		try {
+			Date now = new Date();
 
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			Locale locale = LocaleContextHolder.getLocale();
 
 			System.err.println("current language is - " + locale.toString());
@@ -80,6 +87,7 @@ public class OrderController {
 			GetOrder[] getOrder = rest.getForObject(Constants.url + "/getOrderByTypeAndStatus", GetOrder[].class);
 			orderList = new ArrayList<GetOrder>(Arrays.asList(getOrder));
 			model.addObject("orderList", orderList);
+			model.addObject("orderDate", sdf.format(now));
 
 			model.addObject("langSelected", langSelected);
 
@@ -113,12 +121,14 @@ public class OrderController {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
 			map.add("orderHeaderId", orderHeaderId);
-			map.add("orderDate", sdf.format(now));
 
-			GetOrder res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrder.class);
+			System.out.println("orderDate" + sdf.format(now));
+
+			res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrder.class);
 
 			model.addObject("orderHeader", res);
 			model.addObject("orderDetail", res.getGetOrderDetailList());
+			model.addObject("orderDate", sdf.format(now));
 
 			model.addObject("langSelected", langSelected);
 
@@ -127,6 +137,47 @@ public class OrderController {
 		}
 
 		return model;
+	}
+
+	@RequestMapping(value = "/editOrder", method = RequestMethod.POST)
+	public String insertHubUser(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			List<EditOrder> editOrderDetailList = new ArrayList<EditOrder>();
+			for (int i = 0; i < res.getGetOrderDetailList().size(); i++) {
+				int orderQty = Integer.parseInt(
+						request.getParameter("orderQty" + res.getGetOrderDetailList().get(i).getOrderDetailId()));
+
+				float itemTotal = Float.parseFloat(
+						request.getParameter("itemTotal" + res.getGetOrderDetailList().get(i).getOrderDetailId()));
+				System.out.println("orderQty" + orderQty);
+				System.out.println("itemTotal" + itemTotal);
+
+				if (orderQty != res.getGetOrderDetailList().get(i).getOrderQty()) {
+					EditOrder editOrder = new EditOrder();
+					
+					/*
+					 * itemTotal=res.getGetOrderDetailList().get(i).getItemTotal();
+					 */
+					editOrder.setOrderQty(orderQty);
+					editOrder.setItemTotal(itemTotal);
+					editOrder.setOrderDetailId(res.getGetOrderDetailList().get(i).getOrderDetailId());
+					editOrder.setOrderHeaderId(res.getOrderHeaderId());
+					editOrderDetailList.add(editOrder);
+
+				}
+
+			}
+			ErrorMessage res = rest.postForObject(Constants.url + "/updateOrderByOrderQty", editOrderDetailList,
+					ErrorMessage.class);
+			System.out.println("res" + res);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/showTodaysOrder";
 	}
 
 }
