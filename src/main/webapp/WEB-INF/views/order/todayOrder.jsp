@@ -5,6 +5,7 @@
 <!doctype html>
 
 <html>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,17 +76,18 @@
 
 
 											<spring:message code="label.distName" />
-											&nbsp; <input class="form-control" name="orderDate"
-												id="orderDate" type="text"
-												value="${orderHeader.distEngName}" disabled />
-											<%-- <c:if test="${langSelected == 0}">
-											<c:out value="${orderHeader.distEngName}" />
+											&nbsp;
+											<%-- 	<c:if test="${langSelected == 0}" var="name">
+												<c:out value="${orderHeader.distEngName}" />
 
-										</c:if>
-										<c:if test="${langSelected == 1}">
-											<c:out value="${orderHeader.distMarName}" />
+											</c:if>
+											<c:if test="${langSelected == 1}" var="name">
+												<c:out value="${orderHeader.distMarName}" />
 
-										</c:if> --%>
+											</c:if> --%>
+											<input class="form-control" name="orderDate" id="orderDate"
+												type="text" value="${orderHeader.distEngName}" disabled />
+
 
 										</div>
 									</div>
@@ -180,7 +182,7 @@
 											<th><spring:message code="label.wt" /></th>
 											<th><spring:message code="label.uom" /></th>
 											<th><spring:message code="label.itemRate" /></th>
-											<th><spring:message code="label.orderQty" /></th>
+											<th><spring:message code="label.hubQty" /></th>
 											<th><spring:message code="label.item" /></th>
 										</tr>
 									</thead>
@@ -204,11 +206,10 @@
 												<td><c:out value="${orderDetail.uomName}" /></td>
 												<td><c:out value="${orderDetail.itemRate}" /></td>
 												<td><input class="form-control"
-													id="orderQty${orderDetail.orderDetailId}"
-													placeholder="Order Qty" type="text"
-													name="orderQty${orderDetail.orderDetailId}"
-													value="${orderDetail.orderQty}"
-													onchange="check(this.value,${orderDetail.orderDetailId},${orderDetail.itemRate})" /></td>
+													id="hubQty${orderDetail.orderDetailId}"
+													placeholder="hub Qty" type="text"
+													name="hubQty${orderDetail.orderDetailId}"
+													value="${orderDetail.hubQty}"></td>
 												<td><input class="form-control"
 													id="itemTotal${orderDetail.orderDetailId}"
 													placeholder="Item Total" type="text"
@@ -288,12 +289,11 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 	<script>
-		function check(qty ,key,rate) {
+		function check(qty, key, rate) {
 
-			
-				 var tot=rate*qty;
-				document.getElementById("itemTotal"+key).value =tot;
-			
+			var tot = rate * qty;
+			document.getElementById("itemTotal" + key).value = tot;
+
 		}
 	</script>
 

@@ -9,6 +9,9 @@ public class EditOrder {
 	private float itemTotal;
 
 	private int orderHeaderId;
+	
+	private int hubQty;
+	private int msQty;
 
 	public int getOrderDetailId() {
 		return orderDetailId;
@@ -42,10 +45,26 @@ public class EditOrder {
 		this.orderHeaderId = orderHeaderId;
 	}
 
+	public int getHubQty() {
+		return hubQty;
+	}
+
+	public void setHubQty(int hubQty) {
+		this.hubQty = hubQty;
+	}
+
+	public int getMsQty() {
+		return msQty;
+	}
+
+	public void setMsQty(int msQty) {
+		this.msQty = msQty;
+	}
+
 	@Override
 	public String toString() {
 		return "EditOrder [orderDetailId=" + orderDetailId + ", orderQty=" + orderQty + ", itemTotal=" + itemTotal
-				+ ", orderHeaderId=" + orderHeaderId + "]";
+				+ ", orderHeaderId=" + orderHeaderId + ", hubQty=" + hubQty + ", msQty=" + msQty + "]";
 	}
 
 }

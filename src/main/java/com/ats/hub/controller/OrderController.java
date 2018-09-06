@@ -146,21 +146,20 @@ public class OrderController {
 
 			List<EditOrder> editOrderDetailList = new ArrayList<EditOrder>();
 			for (int i = 0; i < res.getGetOrderDetailList().size(); i++) {
-				int orderQty = Integer.parseInt(
-						request.getParameter("orderQty" + res.getGetOrderDetailList().get(i).getOrderDetailId()));
+				int hubQty = Integer.parseInt(
+						request.getParameter("hubQty" + res.getGetOrderDetailList().get(i).getOrderDetailId()));
 
 				float itemTotal = Float.parseFloat(
 						request.getParameter("itemTotal" + res.getGetOrderDetailList().get(i).getOrderDetailId()));
-				System.out.println("orderQty" + orderQty);
+				System.out.println("hubQty" + hubQty);
 				System.out.println("itemTotal" + itemTotal);
 
-				if (orderQty != res.getGetOrderDetailList().get(i).getOrderQty()) {
+				if (hubQty != res.getGetOrderDetailList().get(i).getOrderQty()) {
 					EditOrder editOrder = new EditOrder();
-					
-					/*
-					 * itemTotal=res.getGetOrderDetailList().get(i).getItemTotal();
-					 */
-					editOrder.setOrderQty(orderQty);
+
+					editOrder.setHubQty(hubQty);
+					editOrder.setOrderQty(res.getGetOrderDetailList().get(i).getOrderQty());
+					editOrder.setMsQty(hubQty);
 					editOrder.setItemTotal(itemTotal);
 					editOrder.setOrderDetailId(res.getGetOrderDetailList().get(i).getOrderDetailId());
 					editOrder.setOrderHeaderId(res.getOrderHeaderId());
@@ -169,7 +168,7 @@ public class OrderController {
 				}
 
 			}
-			ErrorMessage res = rest.postForObject(Constants.url + "/updateOrderByOrderQty", editOrderDetailList,
+			ErrorMessage res = rest.postForObject(Constants.url + "/updateOrderByHubQty", editOrderDetailList,
 					ErrorMessage.class);
 			System.out.println("res" + res);
 
