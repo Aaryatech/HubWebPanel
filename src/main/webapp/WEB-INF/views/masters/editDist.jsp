@@ -207,8 +207,8 @@
 										<input class="form-control" name="txtMarathi" id="txtMarathi"
 											type="text" value="${editDist.distMarName}" required
 											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" readonly />
-										<span class="error" aria-live="polite"></span>
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
 									</div>
 								</div>
 
@@ -241,8 +241,8 @@
 										<input class="form-control" name="addMarathi" id="addMarathi"
 											type="text" value="${editDist.distAddMar}" required
 											oninvalid="setCustomValidity('Please enter address ')"
-											onchange="try{setCustomValidity('')}catch(e){}" readonly />
-										<span class="error" aria-live="polite"></span>
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
 									</div>
 								</div>
 
@@ -418,7 +418,7 @@
 
 										<div class="card-body">
 											<select name="routeId" id="routeId" class="standardSelect"
-												tabindex="1" required>
+												tabindex="1">
 												<option value=""><spring:message
 														code="label.selectRoute" /></option>
 												<c:forEach items="${routeList}" var="routeList">
@@ -430,7 +430,7 @@
 															<option value="${routeList.routeId}" selected>${routeList.routeEngName}
 														</c:when>
 														<c:otherwise>
-															<option value="${vrouteList.routeId}">${routeList.routeEngName}
+															<option value="${routeList.routeId}">${routeList.routeEngName}
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>

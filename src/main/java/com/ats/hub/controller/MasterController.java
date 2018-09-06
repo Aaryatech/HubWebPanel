@@ -73,9 +73,6 @@ public class MasterController {
 
 			HttpSession session = request.getSession();
 			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
-			login.getHubUser().getHubId();
-
-			System.out.println("HubUserId" + login.getHubUser().getHubId());
 
 			String hsId = request.getParameter("hsId");
 
@@ -162,9 +159,11 @@ public class MasterController {
 
 		ModelAndView model = new ModelAndView("masters/editHub");
 		try {
+			HttpSession session = request.getSession();
+			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
 
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("hsId", hsId);
+			map.add("hsId", login.getHubUser().getHsId());
 
 			HubUser res = rest.postForObject(Constants.url + "/getHubUserByHsId", map, HubUser.class);
 			model.addObject("editHs", res);
@@ -230,6 +229,12 @@ public class MasterController {
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
 
+			HttpSession session = request.getSession();
+			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			login.getHubUser().getHubId();
+
+			System.out.println("HubUserId" + login.getHubUser().getHubId());
+
 			String distId = request.getParameter("distId");
 
 			String distEngName = request.getParameter("txtEnglish");
@@ -246,6 +251,8 @@ public class MasterController {
 			String distAmtLimit = request.getParameter("distAmtLimit");
 			String distLocation = request.getParameter("distLocation");
 			String routeId = request.getParameter("routeId");
+
+			System.out.println("routeId" + routeId);
 
 			Distributor dist = new Distributor();
 
@@ -269,7 +276,7 @@ public class MasterController {
 			dist.setIsBlock(0);
 			dist.setIsUsed(1);
 
-			dist.setHubId(1);
+			dist.setHubId(login.getHubUser().getHubId());
 			dist.setToken("");
 
 			System.out.println("dist" + dist);
@@ -424,12 +431,32 @@ public class MasterController {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
+			   String notfText = null;
+			
+	          try {
+
+	                System.err.println("notifi text marathi " + request.getParameter("notf_mr"));
+	                System.err.println("notifi text english " + request.getParameter("notf_eng"));
+
+	                String langSelected = request.getParameter("lang");
+	                System.err.println("lang selected " + langSelected);
+
+	                if (langSelected.equals("0")) {
+
+	                    notfText = request.getParameter("notf_eng");
+	                } else {
+	                    notfText = request.getParameter("notf_mr");
+
+	                }
+
+	            } catch (Exception e) {
+	                notfText = request.getParameter("notf_eng");
+	                System.err.println("from catch eng " + notfText);
+	            }
 
 			String routeId = request.getParameter("routeId");
 
-			int lang = Integer.parseInt(request.getParameter("lang"));
-
-			String distIdList = request.getParameter("distIdList");
+			String[] distIdList = request.getParameterValues("distIdList");
 			String notifi = request.getParameter("notifi");
 
 			Notification noti = new Notification();
