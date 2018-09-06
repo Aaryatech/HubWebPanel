@@ -211,40 +211,40 @@
 										Marathi
 									</div>
 								</div>
-								
 
-									<div class="form-group"></div>
-									<div class="form-group">
-										<spring:message code="label.engNoti" />
-										<div class="input-group">
-											<input class="form-control" name="notf_eng" id="notf_eng"
-												type="text" required
-												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
 
-										</div>
+								<div class="form-group"></div>
+								<div class="form-group">
+									<spring:message code="label.engNoti" />
+									<div class="input-group">
+										<input class="form-control" name="notf_eng" id="notf_eng"
+											type="text" required
+											oninvalid="setCustomValidity('Please enter name ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
+
 									</div>
+								</div>
 
-									<div class="form-group"></div>
-									<div class="form-group" id="notf_mr_div" style="display: none">
-										<spring:message code="label.mrNoti" />
-										<div class="input-group">
-											<input class="form-control" name="notf_mr" id="notf_mr"
-												type="text" required value=""
-												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
-										</div>
+								<div class="form-group"></div>
+								<div class="form-group" id="notf_mr_div" style="display: none">
+									<spring:message code="label.mrNoti" />
+									<div class="input-group">
+										<input class="form-control" name="notf_mr" id="notf_mr"
+											type="text" value=""
+											oninvalid="setCustomValidity('Please enter name ')"
+											onchange="try{setCustomValidity('')}catch(e){}" /> <span
+											class="error" aria-live="polite"></span>
 									</div>
-									<div class="col-lg-12" align="center">
+								</div>
+								<div class="col-lg-12" align="center">
 
 
-										<button type="submit" class="btn btn-primary"
-											style="align-content: center; width: 226px; margin-left: 80px;">
-											<spring:message code="label.submit" />
-										</button>
-									</div>
+									<button type="submit" class="btn btn-primary"
+										style="align-content: center; width: 226px; margin-left: 80px;">
+										<spring:message code="label.submit" />
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>

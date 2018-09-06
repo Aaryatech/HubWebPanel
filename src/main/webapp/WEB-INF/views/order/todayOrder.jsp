@@ -77,16 +77,16 @@
 
 											<spring:message code="label.distName" />
 											&nbsp;
-											<%-- 	<c:if test="${langSelected == 0}" var="name">
-												<c:out value="${orderHeader.distEngName}" />
-
+											<c:set var="distName" value="-"></c:set>
+												<c:if test="${langSelected == 0}">
+											<c:set var="distName" value="${orderHeader.distEngName}"></c:set>
 											</c:if>
-											<c:if test="${langSelected == 1}" var="name">
-												<c:out value="${orderHeader.distMarName}" />
+											<c:if test="${langSelected == 1}">
+											<c:set var="distName" value="${orderHeader.distMarName}"></c:set>
 
-											</c:if> --%>
+											</c:if> 
 											<input class="form-control" name="orderDate" id="orderDate"
-												type="text" value="${orderHeader.distEngName}" disabled />
+												type="text" value="${distName}" disabled />
 
 
 										</div>

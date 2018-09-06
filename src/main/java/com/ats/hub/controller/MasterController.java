@@ -431,33 +431,32 @@ public class MasterController {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
-			   String notfText = null;
-			
-	          try {
+			String notfText = null;
 
-	                System.err.println("notifi text marathi " + request.getParameter("notf_mr"));
-	                System.err.println("notifi text english " + request.getParameter("notf_eng"));
+			try {
 
-	                String langSelected = request.getParameter("lang");
-	                System.err.println("lang selected " + langSelected);
+				System.err.println("notifi text marathi " + request.getParameter("notf_mr"));
+				System.err.println("notifi text english " + request.getParameter("notf_eng"));
 
-	                if (langSelected.equals("0")) {
+				String langSelected = request.getParameter("lang");
+				System.err.println("lang selected " + langSelected);
 
-	                    notfText = request.getParameter("notf_eng");
-	                } else {
-	                    notfText = request.getParameter("notf_mr");
+				if (langSelected.equals("0")) {
 
-	                }
+					notfText = request.getParameter("notf_eng");
+				} else {
+					notfText = request.getParameter("notf_mr");
 
-	            } catch (Exception e) {
-	                notfText = request.getParameter("notf_eng");
-	                System.err.println("from catch eng " + notfText);
-	            }
+				}
+
+			} catch (Exception e) {
+				notfText = request.getParameter("notf_eng");
+				System.err.println("from catch eng " + notfText);
+			}
 
 			String routeId = request.getParameter("routeId");
 
 			String[] distIdList = request.getParameterValues("distIdList");
-			String notifi = request.getParameter("notifi");
 
 			Notification noti = new Notification();
 
@@ -472,11 +471,11 @@ public class MasterController {
 			noti.setNotifiDate(currDate);
 			noti.setNotifiDatetime(datetime);
 			noti.setNotifiFrom(1);
-			noti.setNotifiText(notifi);
+			noti.setNotifiText(notfText);
 
 			noti.setNotifiType(1);
 			if (routeId != null && distIdList == null) {
-
+				System.err.println("route insert");
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("routeId", routeId);
 				map.add("noti", noti);
@@ -487,6 +486,7 @@ public class MasterController {
 				System.out.println("res " + res.toString());
 
 			} else if (distIdList != null && routeId == null) {
+				System.err.println("dist insert");
 
 				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 				map.add("distIdList", distIdList);
