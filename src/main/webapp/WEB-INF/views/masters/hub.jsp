@@ -167,7 +167,7 @@
 										<input class="form-control" name="txtMarathi" id="txtMarathi"
 											type="text" required
 											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" readonly />
+											onchange="try{setCustomValidity('')}catch(e){}"  />
 										<span class="error" aria-live="polite"></span>
 									</div>
 								</div>

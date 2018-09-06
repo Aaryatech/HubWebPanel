@@ -12,6 +12,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import com.ats.hub.commons.Constants;
 import com.ats.hub.model.Distributor;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.HubUser;
+import com.ats.hub.model.LoginResHubUser;
 import com.ats.hub.model.Notification;
 import com.ats.hub.model.Route;
 
@@ -69,11 +71,11 @@ public class MasterController {
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
 
-			/*
-			 * HttpSession session = request.getSession(); LoginResHubUser login =
-			 * (LoginResHubUser) session.getAttribute("user");
-			 * login.getHubUser().getHubId();
-			 */
+			HttpSession session = request.getSession();
+			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			login.getHubUser().getHubId();
+
+			System.out.println("HubUserId" + login.getHubUser().getHubId());
 
 			String hsId = request.getParameter("hsId");
 
@@ -95,7 +97,7 @@ public class MasterController {
 			hubUser.setIsBlock(0);
 			hubUser.setIsUsed(1);
 			hubUser.setIsAdmin(userType);
-			hubUser.setHubId(1);
+			hubUser.setHubId(login.getHubUser().getHubId());
 
 			hubUser.setHsPwd(pwd);
 
@@ -425,6 +427,8 @@ public class MasterController {
 
 			String routeId = request.getParameter("routeId");
 
+			int lang = Integer.parseInt(request.getParameter("lang"));
+
 			String distIdList = request.getParameter("distIdList");
 			String notifi = request.getParameter("notifi");
 
@@ -437,7 +441,7 @@ public class MasterController {
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			String datetime = sdf1.format(now.getTime());
 
-			noti.setIsRead(1);
+			noti.setIsRead(0);
 			noti.setNotifiDate(currDate);
 			noti.setNotifiDatetime(datetime);
 			noti.setNotifiFrom(1);

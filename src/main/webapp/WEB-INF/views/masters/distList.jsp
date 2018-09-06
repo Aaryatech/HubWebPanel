@@ -104,7 +104,7 @@
 										<th><spring:message code="label.distAmtPending" /></th>
 										<th><spring:message code="label.distCratesLimit" /></th>
 										<th><spring:message code="label.distAmtLimit" /></th>
-										<th><spring:message code="label.distLocation" /></th>
+
 
 										<th><spring:message code="label.action" /></th>
 									</tr>
@@ -141,7 +141,6 @@
 											<td><c:out value="${distList.distAmtPending}" /></td>
 											<td><c:out value="${distList.distCratesLimit}" /></td>
 											<td><c:out value="${distList.distAmtLimit}" /></td>
-											<td><c:out value="${distList.distLocation}" /></td>
 											<td>
 												<div class="fa-hover col-lg-3 col-md-6">
 													<a

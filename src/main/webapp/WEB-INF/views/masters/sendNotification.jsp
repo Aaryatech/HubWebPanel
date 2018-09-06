@@ -65,22 +65,22 @@
 
 		var control = new google.elements.transliteration.TransliterationControl(
 				options);
-		control.makeTransliteratable([ "txtMarathi" ]);
+		control.makeTransliteratable([ "notf_mr" ]);
 		var keyVal = 32; // Space key
-		$("#txtEnglish")
+		$("#notf_eng")
 				.on(
 						'keydown',
 						function(event) {
 							if (event.keyCode === 32) {
-								var engText = $("#txtEnglish").val() + " ";
+								var engText = $("#notf_eng").val() + " ";
 								var engTextArray = engText.split(" ");
-								$("#txtMarathi")
+								$("#notf_mr")
 										.val(
-												$("#txtMarathi").val()
+												$("#notf_mr").val()
 														+ engTextArray[engTextArray.length - 2]);
 
-								document.getElementById("txtMarathi").focus();
-								$("#txtMarathi").trigger({
+								document.getElementById("notf_mr").focus();
+								$("#notf_mr").trigger({
 									type : 'keypress',
 									keyCode : keyVal,
 									which : keyVal,
@@ -89,53 +89,16 @@
 							}
 
 							else if ((event.keyCode === 8 || event.keyCode === 46)) {
-								$("#txtMarathi").val("");
+								$("#notf_mr").val("");
 
-								$("#txtEnglish").val("");
+								$("#notf_eng").val("");
 							}
 						});
 
-		$("#txtMarathi").bind("keyup", function(event) {
+		$("#notf_mr").bind("keyup", function(event) {
 			setTimeout(function() {
-				$("#txtEnglish").val($("#txtEnglish").val() + " ");
-				document.getElementById("txtEnglish").focus()
-			}, 0);
-		});
-
-		var control2 = new google.elements.transliteration.TransliterationControl(
-				options);
-		control.makeTransliteratable([ "addMarathi" ]);
-		var keyVal = 32; // Space key
-		$("#addEnglish")
-				.on(
-						'keydown',
-						function(event) {
-							if (event.keyCode === 32) {
-								var engText = $("#addEnglish").val() + " ";
-								var engTextArray = engText.split(" ");
-								$("#addMarathi")
-										.val(
-												$("#addMarathi").val()
-														+ engTextArray[engTextArray.length - 2]);
-
-								document.getElementById("addMarathi").focus();
-								$("#addMarathi").trigger({
-									type : 'keypress',
-									keyCode : keyVal,
-									which : keyVal,
-									charCode : keyVal
-								});
-							} else if ((event.keyCode === 8 || event.keyCode === 46)) {
-								$("#addMarathi").val("");
-
-								$("#addEnglish").val("");
-							}
-						});
-
-		$("#addMarathi").bind("keyup", function(event) {
-			setTimeout(function() {
-				$("#addEnglish").val($("#addEnglish").val() + " ");
-				document.getElementById("addEnglish").focus()
+				$("#notf_eng").val($("#notf_eng").val() + " ");
+				document.getElementById("notf_eng").focus()
 			}, 0);
 		});
 
@@ -239,33 +202,49 @@
 										</div>
 									</div>
 								</div>
-
-								<div class="form-group"></div>
 								<div class="form-group">
-									<spring:message code="label.noti" />
-
+									<spring:message code="label.language" />
 									<div class="input-group">
-
-
-										<spring:message code="label.noti" var="notifi" />
-
-
-										<input class="form-control" name="notifi" id="notifi"
-											type="text" required
-											oninvalid="setCustomValidity('Please enter Notification ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+										<input type="radio" checked name="lang" id="lang" value="0"
+											onchange="openDiv(0)"> English <input type="radio"
+											name="lang" id="lang" value="1" onchange="openDiv(1)">
+										Marathi
 									</div>
 								</div>
+								
 
-								<div class="col-lg-12" align="center">
+									<div class="form-group"></div>
+									<div class="form-group">
+										<spring:message code="label.engNoti" />
+										<div class="input-group">
+											<input class="form-control" name="notf_eng" id="notf_eng"
+												type="text" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+
+										</div>
+									</div>
+
+									<div class="form-group"></div>
+									<div class="form-group" id="notf_mr_div" style="display: none">
+										<spring:message code="label.mrNoti" />
+										<div class="input-group">
+											<input class="form-control" name="notf_mr" id="notf_mr"
+												type="text" required value=""
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
+									</div>
+									<div class="col-lg-12" align="center">
 
 
-									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;">
-										<spring:message code="label.submit" />
-									</button>
-								</div>
+										<button type="submit" class="btn btn-primary"
+											style="align-content: center; width: 226px; margin-left: 80px;">
+											<spring:message code="label.submit" />
+										</button>
+									</div>
 							</form>
 						</div>
 					</div>
@@ -301,8 +280,21 @@
 			});
 		});
 	</script>
+	<script type="text/javascript">
+		function openDiv(type) {
 
+			if (type == 1) {
+				document.getElementById('notf_mr_div').style.display = "block";
+				$("#notf_eng").val("");
+				$("#notf_mr").val("");
+			} else if (type == 0) {
+				document.getElementById('notf_mr_div').style = "display:none";
+				$("#notf_eng").val("");
+				$("#notf_mr").val("");
+			}
 
+		}
+	</script>
 
 </body>
 </html>
