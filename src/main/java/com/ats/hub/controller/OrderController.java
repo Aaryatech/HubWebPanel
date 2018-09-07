@@ -25,6 +25,7 @@ import com.ats.hub.model.Distributor;
 import com.ats.hub.model.EditOrder;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
+import com.ats.hub.model.GetOrderHub;
 import com.ats.hub.model.HubUser;
 import com.ats.hub.model.Order;
 import com.ats.hub.model.OrderDetail;
@@ -35,7 +36,8 @@ public class OrderController {
 	RestTemplate rest = new RestTemplate();
 	List<Distributor> distList = new ArrayList<>();
 	List<GetOrder> orderList = new ArrayList<>();
-	GetOrder res = new GetOrder();
+	List<GetOrderHub> orderHubList = new ArrayList<>();
+	GetOrderHub res = new GetOrderHub();
 
 	@RequestMapping(value = "/showOrderHistory", method = RequestMethod.GET)
 	public ModelAndView showOrderHistory(HttpServletRequest request, HttpServletResponse response) {
@@ -84,9 +86,9 @@ public class OrderController {
 				langSelected = 1;
 			}
 
-			GetOrder[] getOrder = rest.getForObject(Constants.url + "/getOrderByTypeAndStatus", GetOrder[].class);
-			orderList = new ArrayList<GetOrder>(Arrays.asList(getOrder));
-			model.addObject("orderList", orderList);
+			GetOrderHub[] getOrder = rest.getForObject(Constants.url + "/getOrderByTypeAndStatus", GetOrderHub[].class);
+			orderHubList = new ArrayList<GetOrderHub>(Arrays.asList(getOrder));
+			model.addObject("orderList", orderHubList);
 			model.addObject("orderDate", sdf.format(now));
 
 			model.addObject("langSelected", langSelected);
@@ -124,7 +126,7 @@ public class OrderController {
 
 			System.out.println("orderDate" + sdf.format(now));
 
-			res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrder.class);
+			res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrderHub.class);
 
 			model.addObject("orderHeader", res);
 			model.addObject("orderDetail", res.getGetOrderDetailList());

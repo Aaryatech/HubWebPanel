@@ -78,13 +78,13 @@
 											<spring:message code="label.distName" />
 											&nbsp;
 											<c:set var="distName" value="-"></c:set>
-												<c:if test="${langSelected == 0}">
-											<c:set var="distName" value="${orderHeader.distEngName}"></c:set>
+											<c:if test="${langSelected == 0}">
+												<c:set var="distName" value="${orderHeader.distEngName}"></c:set>
 											</c:if>
 											<c:if test="${langSelected == 1}">
-											<c:set var="distName" value="${orderHeader.distMarName}"></c:set>
+												<c:set var="distName" value="${orderHeader.distMarName}"></c:set>
 
-											</c:if> 
+											</c:if>
 											<input class="form-control" name="orderDate" id="orderDate"
 												type="text" value="${distName}" disabled />
 
@@ -205,11 +205,12 @@
 
 												<td><c:out value="${orderDetail.uomName}" /></td>
 												<td><c:out value="${orderDetail.itemRate}" /></td>
-												<td><input class="form-control"
-													id="hubQty${orderDetail.orderDetailId}"
-													placeholder="hub Qty" type="text"
+												<td><input class="form-control" id="hubQty"
+													placeholder="hub Qty" type="number"
 													name="hubQty${orderDetail.orderDetailId}"
-													value="${orderDetail.hubQty}"></td>
+													value="${orderDetail.hubQty}" min="0"
+													onchange="check(this.value,${orderDetail.orderDetailId},${orderDetail.itemRate})">
+												</td>
 												<td><input class="form-control"
 													id="itemTotal${orderDetail.orderDetailId}"
 													placeholder="Item Total" type="text"
@@ -290,9 +291,15 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 	<script>
 		function check(qty, key, rate) {
-
+			
+			if(qty>=0){
 			var tot = rate * qty;
 			document.getElementById("itemTotal" + key).value = tot;
+			}
+			else
+				{
+				document.getElementById("hubQty" + key).value = "0";
+				}
 
 		}
 	</script>

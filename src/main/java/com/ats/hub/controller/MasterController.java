@@ -27,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ats.hub.commons.Constants;
 import com.ats.hub.model.Distributor;
 import com.ats.hub.model.ErrorMessage;
+import com.ats.hub.model.GetNotification;
+import com.ats.hub.model.GetNotificationRoute;
 import com.ats.hub.model.HubUser;
 import com.ats.hub.model.LoginResHubUser;
 import com.ats.hub.model.Notification;
@@ -432,6 +434,12 @@ public class MasterController {
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
 			String notfText = null;
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String currDate = sdf.format(now.getTime());
+
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String datetime = sdf1.format(now.getTime());
 
 			try {
 
@@ -457,43 +465,45 @@ public class MasterController {
 			String routeId = request.getParameter("routeId");
 
 			String[] distIdList = request.getParameterValues("distIdList");
+			ArrayList<String> newList = new ArrayList<>();
+			if (distIdList != null) {
+				newList = new ArrayList<>(Arrays.asList(distIdList));
+			}
 
-			Notification noti = new Notification();
+			List<Integer> nn = new ArrayList<>(newList.size());
+			for (String i : newList) {
+				nn.add(Integer.valueOf(i));
 
-			Date now = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String currDate = sdf.format(now.getTime());
+			}
 
-			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			String datetime = sdf1.format(now.getTime());
+			Notification notifi = new Notification();
+			notifi.setIsRead(0);
+			notifi.setNotifiDate(currDate);
+			notifi.setNotifiDatetime(datetime);
+			notifi.setNotifiFrom(0);
+			notifi.setNotifiText(notfText);
+			notifi.setNotifiType(0);
+			notifi.setNotifiTo(0);
+			notifi.setNotifiId(0);
 
-			noti.setIsRead(0);
-			noti.setNotifiDate(currDate);
-			noti.setNotifiDatetime(datetime);
-			noti.setNotifiFrom(1);
-			noti.setNotifiText(notfText);
-
-			noti.setNotifiType(1);
 			if (routeId != null && distIdList == null) {
-				System.err.println("route insert");
-				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-				map.add("routeId", routeId);
-				map.add("noti", noti);
 
-				System.out.println("noti" + noti);
-
-				Notification res = rest.postForObject(Constants.url + "/saveNotifiByRouteId", map, Notification.class);
+				GetNotificationRoute notiRoute = new GetNotificationRoute();
+				notiRoute.setNotification(notifi);
+				notiRoute.setRouteId(Integer.parseInt(routeId));
+				GetNotificationRoute res = rest.postForObject(Constants.url + "/saveNotificationByRouteId", notiRoute,
+						GetNotificationRoute.class);
 				System.out.println("res " + res.toString());
 
-			} else if (distIdList != null && routeId == null) {
-				System.err.println("dist insert");
+			} else {
+				System.out.println("nn===" + nn);
+				GetNotification noti = new GetNotification();
+				noti.setNotification(notifi);
 
-				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-				map.add("distIdList", distIdList);
-				map.add("noti", noti);
+				noti.setDistIdList(nn);
 
-				Notification res = rest.postForObject(Constants.url + "/saveNotifiByDistIdList", map,
-						Notification.class);
+				GetNotification res = rest.postForObject(Constants.url + "/saveNotiByDistIdList", noti,
+						GetNotification.class);
 				System.out.println("res " + res.toString());
 
 			}
