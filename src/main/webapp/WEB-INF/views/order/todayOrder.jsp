@@ -205,7 +205,8 @@
 
 												<td><c:out value="${orderDetail.uomName}" /></td>
 												<td><c:out value="${orderDetail.itemRate}" /></td>
-												<td><input class="form-control" id="hubQty"
+												<td><input class="form-control"
+													id="hubQty"
 													placeholder="hub Qty" type="number"
 													name="hubQty${orderDetail.orderDetailId}"
 													value="${orderDetail.hubQty}" min="0"

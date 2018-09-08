@@ -1,6 +1,7 @@
 package com.ats.hub.controller;
 
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -26,9 +27,6 @@ import com.ats.hub.model.EditOrder;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.GetOrderHub;
-import com.ats.hub.model.HubUser;
-import com.ats.hub.model.Order;
-import com.ats.hub.model.OrderDetail;
 
 @Controller
 public class OrderController {
@@ -142,7 +140,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/editOrder", method = RequestMethod.POST)
-	public String insertHubUser(HttpServletRequest request, HttpServletResponse response) {
+	public String editOrder(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 
