@@ -43,6 +43,35 @@ public class MasterController {
 	List<Route> routeList = new ArrayList<>();
 	List<Notification> notiList = new ArrayList<>();
 
+	@RequestMapping(value = "/showErrMsg", method = RequestMethod.GET)
+	public ModelAndView showErrMsgMethod(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = null;
+		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			// System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+
+			model = new ModelAndView("common/errorMsg");
+			model.addObject("langSelected", langSelected);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
 	@RequestMapping(value = "/showHubUser", method = RequestMethod.GET)
 	public ModelAndView showHubUser(HttpServletRequest request, HttpServletResponse response) {
 
@@ -71,6 +100,7 @@ public class MasterController {
 	public String insertHubUser(HttpServletRequest request, HttpServletResponse response) {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
+		String returnString = null;
 		try {
 
 			HttpSession session = request.getSession();
@@ -102,15 +132,26 @@ public class MasterController {
 
 			System.out.println("hubUser" + hubUser);
 
-			HubUser res = rest.postForObject(Constants.url + "/saveHubUser", hubUser, HubUser.class);
+			ErrorMessage hubUserInserRes = rest.postForObject(Constants.url + "/saveHubUserExisting", hubUser,
+					ErrorMessage.class);
 
-			System.out.println("res " + res);
+			if (hubUserInserRes.getMessage().equalsIgnoreCase("Mobile No Already Exist")
+					|| hubUserInserRes.isError() == true) {
+
+				returnString = "showErrMsg";
+
+			} else if (hubUserInserRes.isError() == false) {
+
+				returnString = "showHubUserList";
+			}
+
+			System.out.println("hubUserInserRes " + hubUserInserRes);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/showHubUserList";
+		return "redirect:/" + returnString;
 	}
 
 	@RequestMapping(value = "/showHubUserList", method = RequestMethod.GET)
@@ -229,6 +270,7 @@ public class MasterController {
 	public String insertDistributor(HttpServletRequest request, HttpServletResponse response) {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
+		String returnString = null;
 		try {
 
 			HttpSession session = request.getSession();
@@ -283,15 +325,26 @@ public class MasterController {
 
 			System.out.println("dist" + dist);
 
-			Distributor res = rest.postForObject(Constants.url + "/saveDist", dist, Distributor.class);
+			ErrorMessage distInsertRes = rest.postForObject(Constants.url + "/saveDistributorExisting", dist,
+					ErrorMessage.class);
 
-			System.out.println("res " + res);
+			if (distInsertRes.getMessage().equalsIgnoreCase("Mobile No Already Exist")
+					|| distInsertRes.isError() == true) {
+
+				returnString = "showErrMsg";
+
+			} else if (distInsertRes.isError() == false) {
+
+				returnString = "showDistList";
+			}
+
+			System.out.println("res " + distInsertRes);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/showDistList";
+		return "redirect:/" + returnString;
 	}
 
 	@RequestMapping(value = "/showDistList", method = RequestMethod.GET)
