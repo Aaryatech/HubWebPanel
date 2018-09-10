@@ -179,4 +179,70 @@ public class OrderController {
 		return "redirect:/showTodaysOrder";
 	}
 
+	@RequestMapping(value = "/showUpdateOrderStatus", method = RequestMethod.GET)
+	public ModelAndView showUpdateOrderStatus(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("order/updateOrder");
+		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+
+			GetOrderHub[] getOrder = rest.getForObject(Constants.url + "/getOrderByStatus", GetOrderHub[].class);
+			orderHubList = new ArrayList<GetOrderHub>(Arrays.asList(getOrder));
+			model.addObject("orderHubList", orderHubList);
+
+			model.addObject("langSelected", langSelected);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/updateOrderStatus", method = RequestMethod.POST)
+	public String startDistProcessMethod(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			String[] sendMahasanghIds = request.getParameterValues("sendMahasanghIds");
+			System.err.println("sendMahasanghIds "+sendMahasanghIds.toString());
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < sendMahasanghIds.length; i++) {
+
+				sb = sb.append(sendMahasanghIds[i] + ",");
+
+			}
+
+			String ordIds = sb.toString();
+			ordIds = ordIds.substring(0, ordIds.length() - 1);
+			System.out.println("ordIds" + ordIds);
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			map.add("orderStatus", 1);
+
+			map.add("orderHeaderList", ordIds);
+
+			ErrorMessage errMsg = rest.postForObject(Constants.url + "updateOrderStatus", map, ErrorMessage.class);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt "+e.getMessage());
+
+			e.printStackTrace();
+
+		}
+
+		return "redirect:/showUpdateOrderStatus";
+	}
+
 }
