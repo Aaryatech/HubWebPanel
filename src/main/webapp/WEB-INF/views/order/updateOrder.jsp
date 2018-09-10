@@ -58,70 +58,72 @@
 			<div class="row">
 
 				<div class="col-md-12">
+					<form action="${pageContext.request.contextPath}/updateOrderStatus"
+						id="submit_form" method="post" enctype="multipart/form-data">
 
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title"><spring:message
-									code="label.todaysOrder" /></strong>
-						</div>
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title"><spring:message
+										code="label.todaysOrder" /></strong>
+							</div>
 
-						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th class="check"><input type="checkbox" name="selAll"
-											id="selAll" /> All</th>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.distName" /></th>
-										<th><spring:message code="label.distCratesPending" /></th>
-										<th><spring:message code="label.distAmtPending" /></th>
-										<th><spring:message code="label.orderTotal" /></th>
-
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach items="${orderHubList}" var="orderHubList"
-										varStatus="count">
+							<div class="card-body">
+								<table id="bootstrap-data-table"
+									class="table table-striped table-bordered">
+									<thead>
 										<tr>
-											<td><input type="checkbox" name="sendMahasanghIds"
-												value="${orderHubList.orderHeaderId}" /></td>
-											<td><c:out value="${count.index+1}" /></td>
-
-											<td><c:if test="${langSelected == 0}">
-													<c:out value="${orderHubList.distEngName}" />
-
-												</c:if> <c:if test="${langSelected == 1}">
-													<c:out value="${orderHubList.distMarName}" />
-
-												</c:if></td>
-
-
-
-											<td><c:out value="${orderHubList.prevPendingCrateBal}" /></td>
-
-											<td><c:out value="${orderHubList.prevPendingAmt}" /></td>
-											<td><c:out value="${orderHubList.orderTotal}" /></td>
-
+											<th class="check"><input type="checkbox" name="selAll"
+												id="selAll" /> All</th>
+											<th><spring:message code="label.srNo" /></th>
+											<th><spring:message code="label.distName" /></th>
+											<th><spring:message code="label.distCratesPending" /></th>
+											<th><spring:message code="label.distAmtPending" /></th>
+											<th><spring:message code="label.orderTotal" /></th>
 
 										</tr>
-									</c:forEach>
+									</thead>
+									<tbody>
 
-								</tbody>
+										<c:forEach items="${orderHubList}" var="orderHubList"
+											varStatus="count">
+											<tr>
+												<td><input type="checkbox" name="sendMahasanghIds"
+													value="${orderHubList.orderHeaderId}" /></td>
+												<td><c:out value="${count.index+1}" /></td>
 
-							</table>
+												<td><c:if test="${langSelected == 0}">
+														<c:out value="${orderHubList.distEngName}" />
+
+													</c:if> <c:if test="${langSelected == 1}">
+														<c:out value="${orderHubList.distMarName}" />
+
+													</c:if></td>
+
+
+
+												<td><c:out value="${orderHubList.prevPendingCrateBal}" /></td>
+
+												<td><c:out value="${orderHubList.prevPendingAmt}" /></td>
+												<td><c:out value="${orderHubList.orderTotal}" /></td>
+
+
+											</tr>
+										</c:forEach>
+
+									</tbody>
+
+								</table>
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-12" align="center">
+						<div class="col-lg-12" align="center">
 
 
-						<button type="submit" class="btn btn-primary"
-							onclick="valthisform()"
-							style="align-content: center; width: 226px; margin-left: 80px;">
-							<spring:message code="label.submit" />
-						</button>
-					</div>
+							<button type="submit" class="btn btn-primary"
+								onclick="valthisform()"
+								style="align-content: center; width: 226px; margin-left: 80px;">
+								<spring:message code="label.submit" />
+							</button>
+						</div>
 
 					</form>
 				</div>
@@ -195,7 +197,7 @@
 			}
 			if (okay) {
 
-				var form = document.getElementById("start_prod_form");
+				var form = document.getElementById("submit_form");
 				//form.action="${pageContext.request.contextPath}/startProd";
 				form.submit();
 			} else
