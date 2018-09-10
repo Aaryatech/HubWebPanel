@@ -56,10 +56,10 @@
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
+				<form action="${pageContext.request.contextPath}/updateOrderStatus"
+					method="post">
 
-				<div class="col-md-12">
-					<form action="${pageContext.request.contextPath}/updateOrderStatus"
-						id="submit_form" method="post" enctype="multipart/form-data">
+					<div class="col-md-12">
 
 						<div class="card">
 							<div class="card-header">
@@ -68,6 +68,8 @@
 							</div>
 
 							<div class="card-body">
+
+
 								<table id="bootstrap-data-table"
 									class="table table-striped table-bordered">
 									<thead>
@@ -87,7 +89,7 @@
 										<c:forEach items="${orderHubList}" var="orderHubList"
 											varStatus="count">
 											<tr>
-												<td><input type="checkbox" name="sendMahasanghIds"
+												<td><input type="checkbox" name="sendMahasanghIds" id="sendMahasanghIds"
 													value="${orderHubList.orderHeaderId}" /></td>
 												<td><c:out value="${count.index+1}" /></td>
 
@@ -113,21 +115,24 @@
 									</tbody>
 
 								</table>
+								<div class="col-lg-12" align="center">
+
+
+									<button type="submit" class="btn btn-primary"
+										style="align-content: center; width: 226px; margin-left: 80px;">
+										<spring:message code="label.submit" />
+									</button>
+								</div>
+
 							</div>
 						</div>
-						<div class="col-lg-12" align="center">
 
 
-							<button type="submit" class="btn btn-primary"
-								onclick="valthisform()"
-								style="align-content: center; width: 226px; margin-left: 80px;">
-								<spring:message code="label.submit" />
-							</button>
-						</div>
 
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
+			<!-- row end -->
 		</div>
 		<!-- .animated -->
 	</div>
