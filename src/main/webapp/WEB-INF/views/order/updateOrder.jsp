@@ -55,73 +55,73 @@
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
-			<div class="row" style="width: 100%">
+			<div class="row">
 
 				<div class="col-md-12">
-					<form action="${pageContext.request.contextPath}/updateOrderStatus"
-						id="start_prod_form" method="post" enctype="multipart/form-data">
-						<div class="card" style="width: 100%">
-							<div class="card-header">
-								<strong class="card-title"><spring:message
-										code="label.todaysOrder" /></strong>
-							</div>
-							<div class="card-body">
-								<table id="bootstrap-data-table"
-									class="table table-striped table-bordered">
-									<thead>
+
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title"><spring:message
+									code="label.todaysOrder" /></strong>
+						</div>
+
+						<div class="card-body">
+							<table id="bootstrap-data-table"
+								class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th class="check"><input type="checkbox" name="selAll"
+											id="selAll" /> All</th>
+										<th><spring:message code="label.srNo" /></th>
+										<th><spring:message code="label.distName" /></th>
+										<th><spring:message code="label.distCratesPending" /></th>
+										<th><spring:message code="label.distAmtPending" /></th>
+										<th><spring:message code="label.orderTotal" /></th>
+
+									</tr>
+								</thead>
+								<tbody>
+
+									<c:forEach items="${orderHubList}" var="orderHubList"
+										varStatus="count">
 										<tr>
-											<th class="check"><input type="checkbox" name="selAll"
-												id="selAll" /> All</th>
-											<th><spring:message code="label.srNo" /></th>
-											<th><spring:message code="label.distName" /></th>
-											<th><spring:message code="label.distCratesPending" /></th>
-											<th><spring:message code="label.distAmtPending" /></th>
-											<th><spring:message code="label.orderTotal" /></th>
+											<td><input type="checkbox" name="sendMahasanghIds"
+												value="${orderHubList.orderHeaderId}" /></td>
+											<td><c:out value="${count.index+1}" /></td>
+
+											<td><c:if test="${langSelected == 0}">
+													<c:out value="${orderHubList.distEngName}" />
+
+												</c:if> <c:if test="${langSelected == 1}">
+													<c:out value="${orderHubList.distMarName}" />
+
+												</c:if></td>
+
+
+
+											<td><c:out value="${orderHubList.prevPendingCrateBal}" /></td>
+
+											<td><c:out value="${orderHubList.prevPendingAmt}" /></td>
+											<td><c:out value="${orderHubList.orderTotal}" /></td>
+
 
 										</tr>
-									</thead>
-									<tbody>
+									</c:forEach>
 
-										<c:forEach items="${orderHubList}" var="orderHubList"
-											varStatus="count">
-											<tr>
-												<td><input type="checkbox" name="sendMahasanghIds"
-													value="${orderHubList.orderHeaderId}"/></td>
-												<td><c:out value="${count.index+1}" /></td>
+								</tbody>
 
-												<td><c:if test="${langSelected == 0}">
-														<c:out value="${orderHubList.distEngName}" />
-
-													</c:if> <c:if test="${langSelected == 1}">
-														<c:out value="${orderHubList.distMarName}" />
-
-													</c:if></td>
-
-
-
-												<td><c:out value="${orderHubList.prevPendingCrateBal}" /></td>
-
-												<td><c:out value="${orderHubList.prevPendingAmt}" /></td>
-												<td><c:out value="${orderHubList.orderTotal}" /></td>
-
-
-											</tr>
-										</c:forEach>
-
-									</tbody>
-
-								</table>
-							</div>
+							</table>
 						</div>
-						<div class="col-lg-12" align="center">
+					</div>
+					<div class="col-lg-12" align="center">
 
 
-							<button type="submit" class="btn btn-primary"
-								onclick="valthisform()"
-								style="align-content: center; width: 226px; margin-left: 80px;">
-								<spring:message code="label.submit" />
-							</button>
-						</div>
+						<button type="submit" class="btn btn-primary"
+							onclick="valthisform()"
+							style="align-content: center; width: 226px; margin-left: 80px;">
+							<spring:message code="label.submit" />
+						</button>
+					</div>
 
 					</form>
 				</div>

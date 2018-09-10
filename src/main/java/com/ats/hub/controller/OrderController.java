@@ -209,12 +209,11 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/updateOrderStatus", method = RequestMethod.POST)
-	public String startDistProcessMethod(HttpServletRequest request, HttpServletResponse response) {
+	public String updateOrderStatus(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 
 			String[] sendMahasanghIds = request.getParameterValues("sendMahasanghIds");
-			System.err.println("sendMahasanghIds "+sendMahasanghIds.toString());
 
 			StringBuilder sb = new StringBuilder();
 
@@ -236,7 +235,7 @@ public class OrderController {
 			ErrorMessage errMsg = rest.postForObject(Constants.url + "updateOrderStatus", map, ErrorMessage.class);
 
 		} catch (Exception e) {
-			System.err.println("err ord updt "+e.getMessage());
+			System.err.println("err ord updt " + e.getMessage());
 
 			e.printStackTrace();
 
