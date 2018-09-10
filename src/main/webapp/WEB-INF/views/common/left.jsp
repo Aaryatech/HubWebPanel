@@ -71,9 +71,7 @@
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
-							href="${pageContext.request.contextPath}/showOrderHistory"><spring:message
-									code="label.orderHistory" /></a></li>
+
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showTodaysOrder"><spring:message
@@ -83,10 +81,26 @@
 							href="${pageContext.request.contextPath}/showUpdateOrderStatus"><spring:message
 									code="label.updateStatus" /></a></li>
 
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showOrderHistory"><spring:message
+									code="label.orderHistory" /></a></li>
+
 
 
 					</ul></li>
 
+				<li class="menu-item-has-children dropdown"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"> <i class="menu-icon fa fa-table"></i> <spring:message
+							code="label.userProfile" />
+				</a>
+					<ul class="sub-menu children dropdown-menu ">
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/editHubUser/1"><spring:message
+									code="label.userProfile" /></a></li>
+
+
+					</ul>
 			</ul>
 
 		</div>
