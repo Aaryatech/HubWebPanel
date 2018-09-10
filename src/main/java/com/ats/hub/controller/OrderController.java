@@ -69,7 +69,7 @@ public class OrderController {
 	@RequestMapping(value = "/showTodaysOrder", method = RequestMethod.GET)
 	public ModelAndView showTodaysOrder(HttpServletRequest request, HttpServletResponse response) {
 
-		ModelAndView model = new ModelAndView("order/todaysOrder");
+		ModelAndView model = new ModelAndView("order/todaysOrderHeaderList");
 		try {
 			Date now = new Date();
 
@@ -102,7 +102,7 @@ public class OrderController {
 	public ModelAndView showTodayOrder(@PathVariable int orderHeaderId, HttpServletRequest request,
 			HttpServletResponse response) {
 
-		ModelAndView model = new ModelAndView("order/todayOrder");
+		ModelAndView model = new ModelAndView("order/todayOrderDetailList");
 		try {
 
 			Date now = new Date();
