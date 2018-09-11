@@ -115,7 +115,7 @@ public class MasterController {
 			int userType = Integer.parseInt(request.getParameter("userType"));
 
 			HubUser hubUser = new HubUser();
-
+			
 			if (hsId == "" || hsId == null)
 				hubUser.setHsId(0);
 			else
@@ -557,7 +557,6 @@ public class MasterController {
 						GetNotificationRoute.class);
 
 			} else {
-				
 
 				GetNotification noti = new GetNotification();
 				noti.setNotification(notifi);
