@@ -185,7 +185,8 @@
 											required
 											oninvalid="setCustomValidity('Please enter valid mobile no ')"
 											onchange="try{setCustomValidity('')}catch(e){}"
-											pattern="[0-9]{10}" value="${editHs.hsContactNo}"> <span
+											pattern="[0-9]{10}" value="${editHs.hsContactNo}" readonly />
+										<span
 											class="error" aria-live="polite"></span>
 									</div>
 								</div>
