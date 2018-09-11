@@ -115,7 +115,7 @@ public class MasterController {
 			int userType = Integer.parseInt(request.getParameter("userType"));
 
 			HubUser hubUser = new HubUser();
-			
+
 			if (hsId == "" || hsId == null)
 				hubUser.setHsId(0);
 			else
@@ -497,6 +497,9 @@ public class MasterController {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
+			HttpSession session = request.getSession();
+			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+
 			String notfText = null;
 			Date now = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -544,9 +547,9 @@ public class MasterController {
 			notifi.setIsRead(0);
 			notifi.setNotifiDate(currDate);
 			notifi.setNotifiDatetime(datetime);
-			notifi.setNotifiFrom(0);
+			notifi.setNotifiFrom(login.getHubUser().getHsId());
 			notifi.setNotifiText(notfText);
-			notifi.setNotifiType(0);
+			notifi.setNotifiType(2);
 			notifi.setNotifiTo(0);
 			notifi.setNotifiId(0);
 			if (routeId != null && distIdList == null) {
