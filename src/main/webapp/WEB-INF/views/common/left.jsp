@@ -54,12 +54,7 @@
 							href="${pageContext.request.contextPath}/sendNotification"><spring:message
 									code="label.sendNoti" /></a></li>
 
-
-
-
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
-							href="${pageContext.request.contextPath}/editHubUser/1"><spring:message
-									code="label.userProfile" /></a></li>
+						
 
 
 					</ul></li>
@@ -70,10 +65,7 @@
 							code="label.order" />
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
-
-
-
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+					<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showTodaysOrder"><spring:message
 									code="label.todaysOrder" /></a></li>
 

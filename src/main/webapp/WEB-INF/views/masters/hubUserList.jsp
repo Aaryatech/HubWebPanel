@@ -128,7 +128,7 @@
 											<td>
 												<div class="fa-hover col-lg-3 col-md-6">
 													<a
-														href="${pageContext.request.contextPath}/editHubUser/${hubUserList.hsId}"><i
+														href="${pageContext.request.contextPath}/editHubUserByHsId/${hubUserList.hsId}"><i
 														class="fa fa-edit"></i> <span class="text-muted"></span></a>
 												</div>
 
