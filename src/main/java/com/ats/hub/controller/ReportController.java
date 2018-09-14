@@ -37,7 +37,7 @@ public class ReportController {
 	@RequestMapping(value = "/showDistReport", method = RequestMethod.GET)
 	public ModelAndView showOrderHistory(HttpServletRequest request, HttpServletResponse response) {
 
-		ModelAndView model = new ModelAndView("reports/distwiseReport");
+		ModelAndView model = new ModelAndView("reports/distwiseReport1");
 		try {
 
 			Locale locale = LocaleContextHolder.getLocale();
