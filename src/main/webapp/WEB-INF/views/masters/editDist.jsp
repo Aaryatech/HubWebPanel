@@ -258,8 +258,8 @@
 											required
 											oninvalid="setCustomValidity('Please enter valid mobile no ')"
 											onchange="try{setCustomValidity('')}catch(e){}"
-											pattern="[0-9]{10}" value="${editDist.distContactNo}">
-										<span class="error" aria-live="polite"></span>
+											pattern="[0-9]{10}" value="${editDist.distContactNo}"
+											readonly /> <span class="error" aria-live="polite"></span>
 									</div>
 								</div>
 								<div class="form-group"></div>

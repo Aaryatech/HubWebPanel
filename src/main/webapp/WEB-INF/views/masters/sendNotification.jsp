@@ -182,7 +182,7 @@
 										<div class="card-body">
 											<select name="distIdList" id="distIdList" multiple
 												class="standardSelect" tabindex="1">
-												<option value="0"><spring:message code="label.all" /></option>
+												<option value="-1"><spring:message code="label.all" /></option>
 												<c:forEach items="${distList}" var="distList">
 													<c:if test="${langSelected == 0}">
 														<option value="${distList.distId}">${distList.distEngName}

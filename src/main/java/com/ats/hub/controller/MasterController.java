@@ -43,6 +43,35 @@ public class MasterController {
 	List<Route> routeList = new ArrayList<>();
 	List<Notification> notiList = new ArrayList<>();
 
+	@RequestMapping(value = "/showErrMsg", method = RequestMethod.GET)
+	public ModelAndView showErrMsgMethod(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = null;
+		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			// System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+
+			model = new ModelAndView("common/errorMsg");
+			model.addObject("langSelected", langSelected);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
 	@RequestMapping(value = "/showHubUser", method = RequestMethod.GET)
 	public ModelAndView showHubUser(HttpServletRequest request, HttpServletResponse response) {
 
@@ -71,6 +100,7 @@ public class MasterController {
 	public String insertHubUser(HttpServletRequest request, HttpServletResponse response) {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
+		String returnString = null;
 		try {
 
 			HttpSession session = request.getSession();
@@ -85,7 +115,7 @@ public class MasterController {
 			int userType = Integer.parseInt(request.getParameter("userType"));
 
 			HubUser hubUser = new HubUser();
-
+			
 			if (hsId == "" || hsId == null)
 				hubUser.setHsId(0);
 			else
@@ -102,15 +132,26 @@ public class MasterController {
 
 			System.out.println("hubUser" + hubUser);
 
-			HubUser res = rest.postForObject(Constants.url + "/saveHubUser", hubUser, HubUser.class);
+			ErrorMessage hubUserInserRes = rest.postForObject(Constants.url + "/saveHubUserExisting", hubUser,
+					ErrorMessage.class);
 
-			System.out.println("res " + res);
+			if (hubUserInserRes.getMessage().equalsIgnoreCase("Mobile No Already Exist")
+					|| hubUserInserRes.isError() == true) {
+
+				returnString = "showErrMsg";
+
+			} else if (hubUserInserRes.isError() == false) {
+
+				returnString = "showHubUserList";
+			}
+
+			System.out.println("hubUserInserRes " + hubUserInserRes);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/showHubUserList";
+		return "redirect:/" + returnString;
 	}
 
 	@RequestMapping(value = "/showHubUserList", method = RequestMethod.GET)
@@ -177,6 +218,26 @@ public class MasterController {
 		return model;
 	}
 
+	@RequestMapping(value = "/editHubUserByHsId/{hsId}", method = RequestMethod.GET)
+	public ModelAndView editHubUserByHsId(@PathVariable int hsId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("masters/editHub");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("hsId", hsId);
+
+			HubUser res = rest.postForObject(Constants.url + "/getHubUserByHsId", map, HubUser.class);
+			model.addObject("editHs", res);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
 	@RequestMapping(value = "/deleteHubUser/{hsId}", method = RequestMethod.GET)
 	public String deleteHubUser(@PathVariable int hsId, HttpServletRequest request, HttpServletResponse response) {
 
@@ -229,6 +290,7 @@ public class MasterController {
 	public String insertDistributor(HttpServletRequest request, HttpServletResponse response) {
 
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
+		String returnString = null;
 		try {
 
 			HttpSession session = request.getSession();
@@ -283,15 +345,26 @@ public class MasterController {
 
 			System.out.println("dist" + dist);
 
-			Distributor res = rest.postForObject(Constants.url + "/saveDist", dist, Distributor.class);
+			ErrorMessage distInsertRes = rest.postForObject(Constants.url + "/saveDistributorExisting", dist,
+					ErrorMessage.class);
 
-			System.out.println("res " + res);
+			if (distInsertRes.getMessage().equalsIgnoreCase("Mobile No Already Exist")
+					|| distInsertRes.isError() == true) {
+
+				returnString = "showErrMsg";
+
+			} else if (distInsertRes.isError() == false) {
+
+				returnString = "showDistList";
+			}
+
+			System.out.println("res " + distInsertRes);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/showDistList";
+		return "redirect:/" + returnString;
 	}
 
 	@RequestMapping(value = "/showDistList", method = RequestMethod.GET)
@@ -308,15 +381,6 @@ public class MasterController {
 
 			if (locale.toString().equalsIgnoreCase("mr")) {
 				langSelected = 1;
-			}
-
-			int userType = 1;
-			String user = "0";
-
-			if (userType == 0) {
-				user = "0";
-			} else {
-				user = "0,1";
 			}
 
 			Distributor[] getDist = rest.getForObject(Constants.url + "/getAllDistByIsUsed", Distributor[].class);
@@ -470,9 +534,9 @@ public class MasterController {
 				newList = new ArrayList<>(Arrays.asList(distIdList));
 			}
 
-			List<Integer> nn = new ArrayList<>(newList.size());
+			List<Integer> selectedDistIds = new ArrayList<>(newList.size());
 			for (String i : newList) {
-				nn.add(Integer.valueOf(i));
+				selectedDistIds.add(Integer.valueOf(i));
 
 			}
 
@@ -485,26 +549,22 @@ public class MasterController {
 			notifi.setNotifiType(0);
 			notifi.setNotifiTo(0);
 			notifi.setNotifiId(0);
-
 			if (routeId != null && distIdList == null) {
-
 				GetNotificationRoute notiRoute = new GetNotificationRoute();
 				notiRoute.setNotification(notifi);
 				notiRoute.setRouteId(Integer.parseInt(routeId));
 				GetNotificationRoute res = rest.postForObject(Constants.url + "/saveNotificationByRouteId", notiRoute,
 						GetNotificationRoute.class);
-				System.out.println("res " + res.toString());
 
 			} else {
-				System.out.println("nn===" + nn);
+
 				GetNotification noti = new GetNotification();
 				noti.setNotification(notifi);
 
-				noti.setDistIdList(nn);
+				noti.setDistIdList(selectedDistIds);
 
 				GetNotification res = rest.postForObject(Constants.url + "/saveNotiByDistIdList", noti,
 						GetNotification.class);
-				System.out.println("res " + res.toString());
 
 			}
 		} catch (Exception e) {
