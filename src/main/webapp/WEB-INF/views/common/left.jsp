@@ -54,7 +54,7 @@
 							href="${pageContext.request.contextPath}/sendNotification"><spring:message
 									code="label.sendNoti" /></a></li>
 
-						
+
 
 
 					</ul></li>
@@ -65,9 +65,9 @@
 							code="label.order" />
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
-					
-					
-					<li class="active"><i class="fa fa-puzzle-piece"></i><a
+
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showTodaysOrder"><spring:message
 									code="label.todaysOrder" /></a></li>
 
@@ -78,6 +78,36 @@
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showOrderHistory"><spring:message
 									code="label.orderHistory" /></a></li>
+
+
+
+					</ul></li>
+
+
+
+
+				<li class="menu-item-has-children dropdown"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"> <i class="menu-icon fa fa-table"></i> <spring:message
+							code="label.report" />
+				</a>
+					<ul class="sub-menu children dropdown-menu ">
+
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showDistReport"><spring:message
+									code="label.distReport" /></a></li>
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showItemwiseReport"><spring:message
+									code="label.itemReport" /></a></li>
+
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showCatwiseReport"><spring:message
+									code="label.catReport" /></a></li>
+
+
 
 
 
