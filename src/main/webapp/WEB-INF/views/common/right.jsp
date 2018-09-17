@@ -88,7 +88,7 @@
 
 						<a href="?lang=en" style="color: #000;"> English | </a> <a
 							href="?lang=mr" style="color: #000;">मराठी </a>
-
+ 
 						&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img class="user-avatar rounded-circle"
