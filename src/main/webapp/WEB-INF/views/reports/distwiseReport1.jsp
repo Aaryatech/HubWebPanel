@@ -72,18 +72,21 @@
 									code="label.search" /></strong>
 						</div>
 						<div class="form-group"></div>
-						<div class="row">
+						<div class="form-group">
+
 
 							<div class="col-md-2">
+
 								<spring:message code="label.fromDate" />
 
 							</div>
+
 							<div class="col-md-3">
 
 								<input type="text" id="fromDate" name="fromDate" />
+
+
 							</div>
-
-
 							<div class="col-md-2">
 								<spring:message code="label.toDate" />
 
@@ -93,10 +96,10 @@
 								<input type="text" id="toDate" name="toDate" />
 							</div>
 
-						</div>
 
-						&nbsp;
-						<div class="row">
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
 
 							<div class="col-md-2">
 								<spring:message code="label.selectDist" />
@@ -239,8 +242,6 @@
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
-			alert("distIdList" + distIdList);
-			//$('#loader').show();
 
 			$.getJSON('${getDistByDate}',
 

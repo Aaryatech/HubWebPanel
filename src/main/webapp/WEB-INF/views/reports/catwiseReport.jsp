@@ -233,16 +233,16 @@
 
 	<script type="text/javascript">
 		function callSearch() {
-			alert("cxcgxc");
+
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
-			
 
-			var langSelected = ${langSelected};
-			alert("langSelected" + langSelected);
-			alert("distIdList" + distIdList);
-			
+			var langSelected = $
+			{
+				langSelected
+			}
+			;
 
 			$.getJSON('${getCatByDate}',
 
@@ -254,8 +254,6 @@
 				ajax : 'true'
 
 			}, function(data) {
-
-				alert(data);
 
 				if (data == "") {
 					alert("No records found !!");

@@ -234,11 +234,12 @@
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
-			
-			var langSelected = ${langSelected};
-			alert("langSelected" + langSelected);
-			alert("distIdList" + distIdList);
-			//$('#loader').show();
+
+			var langSelected = $
+			{
+				langSelected
+			}
+			;
 
 			$.getJSON('${getItemByDate}',
 
@@ -250,8 +251,6 @@
 				ajax : 'true'
 
 			}, function(data) {
-
-				alert(data);
 
 				if (data == "") {
 					alert("No records found !!");

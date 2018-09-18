@@ -18,15 +18,18 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.hub.commons.Constants;
+import com.ats.hub.commons.DateConvertor;
 import com.ats.hub.model.Distributor;
 import com.ats.hub.model.EditOrder;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.GetOrderHub;
+import com.ats.hub.model.report.DistReportByDate;
 
 @Controller
 public class OrderController {
@@ -64,6 +67,32 @@ public class OrderController {
 		}
 
 		return model;
+	}
+
+	@RequestMapping(value = "/getOrderByDate", method = RequestMethod.GET)
+	@ResponseBody
+	public GetOrderHub getOrderByDate(HttpServletRequest request, HttpServletResponse response) {
+
+		GetOrderHub orderHeader = new GetOrderHub();
+
+		try {
+
+			String date = request.getParameter("date");
+			String distId = request.getParameter("distId");
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("date", DateConvertor.convertToYMD(date));
+			map.add("distId", distId);
+
+			orderHeader = rest.postForObject(Constants.url + "getOrderHistoryDistwise", map, GetOrderHub.class);
+			
+		/*	orderHeader.getGetOrderDetailList();*/
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return orderHeader;
 	}
 
 	@RequestMapping(value = "/showTodaysOrder", method = RequestMethod.GET)
