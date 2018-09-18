@@ -169,6 +169,7 @@
 										<th><spring:message code="label.cratesIssued" /></th>
 
 										<th><spring:message code="label.preAmtPending" /></th>
+										<th><spring:message code="label.amtReceived" /></th>
 
 
 
@@ -264,7 +265,8 @@
 					dataTable.row.add(
 							[ i + 1, v.orderDate, v.orderTotal,
 									v.prevPendingCrateBal, v.cratesReceived,
-									v.cratesIssued, v.prevPendingAmt ]).draw();
+									v.cratesIssued, v.prevPendingAmt,
+									v.amtReceived ]).draw();
 				});
 
 			});
