@@ -51,7 +51,7 @@
 </head>
 <body>
 
-	<c:url var="getDistByDate" value="/getDistByDate"></c:url>
+	<c:url var="getItemByDate" value="/getItemByDate"></c:url>
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
@@ -94,6 +94,7 @@
 							</div>
 
 						</div>
+						<input type="hidden" id="langSelected" name="langSelected" />
 
 						&nbsp;
 						<div class="row">
@@ -106,9 +107,9 @@
 
 							<div class="col-md-3">
 
-								<select id="distIdList" name="distIdList" class="standardSelect"
-									tabindex="1">
-									<option value=""></option>
+								<select id="distIdList" name="distIdList[]" multiple
+									class="standardSelect" tabindex="1">
+									<option value="-1">All</option>
 
 									<c:forEach items="${distList}" var="distList">
 
@@ -149,7 +150,7 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.distReport" /></strong>
+									code="label.itemReport" /></strong>
 						</div>
 
 
@@ -160,15 +161,10 @@
 								<thead>
 									<tr>
 										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.orderDate" /></th>
-										<th><spring:message code="label.orderTotal" /></th>
-										<th><spring:message code="label.preCratesPending" /></th>
-
-
-										<th><spring:message code="label.cratesReceived" /></th>
-										<th><spring:message code="label.cratesIssued" /></th>
-
-										<th><spring:message code="label.preAmtPending" /></th>
+										<th><spring:message code="label.itemName" /></th>
+										<th><spring:message code="label.orderQty" /></th>
+										<th><spring:message code="label.deliverQty" /></th>
+										<th><spring:message code="label.item" /></th>
 
 
 
@@ -238,10 +234,13 @@
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
+			
+			var langSelected = ${langSelected};
+			alert("langSelected" + langSelected);
 			alert("distIdList" + distIdList);
 			//$('#loader').show();
 
-			$.getJSON('${getDistByDate}',
+			$.getJSON('${getItemByDate}',
 
 			{
 				fromDate : fromDate,
@@ -259,13 +258,23 @@
 
 				}
 
-				var dataTable = $('#bootstrap-data-table').DataTable();
-				$.each(data, function(i, v) {
-					dataTable.row.add(
-							[ i + 1, v.orderDate, v.orderTotal,
-									v.prevPendingCrateBal, v.cratesReceived,
-									v.cratesIssued, v.prevPendingAmt ]).draw();
-				});
+				if (langSelected == 0) {
+
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row.add(
+								[ i + 1, v.itemEngName, v.orderQty,
+										v.deliverQty, v.itemTotal ]).draw();
+					});
+
+				} else if (langSelected == 1) {
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row.add(
+								[ i + 1, v.itemMarName, v.orderQty,
+										v.deliverQty, v.itemTotal ]).draw();
+					});
+				}
 
 			});
 		}

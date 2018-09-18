@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Catwise Report</title>
+<title>Categorywise Report</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,7 +51,7 @@
 </head>
 <body>
 
-	<c:url var="getDistByDate" value="/getDistByDate"></c:url>
+	<c:url var="getCatByDate" value="/getCatByDate"></c:url>
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
@@ -95,6 +95,8 @@
 
 						</div>
 
+						<input type="hidden" id="langSelected" name="langSelected" />
+
 						&nbsp;
 						<div class="row">
 
@@ -106,9 +108,9 @@
 
 							<div class="col-md-3">
 
-								<select id="distIdList" name="distIdList" class="standardSelect"
-									tabindex="1">
-									<option value=""></option>
+								<select id="distIdList" name="distIdList[]" multiple
+									class="standardSelect" tabindex="1">
+									<option value="-1">All</option>
 
 									<c:forEach items="${distList}" var="distList">
 
@@ -128,60 +130,57 @@
 								</select>
 
 							</div>
-							<div class="col-md-2"></div>
 
-							<div class="col-md-3">
+							<div>
+								<div class="col-md-2"></div>
 
-								<button type="button" class="btn btn-primary"
-									onclick="callSearch()"
-									style="align-content: center; width: 150px; margin-left: 80px;">
-									<spring:message code="label.search" />
-								</button>
-								&nbsp;
+								<div class="col-md-3">
 
+									<button type="button" class="btn btn-primary"
+										onclick="callSearch()"
+										style="align-content: center; width: 150px; margin-left: 80px;">
+										<spring:message code="label.search" />
+									</button>
+									&nbsp;
+
+								</div>
+								<div class="row"></div>
 							</div>
-							<div class="row"></div>
+
 						</div>
 
-					</div>
-					&nbsp;
+						&nbsp;
 
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title"><spring:message
-									code="label.distReport" /></strong>
-						</div>
-
-
-						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-
-								<thead>
-									<tr>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.orderDate" /></th>
-										<th><spring:message code="label.orderTotal" /></th>
-										<th><spring:message code="label.preCratesPending" /></th>
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title"><spring:message
+										code="label.catReport" /></strong>
+							</div>
 
 
-										<th><spring:message code="label.cratesReceived" /></th>
-										<th><spring:message code="label.cratesIssued" /></th>
+							<div class="card-body">
+								<table id="bootstrap-data-table"
+									class="table table-striped table-bordered">
 
-										<th><spring:message code="label.preAmtPending" /></th>
+									<thead>
+										<tr>
+											<th><spring:message code="label.srNo" /></th>
+											<th><spring:message code="label.catName" /></th>
+											<th><spring:message code="label.orderQty" /></th>
+											<th><spring:message code="label.catTotal" /></th>
 
 
+										</tr>
+									</thead>
 
-									</tr>
-								</thead>
 
-
-							</table>
+								</table>
+							</div>
 						</div>
 					</div>
+
+
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -238,10 +237,14 @@
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
-			alert("distIdList" + distIdList);
-			//$('#loader').show();
+			
 
-			$.getJSON('${getDistByDate}',
+			var langSelected = ${langSelected};
+			alert("langSelected" + langSelected);
+			alert("distIdList" + distIdList);
+			
+
+			$.getJSON('${getCatByDate}',
 
 			{
 				fromDate : fromDate,
@@ -259,14 +262,25 @@
 
 				}
 
-				var dataTable = $('#bootstrap-data-table').DataTable();
-				$.each(data, function(i, v) {
-					dataTable.row.add(
-							[ i + 1, v.orderDate, v.orderTotal,
-									v.prevPendingCrateBal, v.cratesReceived,
-									v.cratesIssued, v.prevPendingAmt ]).draw();
-				});
+				if (langSelected == 0) {
 
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row
+								.add(
+										[ i + 1, v.catEngName, v.orderQty,
+												v.itemTotal ]).draw();
+					});
+
+				} else if (langSelected == 1) {
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row
+								.add(
+										[ i + 1, v.catMarName, v.orderQty,
+												v.itemTotal ]).draw();
+					});
+				}
 			});
 		}
 	</script>

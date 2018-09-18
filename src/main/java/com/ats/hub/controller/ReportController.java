@@ -133,15 +133,24 @@ public class ReportController {
 
 			String fromDate = request.getParameter("fromDate");
 			String toDate = request.getParameter("toDate");
-			String distIdList = request.getParameter("distIdList");
+			String[] distIdList = request.getParameterValues("distIdList[]");
 			System.out.println("distIdList" + distIdList);
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < distIdList.length; i++) {
+				sb = sb.append(distIdList[i] + ",");
+
+			}
+			String items = sb.toString();
+			items = items.substring(0, items.length() - 1);
 
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
 
 			map.add("orderStatus", 3);
-			map.add("distIdList", distIdList);
+			map.add("distIdList", items);
 			itemList = rest.postForObject(Constants.url + "getitemwiseDistReport", map, List.class);
 
 		} catch (Exception e) {
@@ -189,15 +198,24 @@ public class ReportController {
 
 			String fromDate = request.getParameter("fromDate");
 			String toDate = request.getParameter("toDate");
-			String distIdList = request.getParameter("distIdList");
+			String[] distIdList = request.getParameterValues("distIdList[]");
 			System.out.println("distIdList" + distIdList);
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < distIdList.length; i++) {
+				sb = sb.append(distIdList[i] + ",");
+
+			}
+			String items = sb.toString();
+			items = items.substring(0, items.length() - 1);
 
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
 
 			map.add("orderStatus", 3);
-			map.add("distIdList", distIdList);
+			map.add("distIdList", items);
 			catList = rest.postForObject(Constants.url + "getcategoryDistReport", map, List.class);
 
 		} catch (Exception e) {
