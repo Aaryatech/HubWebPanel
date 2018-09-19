@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Distributorwise Report</title>
+<title>Itemwise Report</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,7 +51,7 @@
 </head>
 <body>
 
-	<c:url var="getDistByDate" value="/getDistByDate"></c:url>
+	<c:url var="getItemByDate" value="/getItemByDate"></c:url>
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
@@ -72,21 +72,18 @@
 									code="label.search" /></strong>
 						</div>
 						<div class="form-group"></div>
-						<div class="form-group">
-
+						<div class="row">
 
 							<div class="col-md-2">
-
 								<spring:message code="label.fromDate" />
 
 							</div>
-
 							<div class="col-md-3">
 
 								<input type="text" id="fromDate" name="fromDate" />
-
-
 							</div>
+
+
 							<div class="col-md-2">
 								<spring:message code="label.toDate" />
 
@@ -96,10 +93,11 @@
 								<input type="text" id="toDate" name="toDate" />
 							</div>
 
-
 						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
+						<input type="hidden" id="langSelected" name="langSelected" />
+
+						&nbsp;
+						<div class="row">
 
 							<div class="col-md-2">
 								<spring:message code="label.selectDist" />
@@ -109,9 +107,9 @@
 
 							<div class="col-md-3">
 
-								<select id="distIdList" name="distIdList" class="standardSelect"
-									tabindex="1">
-									<option value=""></option>
+								<select id="distIdList" name="distIdList[]" multiple
+									class="standardSelect" tabindex="1">
+									<option value="-1">All</option>
 
 									<c:forEach items="${distList}" var="distList">
 
@@ -152,7 +150,7 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.distReport" /></strong>
+									code="label.itemReport" /></strong>
 						</div>
 
 
@@ -163,16 +161,10 @@
 								<thead>
 									<tr>
 										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.orderDate" /></th>
-										<th><spring:message code="label.orderTotal" /></th>
-										<th><spring:message code="label.preCratesPending" /></th>
-
-
-										<th><spring:message code="label.cratesReceived" /></th>
-										<th><spring:message code="label.cratesIssued" /></th>
-
-										<th><spring:message code="label.preAmtPending" /></th>
-										<th><spring:message code="label.amtReceived" /></th>
+										<th><spring:message code="label.itemName" /></th>
+										<th><spring:message code="label.orderQty" /></th>
+										<th><spring:message code="label.deliverQty" /></th>
+										<th><spring:message code="label.item" /></th>
 
 
 
@@ -243,7 +235,12 @@
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
 
-			$.getJSON('${getDistByDate}',
+			var langSelected = ${langSelected};
+
+			alert("distIdList" + distIdList);
+			alert("langSelected" + langSelected);
+
+			$.getJSON('${getItemByDate}',
 
 			{
 				fromDate : fromDate,
@@ -254,21 +251,28 @@
 
 			}, function(data) {
 
-				alert(data);
-
 				if (data == "") {
 					alert("No records found !!");
 
 				}
 
-				var dataTable = $('#bootstrap-data-table').DataTable();
-				$.each(data, function(i, v) {
-					dataTable.row.add(
-							[ i + 1, v.orderDate, v.orderTotal,
-									v.prevPendingCrateBal, v.cratesReceived,
-									v.cratesIssued, v.prevPendingAmt,
-									v.amtReceived ]).draw();
-				});
+				if (langSelected == 0) {
+
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row.add(
+								[ i + 1, v.itemEngName, v.orderQty,
+										v.deliverQty, v.itemTotal ]).draw();
+					});
+
+				} else if (langSelected == 1) {
+					var dataTable = $('#bootstrap-data-table').DataTable();
+					$.each(data, function(i, v) {
+						dataTable.row.add(
+								[ i + 1, v.itemMarName, v.orderQty,
+										v.deliverQty, v.itemTotal ]).draw();
+					});
+				}
 
 			});
 		}
