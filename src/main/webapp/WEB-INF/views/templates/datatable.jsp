@@ -193,7 +193,7 @@
         $(document).ready(function() {
           $('#bootstrap-data-table1').DataTable({
         	  columnDefs: [
-      	        { targets: [1], className:"right" },
+      	        { targets: [0,1], className:"right" },
       	    ]
           });
         } );
@@ -228,7 +228,7 @@ function dummyDataCall(){
 
 }
 
-	
+	 
 
 
 </script>
