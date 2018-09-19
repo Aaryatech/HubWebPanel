@@ -72,7 +72,7 @@
 									code="label.search" /></strong>
 						</div>
 						<div class="form-group"></div>
-						<div class="row">
+						<div class="form-group">
 
 							<div class="col-md-2">
 								<spring:message code="label.fromDate" />
@@ -96,8 +96,8 @@
 						</div>
 						<input type="hidden" id="langSelected" name="langSelected" />
 
-						&nbsp;
-						<div class="row">
+					<div class="form-group"></div>
+						<div class="form-group">
 
 							<div class="col-md-2">
 								<spring:message code="label.selectDist" />
@@ -138,10 +138,10 @@
 									style="align-content: center; width: 150px; margin-left: 80px;">
 									<spring:message code="label.search" />
 								</button>
-								&nbsp;
+								
 
 							</div>
-							<div class="row"></div>
+							
 						</div>
 
 					</div>

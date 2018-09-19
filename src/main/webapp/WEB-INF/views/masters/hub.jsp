@@ -138,87 +138,109 @@
 						<div class="card-body card-block">
 							<form action="${pageContext.request.contextPath}/insertHubUser"
 								method="post">
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.hsEngName" />
-									<div class="input-group">
-										<input class="form-control" name="txtEnglish" id="txtEnglish"
-											type="text" required
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.hsEngName" />
+									</div>
+									<div class="col-md-4">
+
+										<div class="input-group">
+											<input class="form-control" name="txtEnglish" id="txtEnglish"
+												type="text" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+
+										</div>
+									</div>
+
+									<input type="hidden" name="hsId" id="hsId"
+										value="${editHs.hsId}">
+
+									<div class="col-md-2">
+										<spring:message code="label.hsMarName" />
 
 									</div>
+									<div class="col-md-4">
+
+
+
+
+
+										<div class="input-group">
+
+
+											<spring:message code="label.hsMarName" var="txtMarathi" />
+
+
+											<input class="form-control" name="txtMarathi" id="txtMarathi"
+												type="text" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
+									</div>
+
 								</div>
-
-								<input type="hidden" name="hsId" id="hsId"
-									value="${editHs.hsId}">
-
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.hsMarName" />
-
-									<div class="input-group">
+								&nbsp;
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.hsContactNo" />
+									</div>
+									<div class="col-md-4">
 
 
-										<spring:message code="label.hsMarName" var="txtMarathi" />
+										<div class="input-group">
 
 
-										<input class="form-control" name="txtMarathi" id="txtMarathi"
-											type="text" required
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}"  />
-										<span class="error" aria-live="polite"></span>
+
+											<input class="form-control" name="contactNo" id="contactNo"
+												required
+												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
+												onchange="try{setCustomValidity('')}catch(e){}"
+												pattern="[0-9]{10}"> <span class="error"
+												aria-live="polite"></span>
+										</div>
+									</div>
+
+									<div class="col-md-2">
+										<spring:message code="label.password" />
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+
+											<input class="form-control" name="password" id="password"
+												type="password" required
+												oninvalid="setCustomValidity('Please enter password ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
-
-								<div class="form-group"></div>
-
-								<div class="form-group">
-									<spring:message code="label.hsContactNo" />
-									<div class="input-group">
-
-
-
-										<input class="form-control" name="contactNo" id="contactNo"
-											required
-											oninvalid="setCustomValidity('Please enter valid mobile no ')"
-											onchange="try{setCustomValidity('')}catch(e){}"
-											pattern="[0-9]{10}"> <span class="error"
-											aria-live="polite"></span>
+								&nbsp;
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.userType" />
 									</div>
-								</div>
-								<div class="form-group"></div>
-								<div class="form-group">
 
-									<spring:message code="label.password" />
-									<div class="input-group">
-
-										<input class="form-control" name="password" id="password"
-											type="password" required
-											oninvalid="setCustomValidity('Please enter password ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-								<div class="form-group"></div>
-
-								<div class="form-group">
-									<spring:message code="label.userType" />
 
 									<div class="input-group">
 
 										<input type="radio" name="userType" id="userType" value="0"
 											checked>
-										<spring:message code="label.staff" />
-										<br> &nbsp;&nbsp;&nbsp;&nbsp;
+										<div class="col-md-2">
+											<spring:message code="label.staff" />
+										</div>
+
 
 									</div>
 
 									<div class="input-group">
 										<input type="radio" name="userType" value="1">
-										<spring:message code="label.admin" />
-										<br> &nbsp;&nbsp;&nbsp;&nbsp;
+										<div class="col-md-2">
+											<spring:message code="label.admin" />
+										</div>
+
 									</div>
 								</div>
 

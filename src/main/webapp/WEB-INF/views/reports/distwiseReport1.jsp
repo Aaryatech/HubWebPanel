@@ -45,8 +45,12 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
-
-
+<!-- 
+<STYLE type="text/css">
+.right {
+	text-align: right;
+}
+</STYLE> -->
 
 </head>
 <body>
@@ -140,10 +144,10 @@
 									style="align-content: center; width: 150px; margin-left: 80px;">
 									<spring:message code="label.search" />
 								</button>
-								&nbsp;
+
 
 							</div>
-							<div class="row"></div>
+
 						</div>
 
 					</div>
@@ -208,7 +212,6 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
-
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
 	<script
@@ -234,7 +237,17 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
-
+	<!-- <script type="text/javascript">
+		$(document).ready(function() {
+			$('#bootstrap-data-table').DataTable({
+				columnDefs : [ {
+					targets : [ 2, 3, 4, 5, 6, 7 ],
+					className : "right"
+				}, ]
+			});
+		});
+	</script>
+ -->
 
 	<script type="text/javascript">
 		function callSearch() {
@@ -274,7 +287,8 @@
 		}
 	</script>
 
-	<script>
+	<script type="text/javascript">
+		<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
 				disable_search_threshold : 2,
@@ -284,11 +298,7 @@
 		});
 	</script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table-export').DataTable();
-		});
-	</script>
+
 
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

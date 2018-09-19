@@ -145,32 +145,29 @@
 
 										<spring:message code="label.orderDate" />
 										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text" value="${orderHeader.orderDate}"
-											disabled />
+											id="orderDate" type="text" disabled />
 
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4">
+							<%-- <div class="col-lg-4">
 
 								<div>
 									<div class="input-group" style="align-items: center;">
 
 										<spring:message code="label.orderDeliveryDate" />
 										&nbsp; <input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text"
-											value="${orderHeader.orderDeliveryDate}" disabled />
+											id="orderDeliveryDate" type="text" disabled />
 
 									</div>
 								</div>
-							</div>
+							</div> --%>
 							<div class="col-lg-4">
 								<div>
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.orderTotal" />
 										&nbsp; <input class="form-control" name="orderTotal"
-											id="orderTotal" type="text" value="${orderHeader.orderTotal}"
-											disabled />
+											id="orderTotal" type="text" disabled />
 
 									</div>
 								</div>
@@ -189,8 +186,7 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.distCratesPending" />
 										&nbsp; <input class="form-control" name="prevPendingCrateBal"
-											id="prevPendingCrateBal" type="text"
-											value="${orderHeader.prevPendingCrateBal}" disabled /> <span
+											id="prevPendingCrateBal" type="text" disabled /> <span
 											class="error" aria-live="polite"></span>
 									</div>
 								</div>
@@ -229,8 +225,7 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesBalance" />
 										&nbsp; <input class="form-control" name="cratesBalance"
-											id="cratesBalance" type="text"
-											value="${orderHeader.distCratesLimit}" disabled /> <span
+											id="cratesBalance" type="text" disabled /> <span
 											class="error" aria-live="polite"></span>
 									</div>
 								</div>
@@ -259,9 +254,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.orderTotal" />
 										&nbsp; <input class="form-control" name="orderTotal1"
-											id="orderTotal1" type="text"
-											value="${orderHeader.orderTotal}" disabled /> <span
-											class="error" aria-live="polite"></span>
+											id="orderTotal1" type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -274,9 +268,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.amtReceived" />
 										&nbsp; <input class="form-control" name="amtReceived"
-											id="amtReceived" type="text"
-											value="${orderHeader.amtReceived}" disabled /> <span
-											class="error" aria-live="polite"></span>
+											id="amtReceived" type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>

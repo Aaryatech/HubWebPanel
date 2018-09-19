@@ -54,7 +54,7 @@
 	<!-- Header-->
 
 
-
+	<%-- 
 	<div class="breadcrumbs">
 		<div class="col-sm-4">
 			<div class="page-header float-left">
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
@@ -118,7 +118,7 @@
 
 											<td><c:out value="${count.index+1}" /></td>
 
-											<td><c:if test="${langSelected == 0}">
+											<td align="left"><c:if test="${langSelected == 0}">
 													<c:out value="${distList.distEngName}" />
 
 												</c:if> <c:if test="${langSelected == 1}">
@@ -127,7 +127,7 @@
 												</c:if></td>
 
 
-											<td><c:if test="${langSelected == 0}">
+											<td align="left"><c:if test="${langSelected == 0}">
 													<c:out value="${distList.distAddEng}" />
 
 												</c:if> <c:if test="${langSelected == 1}">
@@ -136,11 +136,16 @@
 												</c:if></td>
 
 											<td><c:out value="${distList.distContactNo}" /></td>
-											<td><c:out value="${distList.routeDistSeqNo}" /></td>
-											<td><c:out value="${distList.distCratesPending}" /></td>
-											<td><c:out value="${distList.distAmtPending}" /></td>
-											<td><c:out value="${distList.distCratesLimit}" /></td>
-											<td><c:out value="${distList.distAmtLimit}" /></td>
+											<td align="right"><c:out
+													value="${distList.routeDistSeqNo}" /></td>
+											<td align="right"><c:out
+													value="${distList.distCratesPending}" /></td>
+											<td align="right"><c:out
+													value="${distList.distAmtPending}" /></td>
+											<td align="right"><c:out
+													value="${distList.distCratesLimit}" /></td>
+											<td align="right"><c:out
+													value="${distList.distAmtLimit}" /></td>
 											<td>
 												<div class="fa-hover col-lg-3 col-md-6">
 													<a
@@ -218,12 +223,6 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table-export').DataTable();
-		});
-	</script>
 
 
 </body>

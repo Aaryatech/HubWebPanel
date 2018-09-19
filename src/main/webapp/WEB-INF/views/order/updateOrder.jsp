@@ -56,18 +56,21 @@
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
-				<form action="${pageContext.request.contextPath}/updateOrderStatus"
-					method="post">
 
-					<div class="col-md-12">
 
-						<div class="card">
-							<div class="card-header">
-								<strong class="card-title"><spring:message
-										code="label.todaysOrder" /></strong>
-							</div>
+				<div class="col-md-12">
 
-							<div class="card-body">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title"><spring:message
+									code="label.todaysOrder" /></strong>
+						</div>
+						<div class="card-body">
+							<form
+								action="${pageContext.request.contextPath}/updateOrderStatus"
+								method="post">
+
+
 
 
 								<table id="bootstrap-data-table"
@@ -124,23 +127,20 @@
 									</button>
 								</div>
 
-							</div>
+							</form>
 						</div>
-
-
-
 					</div>
-				</form>
+
+
+
+				</div>
+
 			</div>
 			<!-- row end -->
 		</div>
 		<!-- .animated -->
 	</div>
 	<!-- .content -->
-
-
-
-
 
 	<!-- Footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
