@@ -235,11 +235,10 @@
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
 
-			var langSelected = $
-			{
-				langSelected
-			}
-			;
+			var langSelected = ${langSelected};
+
+			alert("distIdList" + distIdList);
+			alert("langSelected" + langSelected);
 
 			$.getJSON('${getItemByDate}',
 
