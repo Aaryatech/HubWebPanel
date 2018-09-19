@@ -37,7 +37,11 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-
+<STYLE type="text/css">
+ .right {
+  text-align: right;
+}
+ </STYLE>
 </head>
 <body onload="dummyDataCall()">
 
@@ -91,7 +95,7 @@
 										<th>Name</th>
 										<th>Position</th>
 										<th>Office</th>
-										<th>Salary</th>
+										<th s>Salary</th>
 										
 									</tr>
 								</thead>
@@ -124,10 +128,7 @@
 										<th width="12%" class="center">Order Qty</th>
 									</tr>
 								</thead>
-								<tbody>
-
-
-								</tbody>
+								
 							</table>
 
 
@@ -187,17 +188,22 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 
-	<!-- 
+	
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
+          $('#bootstrap-data-table1').DataTable({
+        	  columnDefs: [
+      	        { targets: [1], className:"right" },
+      	    ]
+          });
         } );
-    </script> -->
+    </script> 
 	<script type="text/javascript"> 
 
 function dummyDataCall(){ 
-    
-
+  
+	
+	
 	  var dataTable = $('#bootstrap-data-table1').DataTable();
 
 
@@ -209,32 +215,16 @@ function dummyDataCall(){
 		    "OrderQty": 20
 		  }];
 
-		//  $("#bootstrap-data-table tbody").find("tr:gt(0)").remove(); //remove all old rows except first one
 
+		  var dataTable = $('#bootstrap-data-table1').DataTable();
 
 		  $.each(testData, function(i, v) {
 
-
-	 	    if (i == 0) {
-		      //setting the data in first row itself
-		      setDataOnRow($("#bootstrap-data-table tbody").find("tr").first(), v);
-
-		    } else {
-
-		      //clonning the first row and setting data over it and then appending in tbody
-		      var clonnedRow = $($("#bootstrap-data-table tbody").find("tr").first()).clone();
-		      setDataOnRow(clonnedRow, v);
-
-		      $("#bootstrap-data-table tbody").append(clonnedRow);
-
-		    } 
+		    	  dataTable.row.add(  [ v.ProductName,  v.OrderQty ] ).draw();
 		    
 
-			 // dataTable.row.add(  [ v.ProductName,  v.OrderQty ] ).draw();
-
-
 			  });
-		 
+
 
 }
 
