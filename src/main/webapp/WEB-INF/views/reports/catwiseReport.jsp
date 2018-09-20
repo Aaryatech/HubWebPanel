@@ -46,8 +46,15 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
+<style type="text/css">
+.right {
+	text-align: right;
+}
 
-
+.left {
+	text-align: left;
+}
+</style>
 </head>
 <body>
 
@@ -155,7 +162,7 @@
 
 
 							<div class="card-body">
-								<table id="bootstrap-data-table"
+								<table id="bootstrap-data-table1"
 									class="table table-striped table-bordered">
 
 									<thead>
@@ -190,6 +197,7 @@
 
 
 
+
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
 	<script
@@ -198,7 +206,6 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
@@ -225,7 +232,6 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
-
 
 	<script type="text/javascript">
 		function callSearch() {
@@ -258,7 +264,7 @@
 
 				if (langSelected == 0) {
 
-					var dataTable = $('#bootstrap-data-table').DataTable();
+					var dataTable = $('#bootstrap-data-table1').DataTable();
 					$.each(data, function(i, v) {
 						dataTable.row
 								.add(
@@ -267,7 +273,7 @@
 					});
 
 				} else if (langSelected == 1) {
-					var dataTable = $('#bootstrap-data-table').DataTable();
+					var dataTable = $('#bootstrap-data-table1').DataTable();
 					$.each(data, function(i, v) {
 						dataTable.row
 								.add(
@@ -290,13 +296,17 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table-export').DataTable();
-		});
-	</script>
-
-
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        $(document).ready(function() {
+          $('#bootstrap-data-table1').DataTable({
+        	  columnDefs: [
+      	        { targets: [2,3], className:"right" },
+      	    ]
+          });
+        } );
+    </script>
+    
+    
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$(function() {
 			$('input[id$=fromDate]').datepicker({

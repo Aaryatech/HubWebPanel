@@ -37,11 +37,16 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-<STYLE type="text/css">
- .right {
-  text-align: right;
+<style type="text/css">
+.right {
+	text-align: right;
 }
- </STYLE>
+
+.left {
+	text-align: left;
+}
+</style>
+
 </head>
 <body onload="dummyDataCall()">
 
@@ -95,8 +100,8 @@
 										<th>Name</th>
 										<th>Position</th>
 										<th>Office</th>
-										<th s>Salary</th>
-										
+										<th >Salary</th>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -128,7 +133,7 @@
 										<th width="12%" class="center">Order Qty</th>
 									</tr>
 								</thead>
-								
+
 							</table>
 
 
@@ -188,16 +193,16 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 
-	
-    <script type="text/javascript">
+
+	<script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table1').DataTable({
         	  columnDefs: [
-      	        { targets: [0,1], className:"right" },
+      	        { targets: [1], className:"right" },
       	    ]
           });
         } );
-    </script> 
+    </script>
 	<script type="text/javascript"> 
 
 function dummyDataCall(){ 
@@ -221,9 +226,7 @@ function dummyDataCall(){
 		  $.each(testData, function(i, v) {
 
 		    	  dataTable.row.add(  [ v.ProductName,  v.OrderQty ] ).draw();
-		    
-
-			  });
+		   });
 
 
 }

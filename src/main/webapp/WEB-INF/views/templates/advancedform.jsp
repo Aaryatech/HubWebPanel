@@ -361,7 +361,7 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-									<th class="check">
+									<th class="no-sort sorting_desc">
             <input type="checkbox" id="flowcheckall" value="" />&nbsp;All
         </th>
 										<th>Name</th>
@@ -371,22 +371,22 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr >
 									<td><input type='checkbox' id='checkall' name='mydata' value="1 "></td>
 										<td>Tiger Nixon</td>
 										<td>System Architect</td>
 										<td>Edinburgh</td>
 										<td>$320,800</td>
 									</tr>
-									<tr>
-									<td><input type='checkbox' id='checkall' name='mydata' value="1 "></td>
+									<tr >
+									<td><input type='checkbox' id='checkall' name='mydata' value="2 "></td>
 										<td>Garrett Winters</td>
 										<td>Accountant</td>
 										<td>Tokyo</td>
 										<td>$170,750</td>
 									</tr>
 									<tr>
-									<td><input type='checkbox' id='checkall' name='mydata' value="1 "></td>
+									<td><input type='checkbox' id='checkall' name='mydata' value="3 "></td>
 										<td>Ashton Cox</td>
 										<td>Junior Technical Author</td>
 										<td>San Francisco</td>
