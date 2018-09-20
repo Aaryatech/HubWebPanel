@@ -306,8 +306,9 @@
 
 
 
-											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
-												type="text" value="${editDist.distCratesLimit}" required
+											<input class="form-control" name="distCratesLimit"
+												id="distCratesLimit" type="text"
+												value="${editDist.distCratesLimit}" required
 												oninvalid="setCustomValidity('Please enter Route Sequnce No')"
 												onchange="try{setCustomValidity('')}catch(e){}" /> <span
 												class="error" aria-live="polite"></span>
@@ -409,7 +410,7 @@
 										<div class="input-group">
 
 											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
-												type="text" value="${editDist.routeSeqNo}" required
+												type="text" value="${editDist.routeDistSeqNo}" required
 												oninvalid="setCustomValidity('Please enter location ')"
 												onchange="try{setCustomValidity('')}catch(e){}" /> <span
 												class="error" aria-live="polite"></span>
