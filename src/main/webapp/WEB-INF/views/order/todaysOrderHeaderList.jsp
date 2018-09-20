@@ -101,10 +101,10 @@
 												</c:choose></td> --%>
 
 
-											<td><c:out value="${orderList.prevPendingCrateBal}" /></td>
+											<td align="right"><c:out value="${orderList.prevPendingCrateBal}" /></td>
 
-											<td><c:out value="${orderList.prevPendingAmt}" /></td>
-											<td><c:out value="${orderList.orderTotal}" /></td>
+											<td align="right"><c:out value="${orderList.prevPendingAmt}" /></td>
+											<td align="right"><c:out value="${orderList.orderTotal}" /></td>
 											<td>
 												<div class="fa-hover col-lg-3 col-md-6">
 													<a

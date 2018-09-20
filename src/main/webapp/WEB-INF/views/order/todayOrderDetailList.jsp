@@ -201,18 +201,18 @@
 														<c:out value="${orderDetail.itemMarName}" />
 
 													</c:if></td>
-												<td><c:out value="${orderDetail.itemWt}" /></td>
+												<td align="right"><c:out value="${orderDetail.itemWt}" /></td>
 
-												<td><c:out value="${orderDetail.uomName}" /></td>
-												<td><c:out value="${orderDetail.itemRate}" /></td>
-												<td><input class="form-control"
-													id="hubQty"
+												<td align="left"><c:out value="${orderDetail.uomName}" /></td>
+												<td align="right"><c:out
+														value="${orderDetail.itemRate}" /></td>
+												<td><input class="form-control" id="hubQty"
 													placeholder="hub Qty" type="number"
 													name="hubQty${orderDetail.orderDetailId}"
 													value="${orderDetail.hubQty}" min="0"
 													onchange="check(this.value,${orderDetail.orderDetailId},${orderDetail.itemRate})">
 												</td>
-												<td><input class="form-control"
+												<td align="right"><input class="form-control"
 													id="itemTotal${orderDetail.orderDetailId}"
 													placeholder="Item Total" type="text"
 													name="itemTotal${orderDetail.orderDetailId}"

@@ -182,14 +182,9 @@
 								</div>
 							</div>
 
-
-
-
 							<div class="col-lg-3">
 
 								<div>
-
-
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesIssued" />
 										&nbsp; <input class="form-control" name="cratesIssued"

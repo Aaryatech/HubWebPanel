@@ -106,10 +106,13 @@
 
 
 
-												<td><c:out value="${orderHubList.prevPendingCrateBal}" /></td>
+												<td align="right"><c:out
+														value="${orderHubList.prevPendingCrateBal}" /></td>
 
-												<td><c:out value="${orderHubList.prevPendingAmt}" /></td>
-												<td><c:out value="${orderHubList.orderTotal}" /></td>
+												<td align="right"><c:out
+														value="${orderHubList.prevPendingAmt}" /></td>
+												<td align="right"><c:out
+														value="${orderHubList.orderTotal}" /></td>
 
 
 											</tr>
