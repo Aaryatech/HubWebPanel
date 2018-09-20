@@ -74,7 +74,7 @@
 						<div class="form-group"></div>
 						<div class="form-group">
 
-							<div class="col-lg-6" align="center">
+							<div class="col-lg-4" align="center">
 								<spring:message code="label.date" />
 								<input type="text" id="date" name="date" />
 
@@ -88,7 +88,6 @@
 									name="distId" class="standardSelect" tabindex="1">
 									<option value=""></option>
 
-
 									<c:forEach items="${distList}" var="distList">
 
 										<c:if test="${langSelected == 0}">
@@ -100,20 +99,11 @@
 											</option>
 										</c:if>
 
-
-
-
 									</c:forEach>
 								</select>
 
 							</div>
-
-
-
-
-							<br> <br>
-
-							<div class="col-lg-12" align="center" style="margin-top: 20px;">
+							<div class="col-lg-2" align="center">
 
 
 								<button type="button" class="btn btn-primary"
@@ -385,7 +375,7 @@
 								}
 
 								document.getElementById("orderDate").value = data.orderDate;
-								document.getElementById("orderDeliveryDate").value = data.orderDeliveryDate;
+
 								document.getElementById("orderTotal").value = data.orderTotal;
 								document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
 								document.getElementById("cratesIssued").value = data.cratesIssued;

@@ -141,8 +141,36 @@
 
 
 
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.selectRoute" />
+									</div>
+									<div class="col-md-3">
+										<select id="routeId" name="routeId" class="standardSelect"
+											tabindex="1">
+											<option value=""></option>
 
-								<div class="form-group"></div>
+											<c:forEach items="${routeList}" var="routeList">
+
+												<c:if test="${langSelected == 0}">
+													<option value="${routeList.routeId}">${routeList.routeEngName}
+													</option>
+												</c:if>
+												<c:if test="${langSelected == 1}">
+													<option value="${routeList.routeId}">${routeList.routeMarName}
+													</option>
+												</c:if>
+											</c:forEach>
+										</select>
+
+									</div>
+
+
+
+
+
+
+									<%-- 	<div class="form-group"></div>
 								<div class="col-xs-6 col-sm-6">
 									<label> <spring:message code="label.selectRoute" /></label>
 									<div class="card">
@@ -170,73 +198,88 @@
 										</div>
 									</div>
 
+								</div> --%>
+
+									OR
+
+
+									<div class="col-md-2">
+										<spring:message code="label.selectDist" />
+									</div>
+
+									<div class="col-md-4">
+										<select name="distIdList" id="distIdList" multiple
+											class="standardSelect" tabindex="1">
+											<option value="-1"><spring:message code="label.all" /></option>
+											<c:forEach items="${distList}" var="distList">
+												<c:if test="${langSelected == 0}">
+													<option value="${distList.distId}">${distList.distEngName}
+													</option>
+												</c:if>
+												<c:if test="${langSelected == 1}">
+													<option value="${distList.distId}">${distList.distMarName}
+													</option>
+												</c:if>
+
+											</c:forEach>
+										</select>
+
+									</div>
+
 								</div>
-
-								OR
-
-								<div class="form-group"></div>
-								<div class="col-xs-6 col-sm-6">
-									<label> <spring:message code="label.selectDist" /></label>
-									<div class="card">
-
-										<div class="card-body">
-											<select name="distIdList" id="distIdList" multiple
-												class="standardSelect" tabindex="1">
-												<option value="-1"><spring:message code="label.all" /></option>
-												<c:forEach items="${distList}" var="distList">
-													<c:if test="${langSelected == 0}">
-														<option value="${distList.distId}">${distList.distEngName}
-														</option>
-													</c:if>
-													<c:if test="${langSelected == 1}">
-														<option value="${distList.distId}">${distList.distMarName}
-														</option>
-													</c:if>
-
-												</c:forEach>
-											</select>
-											<!-- <select data-placeholder="Choose a Country...">
-												<option value=""></option>
-
-											</select> -->
+								&nbsp;
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.language" />
+									</div>
+									<div class="col-md-3">
+										<div class="input-group">
+											<input type="radio" checked name="lang" id="lang" value="0"
+												onchange="openDiv(0)"> English <input type="radio"
+												name="lang" id="lang" value="1" onchange="openDiv(1)">
+											Marathi
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<spring:message code="label.language" />
-									<div class="input-group">
-										<input type="radio" checked name="lang" id="lang" value="0"
-											onchange="openDiv(0)"> English <input type="radio"
-											name="lang" id="lang" value="1" onchange="openDiv(1)">
-										Marathi
+								&nbsp;&nbsp;
+
+
+								<div class="row">
+									<div class="col-md-3">
+										<spring:message code="label.engNoti" />
+									</div>
+									<div class="col-md-9">
+
+										<div class="input-group">
+											<input class="form-control" name="notf_eng" id="notf_eng"
+												type="text" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+
+										</div>
 									</div>
 								</div>
-
-
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.engNoti" />
-									<div class="input-group">
-										<input class="form-control" name="notf_eng" id="notf_eng"
-											type="text" required
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
-
+								&nbsp;&nbsp;
+								<div class="row" id="notf_mr_div" style="display: none">
+									<div class="col-md-3">
+										<spring:message code="label.mrNoti" />
 									</div>
-								</div>
 
-								<div class="form-group"></div>
-								<div class="form-group" id="notf_mr_div" style="display: none">
-									<spring:message code="label.mrNoti" />
-									<div class="input-group">
-										<input class="form-control" name="notf_mr" id="notf_mr"
-											type="text" value=""
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+
+									<div class="col-md-9">
+
+										<div class="input-group">
+											<input class="form-control" name="notf_mr" id="notf_mr"
+												type="text" value=""
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
 									</div>
+
 								</div>
+								&nbsp;
 								<div class="col-lg-12" align="center">
 
 
@@ -274,7 +317,7 @@
 	<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
-				disable_search_threshold : 10,
+				disable_search_threshold : 2,
 				no_results_text : "Oops, nothing found!",
 				width : "100%"
 			});

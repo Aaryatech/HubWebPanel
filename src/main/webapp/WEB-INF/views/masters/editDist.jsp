@@ -178,266 +178,273 @@
 							<form
 								action="${pageContext.request.contextPath}/insertDistributor"
 								method="post">
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.hsEngName" />
-									<div class="input-group">
-										<input class="form-control" name="txtEnglish" id="txtEnglish"
-											type="text" value="${editDist.distEngName}" required
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
-
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.hsEngName" />
 									</div>
-								</div>
+									<div class="col-md-4">
 
-								<input type="hidden" name="distId" id="distId"
-									value="${editDist.distId}">
+										<div class="input-group">
+											<input class="form-control" name="txtEnglish" id="txtEnglish"
+												type="text" value="${editDist.distEngName}" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.hsMarName" />
-
-									<div class="input-group">
-
-
-										<spring:message code="label.hsMarName" var="txtMarathi" />
-
-
-										<input class="form-control" name="txtMarathi" id="txtMarathi"
-											type="text" value="${editDist.distMarName}" required
-											oninvalid="setCustomValidity('Please enter name ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+										</div>
 									</div>
-								</div>
+
+									<input type="hidden" name="distId" id="distId"
+										value="${editDist.distId}">
+
+									<div class="col-md-2">
+										<spring:message code="label.hsMarName" />
+									</div>
+
+									<div class="col-md-4">
+
+										<div class="input-group">
 
 
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.engAdd" />
-									<div class="input-group">
-										<input class="form-control" name="addEnglish" id="addEnglish"
-											type="text" value="${editDist.distAddEng}" required
-											oninvalid="setCustomValidity('Please enter Address ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+											<spring:message code="label.hsMarName" var="txtMarathi" />
 
+
+											<input class="form-control" name="txtMarathi" id="txtMarathi"
+												type="text" value="${editDist.distMarName}" required
+												oninvalid="setCustomValidity('Please enter name ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
 
 
+								&nbsp;
 
-								<div class="form-group"></div>
-								<div class="form-group">
-									<spring:message code="label.marAdd" />
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.engAdd" />
+									</div>
+									<div class="col-md-4">
 
-									<div class="input-group">
+										<div class="input-group">
+											<input class="form-control" name="addEnglish" id="addEnglish"
+												type="text" value="${editDist.distAddEng}" required
+												oninvalid="setCustomValidity('Please enter Address ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+
+										</div>
+									</div>
 
 
-										<spring:message code="label.hsMarName" var="addMarathi" />
+
+									<div class="col-md-2">
+										<spring:message code="label.marAdd" />
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
 
 
-										<input class="form-control" name="addMarathi" id="addMarathi"
-											type="text" value="${editDist.distAddMar}" required
-											oninvalid="setCustomValidity('Please enter address ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+											<spring:message code="label.hsMarName" var="addMarathi" />
+
+
+											<input class="form-control" name="addMarathi" id="addMarathi"
+												type="text" value="${editDist.distAddMar}" required
+												oninvalid="setCustomValidity('Please enter address ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group"></div>
-
-								<div class="form-group">
-									<spring:message code="label.hsContactNo" />
-									<div class="input-group">
-
-
-
-										<input class="form-control" name="contactNo" id="contactNo"
-											required
-											oninvalid="setCustomValidity('Please enter valid mobile no ')"
-											onchange="try{setCustomValidity('')}catch(e){}"
-											pattern="[0-9]{10}" value="${editDist.distContactNo}"
-											readonly /> <span class="error" aria-live="polite"></span>
+								&nbsp;
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.hsContactNo" />
 									</div>
-								</div>
-								<div class="form-group"></div>
-								<div class="form-group">
+									<div class="col-md-4">
 
-									<spring:message code="label.password" />
-									<div class="input-group">
 
-										<input class="form-control" name="password" id="password"
-											type="password" value="${editDist.distPwd}" required
-											oninvalid="setCustomValidity('Please enter password ')"
-											onchange="try{setCustomValidity('')}catch(e){}" /> <span
-											class="error" aria-live="polite"></span>
+										<div class="input-group">
+
+
+
+											<input class="form-control" name="contactNo" id="contactNo"
+												required
+												oninvalid="setCustomValidity('Please enter valid mobile no ')"
+												onchange="try{setCustomValidity('')}catch(e){}"
+												pattern="[0-9]{10}" value="${editDist.distContactNo}"
+												readonly /> <span class="error" aria-live="polite"></span>
+										</div>
 									</div>
+									<div class="col-md-2">
+										<spring:message code="label.password" />
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
+
+											<input class="form-control" name="password" id="password"
+												type="password" value="${editDist.distPwd}" required
+												oninvalid="setCustomValidity('Please enter password ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
+									</div>
+
 								</div>
 
+								&nbsp;
+								<div class="row">
+
+									<div class="col-md-2">
+										<spring:message code="label.distCratesLimit" />
+									</div>
+
+									<div class="col-lg-4">
+										<div class="input-group">
 
 
-								<div class="form-group"></div>
-								<div class="form-group">
 
-									<div class="col-lg-6">
-
-										<div>
-
-
-											<spring:message code="label.routeSeqNo" />
-											<div class="input-group">
-
-												<input class="form-control" name="routeSeqNo"
-													id="routeSeqNo" type="text"
-													value="${editDist.routeDistSeqNo}" required
-													oninvalid="setCustomValidity('Please enter Route Sequnce No')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
+											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
+												type="text" value="${editDist.distCratesLimit}" required
+												oninvalid="setCustomValidity('Please enter Route Sequnce No')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 
 
 
 
-									<div class="col-lg-6">
 
-										<div>
+									<div class="col-md-2">
+										<spring:message code="label.distCratesPending" />
+									</div>
+
+									<div class="col-lg-4">
 
 
-											<spring:message code="label.distCratesPending" />
-											<div class="input-group">
+										<div class="input-group">
 
-												<input class="form-control" name="distCratesPending"
-													id="distCratesPending" type="text"
-													value="${editDist.distCratesPending}" required
-													oninvalid="setCustomValidity('Please enter Crates Pending ')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
+											<input class="form-control" name="distCratesPending"
+												id="distCratesPending" type="text"
+												value="${editDist.distCratesPending}" required
+												oninvalid="setCustomValidity('Please enter Crates Pending ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
 
 
-								<div class="form-group"></div>
-								<div class="form-group">
 
-									<div class="col-lg-6">
-
-										<div>
+								&nbsp;
+								<div class="row">
 
 
-											<spring:message code="label.distAmtPending" />
-											<div class="input-group">
+									<div class="col-md-2">
+										<spring:message code="label.distAmtLimit" />
+									</div>
+									<div class="col-md-4">
+										<div class="input-group">
 
-												<input class="form-control" name="distAmtPending"
-													id="distAmtPending" type="text"
-													value="${editDist.distAmtPending}" required
-													oninvalid="setCustomValidity('Please enter Amount Pending ')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
+											<input class="form-control" name="distAmtLimit"
+												id="distAmtLimit" type="text"
+												value="${editDist.distAmtLimit}" required
+												oninvalid="setCustomValidity('Please enter Amount Pending ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 
 
 
 
-									<div class="col-lg-6">
 
-										<div>
-
-
-											<spring:message code="label.distCratesLimit" />
-											<div class="input-group">
-
-												<input class="form-control" name="distCratesLimit"
-													id="distCratesLimit" type="text"
-													value="${editDist.distCratesLimit}" required
-													oninvalid="setCustomValidity('Please enter crates limit ')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
-										</div>
+									<div class="col-md-2">
+										<spring:message code="label.distAmtPending" />
 									</div>
-								</div>
+									<div class="col-md-4">
+										<div class="input-group">
 
-								<div class="form-group"></div>
-								<div class="form-group">
-
-									<div class="col-lg-6">
-
-										<div>
-
-
-											<spring:message code="label.distAmtLimit" />
-											<div class="input-group">
-
-												<input class="form-control" name="distAmtLimit"
-													id="distAmtLimit" type="text"
-													value="${editDist.distAmtLimit}" required
-													oninvalid="setCustomValidity('Please enter amount limit')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group"></div>
-								<div class="form-group">
-
-									<div class="col-lg-6">
-
-										<div>
-
-
-											<spring:message code="label.distLocation" />
-											<div class="input-group">
-
-												<input class="form-control" name="distLocation"
-													id="distLocation" type="text"
-													value="${editDist.distLocation}" required
-													oninvalid="setCustomValidity('Please enter location ')"
-													onchange="try{setCustomValidity('')}catch(e){}" /> <span
-													class="error" aria-live="polite"></span>
-											</div>
+											<input class="form-control" name="distAmtPending"
+												id="distAmtPending" type="text"
+												value="${editDist.distAmtPending}" required
+												oninvalid="setCustomValidity('Please enter crates limit ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
 
 
-								<div class="form-group"></div>
-								<div class="col-xs-6 col-sm-6">
-									<label> <spring:message code="label.selectRoute" /></label>
-									<div class="card">
+								&nbsp;
+								<div class="row">
 
-										<div class="card-body">
-											<select name="routeId" id="routeId" class="standardSelect"
-												tabindex="1">
-												<option value=""><spring:message
-														code="label.selectRoute" /></option>
-												<c:forEach items="${routeList}" var="routeList">
-													<%-- <option value="${routeList.routeId}">${routeList.routeEngName}
-													 --%>
 
-													<c:choose>
-														<c:when test="${routeList.routeId==editDist.routeId}">
-															<option value="${routeList.routeId}" selected>${routeList.routeEngName}
-														</c:when>
-														<c:otherwise>
-															<option value="${routeList.routeId}">${routeList.routeEngName}
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</select>
+									<div class="col-md-2">
+										<spring:message code="label.distLocation" />
+									</div>
 
+
+									<div class="col-lg-4">
+
+										<div class="input-group">
+
+											<input class="form-control" name="distLocation"
+												id="distLocation" type="text"
+												value="${editDist.distLocation}" required
+												oninvalid="setCustomValidity('Please enter amount limit')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<spring:message code="label.routeSeqNo" />
+									</div>
+									<div class="col-md-4">
+
+
+										<div class="input-group">
+
+											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
+												type="text" value="${editDist.routeSeqNo}" required
+												oninvalid="setCustomValidity('Please enter location ')"
+												onchange="try{setCustomValidity('')}catch(e){}" /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
+
+
+								&nbsp;
+								<div class="row">
+									<div class="col-md-2">
+										<spring:message code="label.selectRoute" />
+									</div>
+									<div class="col-md-4">
+
+										<select name="routeId" id="routeId" class="standardSelect"
+											tabindex="1">
+											<option value=""><spring:message
+													code="label.selectRoute" /></option>
+											<c:forEach items="${routeList}" var="routeList">
+
+												<c:choose>
+													<c:when test="${routeList.routeId==editDist.routeId}">
+														<option value="${routeList.routeId}" selected>${routeList.routeEngName}
+													</c:when>
+													<c:otherwise>
+														<option value="${routeList.routeId}">${routeList.routeEngName}
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</select>
+
+									</div>
+								</div>
+								&nbsp;
 
 								<div class="col-lg-12" align="center">
 
@@ -447,7 +454,6 @@
 										<spring:message code="label.submit" />
 									</button>
 								</div>
-
 							</form>
 						</div>
 					</div>
@@ -477,7 +483,7 @@
 	<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
-				disable_search_threshold : 10,
+				disable_search_threshold : 2,
 				no_results_text : "Oops, nothing found!",
 				width : "100%"
 			});

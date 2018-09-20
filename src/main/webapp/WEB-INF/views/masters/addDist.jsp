@@ -312,15 +312,6 @@
 									</div>
 
 
-
-
-
-
-
-
-
-
-
 									<div class="col-md-2">
 										<spring:message code="label.distCratesPending" />
 									</div>

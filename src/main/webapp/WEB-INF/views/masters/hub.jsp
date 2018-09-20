@@ -224,23 +224,19 @@
 									</div>
 
 
-									<div class="input-group">
+									<div class="col-md-1">
 
 										<input type="radio" name="userType" id="userType" value="0"
-											checked>
-										<div class="col-md-2">
-											<spring:message code="label.staff" />
-										</div>
+											checked><spring:message code="label.staff" />
 
 
 									</div>
 
-									<div class="input-group">
+									<div class="col-md-2">
 										<input type="radio" name="userType" value="1">
-										<div class="col-md-2">
+										
 											<spring:message code="label.admin" />
-										</div>
-
+										
 									</div>
 								</div>
 
