@@ -59,6 +59,7 @@
 <body onload="setData()">
 	<c:url var="getChartData" value="/getGraphDataForDistwiseOrderHistory"></c:url>
 
+	<c:url var="getCatOrdQty" value="/getCatOrdQty"></c:url>
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -85,7 +86,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">40</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Total Orders</font>
@@ -102,7 +103,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">54000</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderTotal}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Order Total</font>
@@ -118,7 +119,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">4</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysSpOrdTotAndCount.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Special Order</font>
@@ -137,7 +138,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">4</span>
+										<span class="count" style="font-size: 50px;">${noOrderDistCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">No Orders</font>
@@ -154,7 +155,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">2</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Order Forward Pending</font>
@@ -164,6 +165,21 @@
 							</div>
 						</div>
 
+<div class="col-sm-6 col-lg-4">
+							<div class="card text-white bg-flat-color-3">
+								<div class="card-body pb-1" align="center">
+								<input type="text" id="dist" name="dist" style="color: red;" value="44" onchange="getDist()">
+
+									<h4 class="mb-0">
+										<span class="count" style="font-size: 50px;"></span>
+									</h4>
+									<p style="font-size: 18px; font-weight: bold; color: white;">
+										<font color="white">Search Distributor</font>
+									</p>
+
+								</div>
+							</div>
+						</div>
 
 
 
@@ -314,12 +330,26 @@
 							data.addColumn('number', 'Order2');
 							data.addColumn('number', 'Order3');
 							
+							var lan=${langSelected};
+							//alert(lan);
+							if(lan==0){
 							$.each(jsonData, function(i, obj) {
 									
 								data.addRow([ obj.distEngName,
 									obj.order1, obj.order2,
 									obj.order3 ]);
-							});							
+							});		
+							}
+							else{
+								
+								$.each(jsonData, function(i, obj) {
+									
+									data.addRow([ obj.distMarName,
+										obj.order1, obj.order2,
+										obj.order3 ]);
+								});		
+								
+							}
 
 							
 							var options = {
@@ -349,7 +379,7 @@
 			google.charts.setOnLoadCallback(drawChart2);
 
 			function drawChart2() {
-				$.getJSON('${getChartData}', {
+				$.getJSON('${getCatOrdQty}', {
 
 					ajax : 'true'
 
@@ -359,12 +389,24 @@
 
 							data.addColumn('string', 'Category');
 							data.addColumn('number', 'Order Qty');
-							
+							var lan=${langSelected};
+							//alert(lan);
+							if(lan==0){
 							$.each(jsonData, function(i, obj) {
 									
-								data.addRow([ obj.distEngName,
-									obj.order1 ]);
-							});							
+								data.addRow([ obj.catEngName,
+									obj.orderQty ]);
+							});	
+							}
+							else{
+								
+								$.each(jsonData, function(i, obj) {
+									
+									data.addRow([ obj.catMarName,
+										obj.orderQty ]);
+								});							
+
+							}
 
 							
 							var options = {
@@ -383,7 +425,21 @@
 		}
 	</script>
 
+<script type="text/javascript">
 
+function getDist() {
+
+	var dist=document.getElementById("dist").value;
+	
+	alert("Dist " +dist);
+	
+	//alert("inside getDist()");
+	
+window.open('${pageContext.request.contextPath}/searchDist/'+dist);
+	
+}
+
+</script>
 
 </body>
 </html>
