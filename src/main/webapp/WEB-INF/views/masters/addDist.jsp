@@ -398,8 +398,7 @@
 										<spring:message code="label.routeSeqNo" />
 									</div>
 									<div class="col-md-4">
-
-
+ 
 										<div class="input-group">
 
 											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
