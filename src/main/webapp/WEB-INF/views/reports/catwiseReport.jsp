@@ -103,7 +103,7 @@
 						</div>
 						<input type="hidden" id="langSelected" name="langSelected" />
 
-					<div class="form-group"></div>
+						<div class="form-group"></div>
 						<div class="form-group">
 
 							<div class="col-md-2">
@@ -145,48 +145,48 @@
 									style="align-content: center; width: 150px; margin-left: 80px;">
 									<spring:message code="label.search" />
 								</button>
-								
+
 
 							</div>
-							
+
 						</div>
 
 					</div>
 					&nbsp;
 
-						<div class="card">
-							<div class="card-header">
-								<strong class="card-title"><spring:message
-										code="label.catReport" /></strong>
-							</div>
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title"><spring:message
+									code="label.catReport" /></strong>
+						</div>
 
 
-							<div class="card-body">
-								<table id="bootstrap-data-table1"
-									class="table table-striped table-bordered">
+						<div class="card-body">
+							<table id="bootstrap-data-table1"
+								class="table table-striped table-bordered">
 
-									<thead>
-										<tr>
-											<th><spring:message code="label.srNo" /></th>
-											<th><spring:message code="label.catName" /></th>
-											<th><spring:message code="label.orderQty" /></th>
-											<th><spring:message code="label.catTotal" /></th>
-
-
-										</tr>
-									</thead>
+								<thead>
+									<tr>
+										<th><spring:message code="label.srNo" /></th>
+										<th><spring:message code="label.catName" /></th>
+										<th><spring:message code="label.orderQty" /></th>
+										<th><spring:message code="label.catTotal" /></th>
 
 
-								</table>
-							</div>
+									</tr>
+								</thead>
+
+
+							</table>
 						</div>
 					</div>
-
-
 				</div>
+
+
 			</div>
 		</div>
-	
+	</div>
+
 	<!-- .animated -->
 	<!-- .content -->
 
@@ -236,7 +236,7 @@
 	<script type="text/javascript">
 		function callSearch() {
 
-			alert("ssss");
+			//alert("ssss");
 
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
@@ -244,8 +244,9 @@
 
 			var langSelected = ${langSelected};
 			
-			alert("distIdList" + distIdList);
-			alert("langSelected"+langSelected);
+
+		//	alert("distIdList" + distIdList);
+			//alert("langSelected" + langSelected);
 			$.getJSON('${getCatByDate}',
 
 			{
@@ -261,7 +262,7 @@
 					alert("No records found !!");
 
 				}
-
+alert(data[0].orderQty);
 				if (langSelected == 0) {
 
 					var dataTable = $('#bootstrap-data-table1').DataTable();
@@ -296,17 +297,18 @@
 	</script>
 
 	<script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table1').DataTable({
-        	  columnDefs: [
-      	        { targets: [2,3], className:"right" },
-      	    ]
-          });
-        } );
-    </script>
-    
-    
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		$(document).ready(function() {
+			$('#bootstrap-data-table1').DataTable({
+				columnDefs : [ {
+					targets : [ 2, 3 ],
+					className : "right"
+				}, ]
+			});
+		});
+	</script>
+
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$(function() {
 			$('input[id$=fromDate]').datepicker({

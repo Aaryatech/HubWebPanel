@@ -45,12 +45,7 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
-<!-- 
-<STYLE type="text/css">
-.right {
-	text-align: right;
-}
-</STYLE> -->
+
 
 </head>
 <body>
@@ -202,7 +197,6 @@
 	<!-- Footer -->
 
 
-
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
 	<script
@@ -211,6 +205,7 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
@@ -237,17 +232,8 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
-	<!-- <script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table').DataTable({
-				columnDefs : [ {
-					targets : [ 2, 3, 4, 5, 6, 7 ],
-					className : "right"
-				}, ]
-			});
-		});
-	</script>
- -->
+
+
 
 	<script type="text/javascript">
 		function callSearch() {
@@ -285,6 +271,17 @@
 
 			});
 		}
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#bootstrap-data-table1').DataTable({
+				columnDefs : [ {
+					targets : [ 2, 3 ,4,5,6,7],
+					className : "right"
+				}, ]
+			});
+		});
 	</script>
 
 	<script type="text/javascript">

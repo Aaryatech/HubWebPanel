@@ -46,7 +46,15 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
+<style type="text/css">
+.right {
+	text-align: right;
+}
 
+.left {
+	text-align: left;
+}
+</style>
 
 </head>
 <body>
@@ -96,7 +104,7 @@
 						</div>
 						<input type="hidden" id="langSelected" name="langSelected" />
 
-					<div class="form-group"></div>
+						<div class="form-group"></div>
 						<div class="form-group">
 
 							<div class="col-md-2">
@@ -138,10 +146,10 @@
 									style="align-content: center; width: 150px; margin-left: 80px;">
 									<spring:message code="label.search" />
 								</button>
-								
+
 
 							</div>
-							
+
 						</div>
 
 					</div>
@@ -277,7 +285,16 @@
 			});
 		}
 	</script>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#bootstrap-data-table1').DataTable({
+				columnDefs : [ {
+					targets : [ 2, 3 ,4],
+					className : "right"
+				}, ]
+			});
+		});
+	</script>
 	<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
