@@ -24,6 +24,8 @@ public class DistReportByDate {
 	private String distMarName;
 	
 	private String distContactNo;
+	
+	private String orderDate;
 
 	public int getOrderHeaderId() {
 		return orderHeaderId;
@@ -113,13 +115,22 @@ public class DistReportByDate {
 		this.distContactNo = distContactNo;
 	}
 
+	
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
 	@Override
 	public String toString() {
 		return "DistReportByDate [orderHeaderId=" + orderHeaderId + ", orderTotal=" + orderTotal
 				+ ", prevPendingCrateBal=" + prevPendingCrateBal + ", cratesReceived=" + cratesReceived
 				+ ", cratesIssued=" + cratesIssued + ", prevPendingAmt=" + prevPendingAmt + ", amtReceived="
 				+ amtReceived + ", balAmount=" + balAmount + ", distEngName=" + distEngName + ", distMarName="
-				+ distMarName + ", distContactNo=" + distContactNo + "]";
+				+ distMarName + ", distContactNo=" + distContactNo + ", orderDate=" + orderDate + "]";
 	}
 
 

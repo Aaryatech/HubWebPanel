@@ -142,7 +142,7 @@
 
 								<button type="button" class="btn btn-primary"
 									onclick="callSearch()"
-									style="align-content: center; width: 150px; margin-left: 80px;">
+									style="align-content: center; width: 100px; margin-left: 80px;">
 									<spring:message code="label.search" />
 								</button>
 
@@ -178,149 +178,213 @@
 
 
 							</table>
+
+							<div class="col-md-2"></div>
+
+							<div class="col-md-3">
+
+								<button type="button" class="btn btn-primary" onclick="exportToExcel();" disabled="disabled" id="expExcel"
+									style="align-content: center; width: 200px; margin-left: 80px;" >
+									<spring:message code="label.exportToExcel" />
+								</button>
+								</div>
+								
+
+							<div class="col-md-3">
+
+								<button type="button" class="btn btn-primary" onclick="genPdf()" disabled="disabled" id="PDFButton"
+									style="align-content: center; width: 100px; margin-left: 80px;">
+									<spring:message code="label.pdf" />
+								</button>
+								</div>
+								&nbsp;
+
+
+							</div>
+
 						</div>
+
 					</div>
+
 				</div>
 
 
 			</div>
 		</div>
-	</div>
-
-	<!-- .animated -->
-	<!-- .content -->
 
 
-	<!-- Footer -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	<!-- Footer -->
+		<!-- .animated -->
+		<!-- .content -->
+
+
+		<!-- Footer -->
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+		<!-- Footer -->
 
 
 
 
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/popper.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/jszip.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/pdfmake.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/vfs_fonts.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.html5.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.print.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.colVis.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/jszip.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/pdfmake.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/vfs_fonts.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.html5.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.print.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
-	<script type="text/javascript">
-		function callSearch() {
+		<script type="text/javascript">
+			function callSearch() {
 
-			//alert("ssss");
+				//alert("ssss");
 
-			var fromDate = $("#fromDate").val();
-			var toDate = $("#toDate").val();
-			var distIdList = $("#distIdList").val();
+				var fromDate=$( "#fromDate").val();
+				var
+									toDate=$( "#toDate").val();
+				var distIdList=$(
+									"#distIdList").val();
 
-			var langSelected = ${langSelected};
-			
+				var langSelected=${langSelected};
 
-		//	alert("distIdList" + distIdList);
-			//alert("langSelected" + langSelected);
-			$.getJSON('${getCatByDate}',
+				//	alert("distIdList" + distIdList);
+				//alert("langSelected" + langSelected);
+				$.getJSON('${getCatByDate}',
 
-			{
-				fromDate : fromDate,
-				toDate : toDate,
-				distIdList : distIdList,
+				{
+					fromDate
+									: fromDate,
+					toDate : toDate,
+					distIdList :
+									distIdList,
 
-				ajax : 'true'
+					ajax
+									: 'true'
 
-			}, function(data) {
+				},
+						function(data) {
+					document.getElementById("expExcel").disabled = false;
+					document.getElementById("PDFButton").disabled = false;
 
-				if (data == "") {
-					alert("No records found !!");
+							if (data==
+									"") {
+								alert("No records found !!");
+								document.getElementById("expExcel").disabled = true;
+								document.getElementById("PDFButton").disabled = true;
 
-				}
-alert(data[0].orderQty);
-				if (langSelected == 0) {
+							}
+							alert(data[0].orderQty);
+							if (langSelected==
+									0) {
 
-					var dataTable = $('#bootstrap-data-table1').DataTable();
-					$.each(data, function(i, v) {
-						dataTable.row
-								.add(
-										[ i + 1, v.catEngName, v.orderQty,
-												v.itemTotal ]).draw();
-					});
+								var dataTable=$(
+									'#bootstrap-data-table1')
+										.DataTable();
+								$.each(data, function(i, v) {
+									dataTable.row.add(
+											[ i + 1, v.catEngName, v.orderQty,
+													v.itemTotal ]).draw();
+								});
 
-				} else if (langSelected == 1) {
-					var dataTable = $('#bootstrap-data-table1').DataTable();
-					$.each(data, function(i, v) {
-						dataTable.row
-								.add(
-										[ i + 1, v.catMarName, v.orderQty,
-												v.itemTotal ]).draw();
-					});
-				}
+							} else
+									if (langSelected== 1) {
+								var dataTable=$('#bootstrap-data-table1')
+										.DataTable();
+								$.each(data, function(i, v) {
+									dataTable.row.add(
+											[ i + 1, v.catMarName, v.orderQty,
+													v.itemTotal ]).draw();
+								});
+							}
+						});
+			}
+		
+									</script>
+
+		<script>
+			jQuery(document).ready(function() {
+				jQuery(".standardSelect").chosen({
+					disable_search_threshold : 2,
+					no_results_text : "Oops, nothing found!",
+					width : "100%"
+				});
 			});
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#bootstrap-data-table1').DataTable({
+					columnDefs : [ {
+						targets : [ 2, 3 ],
+						className : "right"
+					}, ]
+				});
+			});
+		</script>
+
+
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+			$(function() {
+				$('input[id$=fromDate]').datepicker({
+					dateFormat : 'dd-mm-yy'
+				});
+			});
+
+			$(function() {
+				$('input[id$=toDate]').datepicker({
+					dateFormat : 'dd-mm-yy'
+				});
+			});
+		</script>
+		
+		<script type="text/javascript">
+		function exportToExcel() {
+
+			window.open("${pageContext.request.contextPath}/exportToExcel");
+			document.getElementById("expExcel").disabled = true; 
 		}
 	</script>
-
-	<script>
-		jQuery(document).ready(function() {
-			jQuery(".standardSelect").chosen({
-				disable_search_threshold : 2,
-				no_results_text : "Oops, nothing found!",
-				width : "100%"
-			});
-		});
-	</script>
-
+	
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#bootstrap-data-table1').DataTable({
-				columnDefs : [ {
-					targets : [ 2, 3 ],
-					className : "right"
-				}, ]
-			});
-		});
+		function genPdf() {
+			alert("hiii");
+			var fromDate = document.getElementById("fromDate").value;
+			var toDate = document.getElementById("toDate").value;
+
+			window
+					.open('${pageContext.request.contextPath}/showCatwiseDistPdf/'
+							+ fromDate + '/' + toDate);
+			 document.getElementById("expExcel").disabled = true; 
+
+		}
 	</script>
+		
 
-
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script>
-		$(function() {
-			$('input[id$=fromDate]').datepicker({
-				dateFormat : 'dd-mm-yy'
-			});
-		});
-
-		$(function() {
-			$('input[id$=toDate]').datepicker({
-				dateFormat : 'dd-mm-yy'
-			});
-		});
-	</script>
 </body>
 </html>
