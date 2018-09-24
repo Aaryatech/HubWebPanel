@@ -57,6 +57,21 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 @Controller
 public class ReportController {
+	
+/*	<dependency>
+
+	<groupId>com.lowagie</groupId>
+
+	<artifactId>itext</artifactId>
+
+	<version>4.2.2</version>
+
+</dependency>
+<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.13</version>
+		</dependency>*/
 
 	List<DistReportByDate> distRepByDateList = null;
 
