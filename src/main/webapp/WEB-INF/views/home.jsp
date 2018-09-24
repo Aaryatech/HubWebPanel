@@ -245,66 +245,9 @@
 			getChart1();
 			getChart2();
 
-			/* // Bar Chart 1 Distwise last 3 orders
-			google.charts.load('current', {
-				'packages' : [ 'bar' ]
-			});
-			google.charts.setOnLoadCallback(drawChart);
-
-			function drawChart() {
-				var data = google.visualization.arrayToDataTable([
-						[ 'Distributor', 'Todays Order', ' Previous Order 1',
-								'Previous Order 2' ], [ 'D1', 1000, 400, 200 ],
-						[ 'D2', 1170, 460, 250 ], [ 'D3', 660, 1120, 300 ],
-						[ 'D4', 800, 1000, 900 ], [ 'D5', 1170, 460, 250 ],
-						[ 'D6', 660, 1120, 300 ], [ 'D7', 800, 1600, 900 ],
-
-				]);
-
-				var options = {
-					chart : {
-						title : '',
-						subtitle : '',
-					}
-				};
-
-				var chart = new google.charts.Bar(document
-						.getElementById('columnchart_material'));
-
-				chart.draw(data, google.charts.Bar.convertOptions(options));
-			}
-
-			
-			// Bar chart 2   category and todays order qty
-				google.charts.load('current', {
-				'packages' : [ 'bar' ]
-			});
-			google.charts.setOnLoadCallback(drawChart2);
-
 			
 			
-			function drawChart2() {
-				var data = google.visualization.arrayToDataTable([
-						[ 'Category', 'Order Qty' ], [ 'Cat 1', 1000 ],
-						[ 'Cat 2', 1170 ], [ 'Cat 3', 660 ],[ 'Cat 4', 660 ],[ 'Cat 5', 660 ],
-					
-				]);
-
-				var options = {
-					chart : {
-						title : '',
-						subtitle : '',
-					}
-				};
-
-				var chart = new google.charts.Bar(document
-						.getElementById('columnchart_material2'));
-
-				chart.draw(data, google.charts.Bar.convertOptions(options));
-			}
-			
-			
-			
+			/*
 			
 			// Line Chart catewise trend 30/60/90 days
 
