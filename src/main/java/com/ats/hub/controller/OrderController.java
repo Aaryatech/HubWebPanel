@@ -30,6 +30,7 @@ import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.GetOrderHub;
 import com.ats.hub.model.report.DistReportByDate;
+import com.ats.hub.model.report.DistwiseOrderHistory;
 
 @Controller
 public class OrderController {
@@ -95,6 +96,11 @@ public class OrderController {
 		return orderHeader;
 	}
 
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/showTodaysOrder", method = RequestMethod.GET)
 	public ModelAndView showTodaysOrder(HttpServletRequest request, HttpServletResponse response) {
 
@@ -272,5 +278,35 @@ public class OrderController {
 
 		return "redirect:/showUpdateOrderStatus";
 	}
+	
+	
+	//  ajax call
+	
+	@RequestMapping(value = "/getGraphDataForDistwiseOrderHistory", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DistwiseOrderHistory> getGraphDataForDistwiseOrderHistory(HttpServletRequest request, HttpServletResponse response) {
+
+		System.out.println("inside Ajax call  tempAjaxcall");
+
+		List<DistwiseOrderHistory> list= new ArrayList<>();
+
+		try {
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			map.add("hubId", 1);
+			DistwiseOrderHistory[] getHubUser = rest.postForObject(Constants.url + "/getGraphDataForDistwiseOrderHistory",map, DistwiseOrderHistory[].class);
+			list = new ArrayList<DistwiseOrderHistory>(Arrays.asList(getHubUser));
+		
+			System.out.println("ajax data" + list);
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	
 
 }

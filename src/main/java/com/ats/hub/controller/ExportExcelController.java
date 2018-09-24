@@ -24,8 +24,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ats.hub.model.report.ExportToExcel;
+
 @Controller
 public class ExportExcelController {
+
+	/*
+	  <dependency> 
+	  <groupId>org.apache.poi</groupId>
+	  <artifactId>poi-ooxml</artifactId> <version>3.13</version> 
+	  </dependency>
+	 */
+
 	List<ExportToExcel> exportToExcelList = new ArrayList<ExportToExcel>();
 
 	@RequestMapping(value = "/exportToExcel", method = RequestMethod.GET)

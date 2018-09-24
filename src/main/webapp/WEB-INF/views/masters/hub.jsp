@@ -164,9 +164,6 @@
 									<div class="col-md-4">
 
 
-
-
-
 										<div class="input-group">
 
 
@@ -191,8 +188,6 @@
 
 
 										<div class="input-group">
-
-
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												required

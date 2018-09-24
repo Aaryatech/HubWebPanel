@@ -47,7 +47,7 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			
 			
-			session.setAttribute("user", logResHub);
+			session.setAttribute("user", logResHub.getHubUser());
 			System.err.println("logResHubUser " + logResHub.toString());
 
 			return "redirect:/home";

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!doctype html>
 <html>
 <head>
@@ -39,15 +41,24 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-</head>
-
-
 
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+</head>
+
+
+<!-- 
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script> -->
 
 
 <body onload="setData()">
+	<c:url var="getChartData" value="/getGraphDataForDistwiseOrderHistory"></c:url>
+
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -173,7 +184,7 @@
 					</div>
 
 
-					<div class="col-xs-12 col-sm-9">
+					<div class="col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-header">
 								<strong>Category And Order Qty</strong>
@@ -231,9 +242,10 @@
 
 	<script>
 		function setData() {
+			getChart1();
+			getChart2();
 
-			
-			// Bar Chart 1 Distwise last 3 orders
+			/* // Bar Chart 1 Distwise last 3 orders
 			google.charts.load('current', {
 				'packages' : [ 'bar' ]
 			});
@@ -332,9 +344,102 @@
 
 				chart.draw(data, google.charts.Line.convertOptions(options));
 			}
+			 */
+		}
+	</script>
+
+
+	<script>
+		function getChart1() {
+
+			google.charts.load('current', {
+				'packages' : [ 'bar' ]
+			});
+			google.charts.setOnLoadCallback(drawChart1);
+
+			function drawChart1() {
+				$.getJSON('${getChartData}', {
+
+					ajax : 'true'
+
+				},
+						function(jsonData) {
+							var data = new google.visualization.DataTable();
+
+							data.addColumn('string', 'Distributor');
+							data.addColumn('number', 'Order1');
+							data.addColumn('number', 'Order2');
+							data.addColumn('number', 'Order3');
+							
+							$.each(jsonData, function(i, obj) {
+									
+								data.addRow([ obj.distEngName,
+									obj.order1, obj.order2,
+									obj.order3 ]);
+							});							
+
+							
+							var options = {
+								title : '',
+								is3D : true
+							};
+							var chart = new google.charts.Bar(document
+									.getElementById('columnchart_material'));
+
+							chart.draw(data, google.charts.Bar
+									.convertOptions(options));
+
+						});
+			}
 
 		}
 	</script>
+
+
+
+<script>
+		function getChart2() {
+
+			google.charts.load('current', {
+				'packages' : [ 'bar' ]
+			});
+			google.charts.setOnLoadCallback(drawChart2);
+
+			function drawChart2() {
+				$.getJSON('${getChartData}', {
+
+					ajax : 'true'
+
+				},
+						function(jsonData) {
+							var data = new google.visualization.DataTable();
+
+							data.addColumn('string', 'Category');
+							data.addColumn('number', 'Order Qty');
+							
+							$.each(jsonData, function(i, obj) {
+									
+								data.addRow([ obj.distEngName,
+									obj.order1 ]);
+							});							
+
+							
+							var options = {
+								title : '',
+								is3D : true
+							};
+							var chart = new google.charts.Bar(document
+									.getElementById('columnchart_material2'));
+
+							chart.draw(data, google.charts.Bar
+									.convertOptions(options));
+
+						});
+			}
+
+		}
+	</script>
+
 
 
 </body>

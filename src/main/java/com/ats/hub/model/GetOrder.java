@@ -8,6 +8,7 @@ public class GetOrder {
 
 	private int orderType;
 	private int distId;
+	
 	private String orderDate;
 	private String orderProdDate;
 	private String orderDeliveryDate;

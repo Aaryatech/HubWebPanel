@@ -66,12 +66,7 @@ public class ReportController {
 
 	<version>4.2.2</version>
 
-</dependency>
-<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.13</version>
-		</dependency>*/
+</dependency> */
 
 	List<DistReportByDate> distRepByDateList = null;
 
