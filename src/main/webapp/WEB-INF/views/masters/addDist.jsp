@@ -266,7 +266,7 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												required
-												oninvalid="setCustomValidity('Please enter valid mobile no ')"
+												oninvalid="setCustomValidity('Please enter valid Mobile No ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
 												pattern="[0-9]{10}"> <span class="error"
 												aria-live="polite"></span>
@@ -304,7 +304,7 @@
 
 											<input class="form-control" name="distCratesLimit"
 												id="distCratesLimit" type="text" required
-												oninvalid="setCustomValidity('Please enter crates limit ')"
+												oninvalid="setCustomValidity('Please enter Crates Limit ')"
 												onchange="try{setCustomValidity('')}catch(e){}" /> <span
 												class="error" aria-live="polite"></span>
 										</div>
@@ -348,7 +348,7 @@
 
 											<input class="form-control" name="distAmtLimit"
 												id="distAmtLimit" type="text" required
-												oninvalid="setCustomValidity('Please enter amount limit')"
+												oninvalid="setCustomValidity('Please enter Amount Limit')"
 												onchange="try{setCustomValidity('')}catch(e){}" /> <span
 												class="error" aria-live="polite"></span>
 										</div>
@@ -398,7 +398,7 @@
 										<spring:message code="label.routeSeqNo" />
 									</div>
 									<div class="col-md-4">
- 
+
 										<div class="input-group">
 
 											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
@@ -417,7 +417,7 @@
 									</div>
 									<div class="col-md-4">
 										<select id="routeId" name="routeId" class="standardSelect"
-											tabindex="1">
+											tabindex="1" required>
 											<option value=""></option>
 
 											<c:forEach items="${routeList}" var="routeList">

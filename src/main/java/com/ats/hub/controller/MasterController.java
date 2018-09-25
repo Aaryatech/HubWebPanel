@@ -104,7 +104,7 @@ public class MasterController {
 		try {
 
 			HttpSession session = request.getSession();
-			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			HubUser login = (HubUser) session.getAttribute("user");
 
 			String hsId = request.getParameter("hsId");
 
@@ -126,7 +126,7 @@ public class MasterController {
 			hubUser.setIsBlock(0);
 			hubUser.setIsUsed(1);
 			hubUser.setIsAdmin(userType);
-			hubUser.setHubId(login.getHubUser().getHubId());
+			hubUser.setHubId(login.getHubId());
 
 			hubUser.setHsPwd(pwd);
 
@@ -203,10 +203,10 @@ public class MasterController {
 		ModelAndView model = new ModelAndView("masters/editHub");
 		try {
 			HttpSession session = request.getSession();
-			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			HubUser login = (HubUser) session.getAttribute("user");
 
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("hsId", login.getHubUser().getHsId());
+			map.add("hsId", login.getHsId());
 
 			HubUser res = rest.postForObject(Constants.url + "/getHubUserByHsId", map, HubUser.class);
 			model.addObject("editHs", res);
@@ -294,10 +294,9 @@ public class MasterController {
 		try {
 
 			HttpSession session = request.getSession();
-			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
-			login.getHubUser().getHubId();
+			HubUser login = (HubUser) session.getAttribute("user");
 
-			System.out.println("HubUserId" + login.getHubUser().getHubId());
+			System.out.println("HubUserId" + login.getHubId());
 
 			String distId = request.getParameter("distId");
 
@@ -340,7 +339,7 @@ public class MasterController {
 			dist.setIsBlock(0);
 			dist.setIsUsed(1);
 
-			dist.setHubId(login.getHubUser().getHubId());
+			dist.setHubId(login.getHubId());
 			dist.setToken("");
 
 			System.out.println("dist" + dist);
@@ -498,7 +497,7 @@ public class MasterController {
 		// ModelAndView model = new ModelAndView("masters/addEmployee");
 		try {
 			HttpSession session = request.getSession();
-			LoginResHubUser login = (LoginResHubUser) session.getAttribute("user");
+			HubUser login = (HubUser) session.getAttribute("user");
 
 			String notfText = null;
 			Date now = new Date();
@@ -547,7 +546,7 @@ public class MasterController {
 			notifi.setIsRead(0);
 			notifi.setNotifiDate(currDate);
 			notifi.setNotifiDatetime(datetime);
-			notifi.setNotifiFrom(login.getHubUser().getHsId());
+			notifi.setNotifiFrom(login.getHsId());
 			notifi.setNotifiText(notfText);
 			notifi.setNotifiType(2);
 			notifi.setNotifiTo(0);
