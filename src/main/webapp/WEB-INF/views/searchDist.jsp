@@ -229,13 +229,12 @@
 											<input type="text" id="date" name="date" />
 										</div>
 
-										
+
 										<div class="col-md-1" align="center"></div>
 
 										<div class="col-md-3">
 											<button type="button" class="btn btn-primary"
-												onclick="callSearch()"
-												style="width: 90%;">
+												onclick="callSearch()" style="width: 90%;">
 												<spring:message code="label.search" />
 											</button>
 										</div>
@@ -243,8 +242,8 @@
 								</div>
 
 
-<input type="hidden" id="distId"
-												name="distId" value="${dist.distId}">
+								<input type="hidden" id="distId" name="distId"
+									value="${dist.distId}">
 
 								<div class="card">
 									<div class="card-header">
@@ -256,8 +255,6 @@
 										<div class="col-lg-4">
 											<div>
 												<div class="input-group" style="align-items: center;">
-
-
 													<spring:message code="label.orderDate" />
 													&nbsp; <input class="form-control" name="orderDate"
 														id="orderDate" type="text" disabled />

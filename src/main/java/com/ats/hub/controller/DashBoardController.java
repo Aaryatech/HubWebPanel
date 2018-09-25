@@ -61,6 +61,15 @@ public class DashBoardController {
 			if (locale.toString().equalsIgnoreCase("mr")) {
 				langSelected = 1;
 			}
+			
+			if (distList.isEmpty()|| distList==null) {
+				System.err.println("inside error msg ");
+				
+					model = new ModelAndView("common/errorMsg");
+					model.addObject("errorMsg", "Record not found");
+			}
+				
+		
 			model.addObject("langSelected", langSelected);
 		} catch (Exception e) {
 

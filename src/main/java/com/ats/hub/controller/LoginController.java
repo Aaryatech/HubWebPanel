@@ -27,7 +27,7 @@ import com.ats.hub.commons.Constants;
 import com.ats.hub.model.GetOrderHub;
 import com.ats.hub.model.HubUser;
 import com.ats.hub.model.LoginResHubUser;
-import com.ats.hub.model.dashreport.HubDashboardData;
+import com.ats.hub.model.dashreport.DashboardData;
 import com.ats.hub.model.report.CategoryDistReport;
 
 @Controller
@@ -100,8 +100,8 @@ public class LoginController {
 			map.add("orderType", 0);
 			map.add("hubId", hubId); // to be set by geeting hub id from session
 
-			HubDashboardData dashBoard = rest.postForObject(Constants.url + "/getHubDashBoard", map,
-					HubDashboardData.class);
+			DashboardData dashBoard = rest.postForObject(Constants.url + "/getHubDashBoard", map,
+					DashboardData.class);
 
 			System.err.println("HubDashboardData " + dashBoard.toString());
 			model.addObject("dashBoard", dashBoard);
