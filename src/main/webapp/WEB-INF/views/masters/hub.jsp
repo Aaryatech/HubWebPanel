@@ -148,8 +148,9 @@
 											<input class="form-control" name="txtEnglish" id="txtEnglish"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 
 										</div>
 									</div>
@@ -173,8 +174,9 @@
 											<input class="form-control" name="txtMarathi" id="txtMarathi"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -193,8 +195,8 @@
 												required
 												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
-												pattern="[0-9]{10}"> <span class="error"
-												aria-live="polite"></span>
+												pattern="[0-9]{10}" autocomplete="off"> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -207,8 +209,9 @@
 											<input class="form-control" name="password" id="password"
 												type="password" required
 												oninvalid="setCustomValidity('Please enter password ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -222,16 +225,17 @@
 									<div class="col-md-1">
 
 										<input type="radio" name="userType" id="userType" value="0"
-											checked><spring:message code="label.staff" />
+											checked>
+										<spring:message code="label.staff" />
 
 
 									</div>
 
 									<div class="col-md-2">
 										<input type="radio" name="userType" value="1">
-										
-											<spring:message code="label.admin" />
-										
+
+										<spring:message code="label.admin" />
+
 									</div>
 								</div>
 
