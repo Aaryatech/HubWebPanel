@@ -502,7 +502,7 @@ $
 						orderType="Regular";
 					}else{
 						orderType="Special";
-					}
+	 				}
 
 					var str = "Detail";
 					var result = str
