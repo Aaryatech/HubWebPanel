@@ -72,12 +72,12 @@
 								<spring:message code="label.login" />
 							</div>
 							<div class="card-body card-block">
-							
-							<c:if test="${not empty errorMessage}">
-    <div class="alert alert-danger" role="alert">${errorMessage}</div>
-</c:if>
-								
-								
+
+								<c:if test="${not empty errorMessage}">
+									<div class="alert alert-danger" role="alert">${errorMessage}</div>
+								</c:if>
+
+
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-addon">
@@ -86,7 +86,8 @@
 										<spring:message code="label.userName" var="userName" />
 
 										<input type="text" id="username" name="username"
-											placeholder="${userName}" class="form-control">
+											placeholder="${userName}" class="form-control"
+											autocomplete="off">
 									</div>
 								</div>
 
@@ -98,7 +99,8 @@
 										<spring:message code="label.password" var="password" />
 
 										<input type="password" id="password" name="password"
-											placeholder="${password}" class="form-control">
+											placeholder="${password}" class="form-control"
+											autocomplete="off">
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary"

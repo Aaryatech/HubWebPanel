@@ -140,7 +140,7 @@
 							<%-- 	<strong> <spring:message code="label.addNewCategory" /></strong> --%>
 						</div>
 						<div class="card-body card-block">
-							<form action="${pageContext.request.contextPath}/insertCategory"
+							<form 	
 								method="post" enctype="multipart/form-data">
 								<div class="form-group"></div>
 								<div class="form-group">
@@ -148,8 +148,8 @@
 									<div class="input-group">
 
 										<h3 style="color: red; font-family: fantasy;">
-											<spring:message code="label.mobileNoExixts" />
-											!!!!
+											${errorMsg}
+								!!!!
 										</h3>
 
 									</div>
@@ -204,19 +204,11 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
 
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#bootstrap-data-table-export').DataTable();
 		});
 	</script>
-
-
-
-	</script>
-
-
-
 
 </body>
 </html>

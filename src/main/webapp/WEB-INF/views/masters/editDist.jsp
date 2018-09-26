@@ -434,7 +434,7 @@
 
 												<c:choose>
 													<c:when test="${routeList.routeId==editDist.routeId}">
-														<option value="${routeList.routeId}" selected>${routeList.routeEngName}
+														<option value="${routeList.routeId}" selected>${routeList.routeEngName}</option>
 													</c:when>
 													<c:otherwise>
 														<option value="${routeList.routeId}">${routeList.routeEngName}

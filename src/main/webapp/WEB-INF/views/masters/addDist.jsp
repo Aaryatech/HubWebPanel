@@ -186,8 +186,9 @@
 											<input class="form-control" name="txtEnglish" id="txtEnglish"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 
 										</div>
 									</div>
@@ -208,8 +209,9 @@
 											<input class="form-control" name="txtMarathi" id="txtMarathi"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter name ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -225,8 +227,9 @@
 											<input class="form-control" name="addEnglish" id="addEnglish"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter Address ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 
 										</div>
 									</div>
@@ -247,8 +250,9 @@
 											<input class="form-control" name="addMarathi" id="addMarathi"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter address ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -266,10 +270,10 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												required
-												oninvalid="setCustomValidity('Please enter valid mobile no ')"
+												oninvalid="setCustomValidity('Please enter valid Mobile No ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
-												pattern="[0-9]{10}"> <span class="error"
-												aria-live="polite"></span>
+												pattern="[0-9]{10}" autocomplete="off"> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 									<div class="col-md-2">
@@ -285,8 +289,9 @@
 											<input class="form-control" name="password" id="password"
 												type="password" required
 												oninvalid="setCustomValidity('Please enter password ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -304,9 +309,10 @@
 
 											<input class="form-control" name="distCratesLimit"
 												id="distCratesLimit" type="text" required
-												oninvalid="setCustomValidity('Please enter crates limit ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												oninvalid="setCustomValidity('Please enter Crates Limit ')"
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 
 									</div>
@@ -324,8 +330,9 @@
 											<input class="form-control" name="distCratesPending"
 												id="distCratesPending" type="text" required
 												oninvalid="setCustomValidity('Please enter Crates Pending ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -348,9 +355,10 @@
 
 											<input class="form-control" name="distAmtLimit"
 												id="distAmtLimit" type="text" required
-												oninvalid="setCustomValidity('Please enter amount limit')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												oninvalid="setCustomValidity('Please enter Amount Limit')"
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -363,8 +371,8 @@
 											<input class="form-control" name="distAmtPending"
 												id="distAmtPending" type="text" required
 												oninvalid="setCustomValidity('Please enter Amount Pending ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error" aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -388,8 +396,8 @@
 											<input class="form-control" name="distLocation"
 												id="distLocation" type="text" required
 												oninvalid="setCustomValidity('Please enter location ')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error" aria-live="polite"></span>
 										</div>
 									</div>
 
@@ -398,14 +406,15 @@
 										<spring:message code="label.routeSeqNo" />
 									</div>
 									<div class="col-md-4">
- 
+
 										<div class="input-group">
 
 											<input class="form-control" name="routeSeqNo" id="routeSeqNo"
 												type="text" required
 												oninvalid="setCustomValidity('Please enter Route Sequnce No')"
-												onchange="try{setCustomValidity('')}catch(e){}" /> <span
-												class="error" aria-live="polite"></span>
+												onchange="try{setCustomValidity('')}catch(e){}"
+												autocomplete="off" /> <span class="error"
+												aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -417,7 +426,7 @@
 									</div>
 									<div class="col-md-4">
 										<select id="routeId" name="routeId" class="standardSelect"
-											tabindex="1">
+											tabindex="1" required>
 											<option value=""></option>
 
 											<c:forEach items="${routeList}" var="routeList">

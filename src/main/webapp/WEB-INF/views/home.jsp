@@ -59,6 +59,7 @@
 <body onload="setData()">
 	<c:url var="getChartData" value="/getGraphDataForDistwiseOrderHistory"></c:url>
 
+	<c:url var="getCatOrdQty" value="/getCatOrdQty"></c:url>
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -85,7 +86,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">40</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Total Orders</font>
@@ -102,7 +103,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">54000</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderTotal}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Order Total</font>
@@ -118,7 +119,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">4</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysSpOrdTotAndCount.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Special Order</font>
@@ -137,7 +138,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">4</span>
+										<span class="count" style="font-size: 50px;">${noOrderDistCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">No Orders</font>
@@ -154,7 +155,7 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">2</span>
+										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white">Order Forward Pending</font>
@@ -164,6 +165,24 @@
 							</div>
 						</div>
 
+						<div class="col-sm-6 col-lg-4">
+							<div class="card text-white bg-flat-color-3">
+								<div class="card-body pb-1" align="center">
+									<input type="text" id="dist" name="dist"
+										style="color: red; width: 100%;" value="" onchange="getDist()"
+										title="Search by mob no or dist name"
+										placeholder="Mobile No. / Distributor Name">
+
+									<h4 class="mb-0">
+										<span style="font-size: 35px;">Find Distributor</span>
+									</h4>
+									<p style="font-size: 18px; font-weight: bold; color: white;">
+										<font color="white"></font>
+									</p>
+
+								</div>
+							</div>
+						</div>
 
 
 
@@ -222,11 +241,10 @@
 
 
 
-
-	<script
+<script
 		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/popper.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script
@@ -234,19 +252,65 @@
 
 
 	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/chart-js/Chart.bundle.js"></script>
+	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/dashboard.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/widgets.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+	
+	<script>
+		(function($) {
+			"use strict";
 
-
+			jQuery('#vmap').vectorMap({
+				map : 'world_en',
+				backgroundColor : null,
+				color : '#ffffff',
+				hoverOpacity : 0.7,
+				selectedColor : '#1de9b6',
+				enableZoom : true,
+				showTooltip : true,
+				values : sample_data,
+				scaleColors : [ '#1de9b6', '#03a9f5' ],
+				normalizeFunction : 'polynomial'
+			});
+		})(jQuery);
+	</script>
+	<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en,mr', 
+            includedLanguages: 'mr,en', 
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+        var a = document.querySelector("#google_translate_element");
+        a.selectedIndex=1;
+        a.dispatchEvent(new Event('change'));
+        
+        $('.google_translate_element').each(function(){
+            id=$(this).data('label-for');
+            $('#'+id).val( $(this).text() );
+         });
+        
+        
+    }
+</script>
+	
 
 	<script>
 		function setData() {
 			getChart1();
 			getChart2();
 
-			
-			
 			/*
 			
 			// Line Chart catewise trend 30/60/90 days
@@ -313,15 +377,25 @@
 							data.addColumn('number', 'Order1');
 							data.addColumn('number', 'Order2');
 							data.addColumn('number', 'Order3');
-							
-							$.each(jsonData, function(i, obj) {
-									
-								data.addRow([ obj.distEngName,
-									obj.order1, obj.order2,
-									obj.order3 ]);
-							});							
 
-							
+							var lan = ${langSelected};
+							//alert(lan);
+							if (lan == 0) {
+								$.each(jsonData, function(i, obj) {
+
+									data.addRow([ obj.distEngName, obj.order1,
+											obj.order2, obj.order3 ]);
+								});
+							} else {
+
+								$.each(jsonData, function(i, obj) {
+
+									data.addRow([ obj.distMarName, obj.order1,
+											obj.order2, obj.order3 ]);
+								});
+
+							}
+
 							var options = {
 								title : '',
 								is3D : true
@@ -340,7 +414,7 @@
 
 
 
-<script>
+	<script>
 		function getChart2() {
 
 			google.charts.load('current', {
@@ -349,7 +423,7 @@
 			google.charts.setOnLoadCallback(drawChart2);
 
 			function drawChart2() {
-				$.getJSON('${getChartData}', {
+				$.getJSON('${getCatOrdQty}', {
 
 					ajax : 'true'
 
@@ -359,14 +433,26 @@
 
 							data.addColumn('string', 'Category');
 							data.addColumn('number', 'Order Qty');
-							
-							$.each(jsonData, function(i, obj) {
-									
-								data.addRow([ obj.distEngName,
-									obj.order1 ]);
-							});							
+							var lan = ${langSelected};
+							//alert(lan);
+							if (lan == 0) {
+								$.each(jsonData, function(i, obj) {
 
-							
+									data
+											.addRow([ obj.catEngName,
+													obj.orderQty ]);
+								});
+							} else {
+
+								$.each(jsonData, function(i, obj) {
+
+									data
+											.addRow([ obj.catMarName,
+													obj.orderQty ]);
+								});
+
+							}
+
 							var options = {
 								title : '',
 								is3D : true
@@ -383,7 +469,21 @@
 		}
 	</script>
 
+	<script type="text/javascript">
+		function getDist() {
 
+			var dist = document.getElementById("dist").value;
+
+			//alert("Dist " +dist);
+
+			//alert("inside getDist()");
+
+			window
+					.open('${pageContext.request.contextPath}/searchDist/'
+							+ dist);
+
+		}
+	</script>
 
 </body>
 </html>
