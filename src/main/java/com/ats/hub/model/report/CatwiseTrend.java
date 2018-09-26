@@ -11,9 +11,9 @@ public class CatwiseTrend {
 	private List<DatewithOrderQty>orderList;
 	public List<Category> getCatList() {
 		return catList;
-	}
+	} 
 	public void setCatList(List<Category> catList) {
-		this.catList = catList;
+		this.catList = catList; 
 	}
 	public List<DatewithOrderQty> getOrderList() {
 		return orderList;

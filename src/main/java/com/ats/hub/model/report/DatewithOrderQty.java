@@ -19,7 +19,7 @@ public class DatewithOrderQty {
 	public void setOrderQty(List<Integer> orderQty) {
 		this.orderQty = orderQty;
 	}
-	
+	 
 	@Override
 	public String toString() {
 		return "DatewithOrderQty [date=" + date + ", orderQty=" + orderQty + "]";

@@ -47,7 +47,7 @@ public class OrderController {
 
 		ModelAndView model = new ModelAndView("order/orderHistory");
 		try {
-
+ 
 			Locale locale = LocaleContextHolder.getLocale();
 
 			System.err.println("current language is - " + locale.toString());
