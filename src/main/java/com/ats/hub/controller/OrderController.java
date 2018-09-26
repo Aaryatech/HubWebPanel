@@ -29,6 +29,7 @@ import com.ats.hub.model.EditOrder;
 import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.GetOrderHub;
+import com.ats.hub.model.report.CatwiseTrend;
 import com.ats.hub.model.report.DistReportByDate;
 import com.ats.hub.model.report.DistwiseOrderHistory;
 
@@ -260,7 +261,9 @@ public class OrderController {
 
 			String ordIds = sb.toString();
 			ordIds = ordIds.substring(0, ordIds.length() - 1);
+			
 			System.out.println("ordIds" + ordIds);
+			
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
 			map.add("orderStatus", 1);
@@ -307,6 +310,33 @@ public class OrderController {
 		return list;
 	}
 	
+	//CatwiseTrend
 	
+	@RequestMapping(value = "/getCatwiseTrend", method = RequestMethod.GET)
+	@ResponseBody
+	public CatwiseTrend getCatwiseTrend(HttpServletRequest request, HttpServletResponse response) {
+
+		System.out.println("inside Ajax call  catewise trand");
+
+		CatwiseTrend catwiseTrend =new CatwiseTrend();
+
+		try {
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			map.add("hubId", 1);	
+			map.add("days", 30);
+
+			catwiseTrend = rest.postForObject(Constants.url + "/getCatwiseTrend",map, CatwiseTrend.class);
+
+		
+			System.out.println("ajax catewise trend data" + catwiseTrend);
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return catwiseTrend;
+	}
 
 }
