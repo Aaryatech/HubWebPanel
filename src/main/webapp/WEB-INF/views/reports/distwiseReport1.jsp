@@ -46,7 +46,15 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
+<style type="text/css">
+.right {
+	text-align: right;
+}
 
+.left {
+	text-align: left;
+}
+</style>
 </head>
 <body>
 
@@ -109,7 +117,7 @@
 							<div class="col-md-3">
 
 								<select id="distIdList" name="distIdList" class="standardSelect"
-									tabindex="1">
+									tabindex="1" style="width: 100%;">
 									<option value=""></option>
 
 									<c:forEach items="${distList}" var="distList">
@@ -156,7 +164,7 @@
 
 
 						<div class="card-body">
-							<table id="bootstrap-data-table"
+							<table id="bootstrap-data-table1"
 								class="table table-striped table-bordered">
 
 								<thead>
@@ -259,7 +267,7 @@
 
 	<script type="text/javascript">
 		function callSearch() {
-			alert("cxcgxc");
+			/* alert("cxcgxc"); */
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
@@ -284,7 +292,7 @@
 					document.getElementById("PDFButton").disabled = true;
 
 				}
-				var dataTable = $('#bootstrap-data-table').DataTable();
+				var dataTable = $('#bootstrap-data-table1').DataTable();
 				$.each(data, function(i, v) {
 					dataTable.row.add(
 							[ i + 1, v.orderDate, v.orderTotal,

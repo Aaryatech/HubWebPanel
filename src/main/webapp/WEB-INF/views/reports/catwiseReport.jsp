@@ -298,7 +298,7 @@
 								document.getElementById("PDFButton").disabled = true;
 
 							}
-							alert(data[0].orderQty);
+							/* alert(data[0].orderQty); */
 							if (langSelected==
 									0) {
 
