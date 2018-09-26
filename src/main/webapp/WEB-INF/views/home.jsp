@@ -60,6 +60,10 @@
 	<c:url var="getChartData" value="/getGraphDataForDistwiseOrderHistory"></c:url>
 
 	<c:url var="getCatOrdQty" value="/getCatOrdQty"></c:url>
+	
+	<c:url var="getCatwiseTrend" value="/getCatwiseTrend"></c:url>
+	
+	
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -226,7 +230,7 @@
 							<div class="card-body card-block">
 
 
-								<div id="linechart_material"></div>
+								<div id="linechart_material" style="width: 900px;; height: 700px;"></div>
 
 							</div>
 						</div>
@@ -304,12 +308,12 @@
         
     }
 </script>
-	
 
 	<script>
 		function setData() {
 			getChart1();
 			getChart2();
+			getChart3();
 
 			/*
 			
@@ -455,6 +459,7 @@
 
 							var options = {
 								title : '',
+							
 								is3D : true
 							};
 							var chart = new google.charts.Bar(document
@@ -468,6 +473,117 @@
 
 		}
 	</script>
+	
+	
+	
+	
+<script>
+		function getChart3() {
+
+			google.charts.load('current', {
+				'packages' : [ 'line' ]
+			});
+			google.charts.setOnLoadCallback(drawChart3);
+
+			function drawChart3() {
+				$.getJSON('${getCatwiseTrend}', {
+
+					ajax : 'true'
+
+				}, function(jsonData) {
+
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Day');
+					//data.addColumn('number', 'Cat 1');
+    					
+
+					$.each(jsonData.catList, function(k, obj) {
+						catName=obj.catEngName;
+						//alert(i);
+						data.addColumn('number', obj.catEngName);
+				});
+	                data.addRows(jsonData.orderList.length);
+	                 
+					$.each(jsonData.orderList, function(i, o) {
+						data.setCell(i,0,o.date);
+					//alert("i "+i);
+						$.each(o.orderQty, function(j, q) {
+							//alert("j "+j);
+							data.setCell(i,j+1,q.toString());
+					
+						});
+						
+						});
+					
+					//alert(JSON.stringify(data));
+					var options = {
+							chart : {
+								title : '',
+								subtitle : '',
+						
+								chartArea:{left:0,top:0,width:"100%",height:"100%"}
+							 
+								
+							}
+				
+						};
+
+						var chart = new google.charts.Line(document
+								.getElementById('linechart_material'));
+
+						chart.draw(data, google.charts.Line.convertOptions(options));
+					
+					
+					// Line Chart catewise trend 30/60/90 days
+
+				/* 	google.charts.load('current', {
+						'packages' : [ 'line' ]
+					});
+					google.charts.setOnLoadCallback(drawChartOld);
+
+					function drawChartOld() {
+
+						var data = new google.visualization.DataTable();
+						data.addColumn('number', 'Day');
+						data.addColumn('number', 'Cat 1');
+						data.addColumn('number', 'Cat 2');
+						data.addColumn('number', 'Cat 3');
+						data.addColumn('number', 'Cat 4');
+
+						data.addRows([ [ 1, 3700.8, 8000.8, 8900.5, 6922.5 ],
+								[ 2, 3000.9, 6900.5, 3009.5, 8902.5 ],
+								[ 3, 4500.4, 5007, 4009.5, 9901.5 ],
+								[ 4, 3600.7, 1800.8, 5009.5, 1090.5 ],
+								[ 5, 4000.9, 2000.5, 1900.5, 6025 ],
+								[ 6, 5000.8, 4500.8, 4902.5, 8009.5 ]
+
+						]);
+
+						var options = {
+							chart : {
+								title : '',
+								subtitle : ''
+							}
+
+						};
+
+						alert(JSON.stringify(data));
+						 
+						var chart = new google.charts.Line(document
+								.getElementById('linechart_material'));
+
+						chart.draw(data, google.charts.Line.convertOptions(options));
+ 		
+					}
+					*/
+					
+
+				});
+			}
+
+		}
+	</script>
+	
 
 	<script type="text/javascript">
 		function getDist() {

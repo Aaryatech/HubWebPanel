@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -295,8 +296,11 @@ public class OrderController {
 
 		try {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			HttpSession session = request.getSession();
 
-			map.add("hubId", 1);
+			int hubId =	(Integer) session.getAttribute("hubId");
+			
+			map.add("hubId", hubId);
 			DistwiseOrderHistory[] getHubUser = rest.postForObject(Constants.url + "/getGraphDataForDistwiseOrderHistory",map, DistwiseOrderHistory[].class);
 			list = new ArrayList<DistwiseOrderHistory>(Arrays.asList(getHubUser));
 		
@@ -322,9 +326,12 @@ public class OrderController {
 
 		try {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			HttpSession session = request.getSession();
 
-			map.add("hubId", 1);	
-			map.add("days", 30);
+			int hubId =	(Integer) session.getAttribute("hubId");
+			
+			map.add("hubId", hubId);	
+			map.add("days", 7);
 
 			catwiseTrend = rest.postForObject(Constants.url + "/getCatwiseTrend",map, CatwiseTrend.class);
 
