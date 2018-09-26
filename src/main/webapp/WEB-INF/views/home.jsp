@@ -590,13 +590,7 @@
 
 			var dist = document.getElementById("dist").value;
 
-			//alert("Dist " +dist);
-
-			//alert("inside getDist()");
-
-			window
-					.open('${pageContext.request.contextPath}/searchDist/'
-							+ dist);
+			window.open('${pageContext.request.contextPath}/searchDist/'+dist);
 
 		}
 	</script>

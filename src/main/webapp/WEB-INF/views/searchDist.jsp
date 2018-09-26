@@ -158,6 +158,8 @@
 									</c:if>
 
 									</div>
+										<spring:message code="label.hsContactNo" var="selHub" />
+<input type="hidden" id="hu" value="${selHub}"/>
 
 									<div class="col-md-2">
 										<spring:message code="label.hsContactNo" />
@@ -246,48 +248,14 @@
 									value="${dist.distId}">
 
 								<div class="card">
-									<div class="card-header">
+									<%-- <div class="card-header">
 										<strong class="card-title"><spring:message
 												code="label.orderHistory" /></strong>
-									</div>
+									</div> --%>
 									<div class="form-group"></div>
-									<div class="form-group">
-										<div class="col-lg-4">
-											<div>
-												<div class="input-group" style="align-items: center;">
-													<spring:message code="label.orderDate" />
-													&nbsp; <input class="form-control" name="orderDate"
-														id="orderDate" type="text" disabled />
+									
 
-												</div>
-											</div>
-										</div>
-										<%-- <div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-
-										<spring:message code="label.orderDeliveryDate" />
-										&nbsp; <input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text" disabled />
-
-									</div>
-								</div>
-							</div> --%>
-										<div class="col-lg-4">
-											<div>
-												<div class="input-group" style="align-items: center;">
-													<spring:message code="label.orderTotal" />
-													&nbsp; <input class="form-control" name="orderTotal"
-														id="orderTotal" type="text" disabled />
-
-												</div>
-											</div>
-										</div>
-
-									</div>
-
-									<div class="form-group"></div>
+							<%-- 		<div class="form-group"></div>
 									<div class="form-group">
 
 										<div class="col-lg-3">
@@ -336,9 +304,9 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> --%>
 									<div class="form-group"></div>
-									<div class="form-group">
+									<%-- <div class="form-group">
 										<div class="col-lg-3">
 
 											<div>
@@ -388,20 +356,21 @@
 										</div>
 
 									</div>
-
+ --%>
 									<div class="card-body">
 										<table id="bootstrap-data-table"
 											class="table table-striped table-bordered">
 
 											<thead>
 												<tr>
-													<th><spring:message code="label.srNo" /></th>
-													<th><spring:message code="label.itemName" /></th>
-													<th><spring:message code="label.wt" /></th>
-													<th><spring:message code="label.uom" /></th>
-													<th><spring:message code="label.orderQty" /></th>
-													<th><spring:message code="label.deliverQty" /></th>
-													<th><spring:message code="label.item" /></th>
+												<th><spring:message code="label.srNo" /></th>
+											<th><spring:message code="label.distName" /></th>
+											<th><spring:message code="label.orderType" /></th>
+
+											<th><spring:message code="label.distCratesPending" /></th>
+											<th><spring:message code="label.distAmtPending" /></th>
+											<th><spring:message code="label.orderTotal" /></th>
+											<th><spring:message code="label.action" /></th>
 												</tr>
 											</thead>
 
@@ -492,9 +461,13 @@
 
 	<script type="text/javascript">
 		function callSearch() {
-			//alert("cxcgxc");
+			//dataTable.row($(this).parents('tr')).remove().draw(false);
 			var date = $("#date").val();
 			var distId = $("#distId").val();
+			
+			//var hu = $("#hu").val();
+			
+			//alert("Hu "+hu);
 
 			$
 					.getJSON(
@@ -509,54 +482,47 @@
 							},
 							function(data) {
 
-								//alert(data.getOrderDetailList);
+								//alert(JSON.stringify(data));
 
 								if (data == "") {
 									alert("No records found !!");
 
 								}
 
-								document.getElementById("orderDate").value = data.orderDate;
+								
+		var dataTable = $('#bootstrap-data-table')
+		.DataTable();
+		
+$
+		.each(
+				data,
+				function(i, v) {
+					var orderType;
+					if(v.orderType==0){
+						orderType="Regular";
+					}else{
+						orderType="Special";
+					}
 
-								document.getElementById("orderTotal").value = data.orderTotal;
-								document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
-								document.getElementById("cratesIssued").value = data.cratesIssued;
-								document.getElementById("cratesReceived").value = data.cratesReceived;
-								document.getElementById("cratesBalance").value = (data.prevPendingCrateBal
-										+ data.cratesIssued - data.cratesReceived);
+					var str = "Detail";
+					var result = str
+							.link("${pageContext.request.contextPath}/showOrderHistoryDetail/"
+									+ v.orderHeaderId);
+					dataTable.row
+							.add(
+									[
+											i + 1,
+											v.distEngName,
+											orderType,
+											v.prevPendingCrateBal,
+											v.prevPendingAmt,
+											v.orderTotal,
+											result ])
+							.draw();
+				});
 
-								document.getElementById("prevPendingAmt").value = data.prevPendingAmt;
-								document.getElementById("orderTotal1").value = data.orderTotal;
-								document.getElementById("amtReceived").value = data.amtReceived;
-								document.getElementById("amountBalanced").value = (data.prevPendingAmt
-										+ data.orderTotal - data.amtReceived);
-
-								var dataTable = $('#bootstrap-data-table')
-										.DataTable();
-								$.each(data.getOrderDetailList, function(i, v) {
-									
-									
-									var lang=${langSelected};
-									var itemName;
-									
-									if(lang==0){
-										itemName=v.itemEngName;
-									}else{
-										itemName=v.itemMarName;
-									}
-									dataTable.row
-											.add(
-													[ i + 1,itemName,
-															v.itemWt,
-															v.uomName,
-															v.orderQty,
-															v.deliverQty,
-															v.itemTotal ])
-											.draw();
-								});
-
-							});
-		}
+});
+}
 	</script>
 
 
