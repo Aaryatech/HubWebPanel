@@ -66,127 +66,10 @@
 			<div class="row">
 
 				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title"><spring:message
-									code="label.orderSearch" /></strong>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-
-							<div class="col-lg-4" align="center">
-								<spring:message code="label.date" />
-								<input type="text" id="date" name="date" />
-
-							</div>
-
-
-							<spring:message code="label.selectDist" var="selectDist" />
-
-							<div class="col-lg-4" align="center">
-								<select data-placeholder="${selectDist}" id="distId"
-									name="distId" class="standardSelect" tabindex="1">
-									<option value=""></option>
-
-									<c:forEach items="${distList}" var="distList">
-
-										<c:if test="${langSelected == 0}">
-											<option value="${distList.distId}">${distList.distEngName}
-											</option>
-										</c:if>
-										<c:if test="${langSelected == 1}">
-											<option value="${distList.distId}">${distList.distMarName}
-											</option>
-										</c:if>
-
-									</c:forEach>
-								</select>
-
-							</div>
-							<div class="col-lg-2" align="center">
-
-
-								<button type="button" class="btn btn-primary"
-									onclick="callSearch()"
-									style="align-content: center; width: 150px; margin-left: 80px;">
-									<spring:message code="label.search" />
-								</button>
-							</div>
-						</div>
 
 
 
-					</div>
-					<div class="col-md-12">
-					<div class="card">
-											<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.distName" /></th>
-										<th><spring:message code="label.orderType" /></th>
 
-										<th><spring:message code="label.distCratesPending" /></th>
-										<th><spring:message code="label.distAmtPending" /></th>
-										<th><spring:message code="label.orderTotal" /></th>
-										<th><spring:message code="label.action" /></th>
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach items="${orderList}" var="orderList"
-										varStatus="count">
-										<tr>
-
-											<td><c:out value="${count.index+1}" /></td>
-
-											<td><c:if test="${langSelected == 0}">
-													<c:out value="${orderList.distEngName}" />
-
-												</c:if> <c:if test="${langSelected == 1}">
-													<c:out value="${orderList.distMarName}" />
-
-												</c:if></td>
-											 <td><c:choose>
-													<c:when test="${orderList.orderType==1}">
-														<spring:message code="label.special" />
-													</c:when>
-													<c:when test="${orderList.orderType==0}">
-														<spring:message code="label.regular" />
-													</c:when>
-												</c:choose></td> 
-
-
-											<td align="right"><c:out
-													value="${orderList.prevPendingCrateBal}" /></td>
-
-											<td align="right"><c:out
-													value="${orderList.prevPendingAmt}" /></td>
-											<td align="right"><c:out value="${orderList.orderTotal}" /></td>
-											<td>
-												<div class="fa-hover col-lg-3 col-md-6">
-													<a
-														href="${pageContext.request.contextPath}/showTodayOrder/${orderList.orderHeaderId}"><i
-														class="fa  fa-stack-exchange"></i> <span
-														class="text-muted"></span></a>
-												</div>
-											</td>
-
-										</tr>
-									</c:forEach>
-
-								</tbody>
-
-							</table>
-						</div>
-						</div>
-						</div>
-
-
-
-<%-- 
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
@@ -201,7 +84,8 @@
 
 										<spring:message code="label.orderDate" />
 										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text" disabled />
+											id="orderDate" value="${orderHeader.orderDate}" type="text"
+											disabled />
 
 									</div>
 								</div>
@@ -213,6 +97,7 @@
 
 										<spring:message code="label.orderDeliveryDate" />
 										&nbsp; <input class="form-control" name="orderDeliveryDate"
+											value="${orderHeader.orderDeliveryDate}"
 											id="orderDeliveryDate" type="text" disabled />
 
 									</div>
@@ -223,7 +108,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.orderTotal" />
 										&nbsp; <input class="form-control" name="orderTotal"
-											id="orderTotal" type="text" disabled />
+											id="orderTotal" value="${orderHeader.orderTotal}" type="text"
+											disabled />
 
 									</div>
 								</div>
@@ -242,8 +128,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.distCratesPending" />
 										&nbsp; <input class="form-control" name="prevPendingCrateBal"
-											id="prevPendingCrateBal" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
+											id="prevPendingCrateBal"
+											value="${orderHeader.prevPendingCrateBal}" type="text"
+											disabled /> <span class="error" aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -254,7 +141,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesIssued" />
 										&nbsp; <input class="form-control" name="cratesIssued"
-											id="cratesIssued" type="text" disabled /> <span
+											id="cratesIssued" type="text"
+											value="${orderHeader.cratesIssued}" disabled /> <span
 											class="error" aria-live="polite"></span>
 									</div>
 								</div>
@@ -265,8 +153,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesReceived" />
 										&nbsp; <input class="form-control" name="cratesReceived"
-											id="cratesReceived" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
+											value="${orderHeader.cratesReceived}" id="cratesReceived"
+											type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -276,8 +165,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesBalance" />
 										&nbsp; <input class="form-control" name="cratesBalance"
-											id="cratesBalance" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
+											value="${orderHeader.prevPendingCrateBal}" id="cratesBalance"
+											type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -290,8 +180,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.distAmtPending" />
 										&nbsp; <input class="form-control" name="prevPendingAmt"
-											id="prevPendingAmt" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
+											value="${orderHeader.prevPendingAmt}" id="prevPendingAmt"
+											type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -304,9 +195,9 @@
 
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderTotal1"
-											id="orderTotal1" type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
+										&nbsp; <input class="form-control" name="orderTotal"
+											value="${orderHeader.orderTotal}" id="orderTotal" type="text"
+											disabled /> <span class="error" aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -319,7 +210,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.amtReceived" />
 										&nbsp; <input class="form-control" name="amtReceived"
-											id="amtReceived" type="text" disabled /> <span class="error"
+											id="amtReceived" value="${orderHeader.amtReceived}"
+											type="text" disabled /> <span class="error"
 											aria-live="polite"></span>
 									</div>
 								</div>
@@ -330,8 +222,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.amountBalanced" />
 										&nbsp; <input class="form-control" name="amountBalanced"
-											id="amountBalanced" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
+											id="amountBalanced" value="${orderHeader.balAmount}"
+											type="text" disabled /> <span class="error"
+											aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -353,11 +246,42 @@
 										<th><spring:message code="label.item" /></th>
 									</tr>
 								</thead>
+								<tbody>
 
+									<c:forEach items="${orderDetail}" var="orderDetail"
+										varStatus="count">
+										<tr>
+
+											<td><c:out value="${count.index+1}" /></td>
+
+											<td><c:if test="${langSelected == 0}">
+													<c:out value="${orderDetail.itemEngName}" />
+
+												</c:if> <c:if test="${langSelected == 1}">
+													<c:out value="${orderDetail.itemMarName}" />
+
+												</c:if></td>
+
+
+
+											<td align="right"><c:out value="${orderDetail.itemWt}" /></td>
+
+											<td align="right"><c:out value="${orderDetail.uomName}" /></td>
+											<td align="right"><c:out value="${orderDetail.orderQty}" /></td>
+											<td align="right"><c:out
+													value="${orderDetail.deliverQty}" /></td>
+											<td align="right"><c:out
+													value="${orderDetail.itemTotal}" /></td>
+
+
+										</tr>
+									</c:forEach>
+
+								</tbody>
 
 							</table>
 						</div>
-					</div> --%>
+					</div>
 				</div>
 
 
@@ -409,64 +333,55 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function callSearch() {
 			alert("cxcgxc");
 			var date = $("#date").val();
 			var distId = $("#distId").val();
 
-			$
-					.getJSON(
-							'${getOrderByDate}',
+			$.getJSON('${getOrderByDate}',
 
-							{
-								date : date,
-								distId : distId,
+			{
+				date : date,
+				distId : distId,
 
-								ajax : 'true'
+				ajax : 'true'
 
-							},
-							function(data) {
+			}, function(data) {
 
-								alert(data.getOrderDetailList);
+				alert(data.getOrderDetailList);
 
-								if (data == "") {
-									alert("No records found !!");
+				if (data == "") {
+					alert("No records found !!");
 
-								}
+				}
 
-								document.getElementById("orderDate").value = data.orderDate;
+				/* document.getElementById("orderDate").value = data.orderDate;
 
-								document.getElementById("orderTotal").value = data.orderTotal;
-								document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
-								document.getElementById("cratesIssued").value = data.cratesIssued;
-								document.getElementById("cratesReceived").value = data.cratesReceived;
-								document.getElementById("cratesBalance").value = (data.prevPendingCrateBal
-										+ data.cratesIssued - data.cratesReceived);
+				document.getElementById("orderTotal").value = data.orderTotal;
+				document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
+				document.getElementById("cratesIssued").value = data.cratesIssued;
+				document.getElementById("cratesReceived").value = data.cratesReceived;
+				document.getElementById("cratesBalance").value = (data.prevPendingCrateBal
+						+ data.cratesIssued - data.cratesReceived);
 
-								document.getElementById("prevPendingAmt").value = data.prevPendingAmt;
-								document.getElementById("orderTotal1").value = data.orderTotal;
-								document.getElementById("amtReceived").value = data.amtReceived;
-								document.getElementById("amountBalanced").value = (data.prevPendingAmt
-										+ data.orderTotal - data.amtReceived);
+				document.getElementById("prevPendingAmt").value = data.prevPendingAmt;
+				document.getElementById("orderTotal1").value = data.orderTotal;
+				document.getElementById("amtReceived").value = data.amtReceived;
+				document.getElementById("amountBalanced").value = (data.prevPendingAmt
+						+ data.orderTotal - data.amtReceived); */
 
-								var dataTable = $('#bootstrap-data-table')
-										.DataTable();
-								$.each(data.getOrderDetailList, function(i, v) {
-									dataTable.row
-											.add(
-													[ i + 1, v.itemEngName,
-															v.itemWt,
-															v.uomName,
-															v.orderQty,
-															v.deliverQty,
-															v.itemTotal ])
-											.draw();
-								});
+				var dataTable = $('#bootstrap-data-table').DataTable();
+				$.each(data.getOrderDetailList, function(i, v) {
+					dataTable.row.add(
+							[ i + 1, v.itemEngName, v.itemWt, v.uomName,
+									v.orderQty, v.deliverQty, v.itemTotal ])
+							.draw();
+				});
 
-							});
+			});
 		}
-	</script>
+	</script> -->
 	<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({

@@ -70,6 +70,8 @@
 									<tr>
 										<th><spring:message code="label.srNo" /></th>
 										<th><spring:message code="label.distName" /></th>
+										<th><spring:message code="label.orderType" /></th>
+
 										<th><spring:message code="label.distCratesPending" /></th>
 										<th><spring:message code="label.distAmtPending" /></th>
 										<th><spring:message code="label.orderTotal" /></th>
@@ -91,19 +93,21 @@
 													<c:out value="${orderList.distMarName}" />
 
 												</c:if></td>
-											<%-- <td><c:choose>
-													<c:when test="${hubUserList.isAdmin==1}">
-														<spring:message code="label.admin" />
+											 <td><c:choose>
+													<c:when test="${orderList.orderType==1}">
+														<spring:message code="label.special" />
 													</c:when>
-													<c:when test="${hubUserList.isAdmin==0}">
-														<spring:message code="label.staff" />
+													<c:when test="${orderList.orderType==0}">
+														<spring:message code="label.regular" />
 													</c:when>
-												</c:choose></td> --%>
+												</c:choose></td> 
 
 
-											<td align="right"><c:out value="${orderList.prevPendingCrateBal}" /></td>
+											<td align="right"><c:out
+													value="${orderList.prevPendingCrateBal}" /></td>
 
-											<td align="right"><c:out value="${orderList.prevPendingAmt}" /></td>
+											<td align="right"><c:out
+													value="${orderList.prevPendingAmt}" /></td>
 											<td align="right"><c:out value="${orderList.orderTotal}" /></td>
 											<td>
 												<div class="fa-hover col-lg-3 col-md-6">

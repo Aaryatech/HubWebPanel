@@ -117,10 +117,77 @@
 
 
 					</div>
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<table id="bootstrap-data-table"
+									class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th><spring:message code="label.srNo" /></th>
+											<th><spring:message code="label.distName" /></th>
+											<th><spring:message code="label.orderType" /></th>
+
+											<th><spring:message code="label.distCratesPending" /></th>
+											<th><spring:message code="label.distAmtPending" /></th>
+											<th><spring:message code="label.orderTotal" /></th>
+											<th><spring:message code="label.action" /></th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<c:forEach items="${orderList}" var="orderList"
+											varStatus="count">
+											<tr>
+
+												<td><c:out value="${count.index+1}" /></td>
+
+												<td><c:if test="${langSelected == 0}">
+														<c:out value="${orderList.distEngName}" />
+
+													</c:if> <c:if test="${langSelected == 1}">
+														<c:out value="${orderList.distMarName}" />
+
+													</c:if></td>
+												<td><c:choose>
+														<c:when test="${orderList.orderType==1}">
+															<spring:message code="label.special" />
+														</c:when>
+														<c:when test="${orderList.orderType==0}">
+															<spring:message code="label.regular" />
+														</c:when>
+													</c:choose></td>
+
+
+												<td align="right"><c:out
+														value="${orderList.prevPendingCrateBal}" /></td>
+
+												<td align="right"><c:out
+														value="${orderList.prevPendingAmt}" /></td>
+												<td align="right"><c:out
+														value="${orderList.orderTotal}" /></td>
+												<td>
+													<div class="fa-hover col-lg-3 col-md-6">
+														<a
+															href="${pageContext.request.contextPath}/showTodayOrder/${orderList.orderHeaderId}"><i
+															class="fa  fa-stack-exchange"></i> <span
+															class="text-muted"></span></a>
+													</div>
+												</td>
+
+											</tr>
+										</c:forEach>
+
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+					</div>
 
 
 
-
+					<%-- 
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
@@ -140,7 +207,7 @@
 									</div>
 								</div>
 							</div>
-							<%-- <div class="col-lg-4">
+							<div class="col-lg-4">
 
 								<div>
 									<div class="input-group" style="align-items: center;">
@@ -151,7 +218,7 @@
 
 									</div>
 								</div>
-							</div> --%>
+							</div>
 							<div class="col-lg-4">
 								<div>
 									<div class="input-group" style="align-items: center;">
@@ -291,7 +358,7 @@
 
 							</table>
 						</div>
-					</div>
+					</div> --%>
 				</div>
 
 
@@ -349,6 +416,9 @@
 			var date = $("#date").val();
 			var distId = $("#distId").val();
 
+			alert("date" + date);
+			alert("distId" + distId);
+
 			$
 					.getJSON(
 							'${getOrderByDate}',
@@ -361,8 +431,9 @@
 
 							},
 							function(data) {
+								alert(data);
 
-								alert(data.getOrderDetailList);
+								/* alert(data.getOrderDetailList);
 
 								if (data == "") {
 									alert("No records found !!");
@@ -382,21 +453,31 @@
 								document.getElementById("orderTotal1").value = data.orderTotal;
 								document.getElementById("amtReceived").value = data.amtReceived;
 								document.getElementById("amountBalanced").value = (data.prevPendingAmt
-										+ data.orderTotal - data.amtReceived);
+										+ data.orderTotal - data.amtReceived); */
 
 								var dataTable = $('#bootstrap-data-table')
 										.DataTable();
-								$.each(data.getOrderDetailList, function(i, v) {
-									dataTable.row
-											.add(
-													[ i + 1, v.itemEngName,
-															v.itemWt,
-															v.uomName,
-															v.orderQty,
-															v.deliverQty,
-															v.itemTotal ])
-											.draw();
-								});
+								$
+										.each(
+												data,
+												function(i, v) {
+
+													var str = "Get Detail";
+													var result = str
+															.link("${pageContext.request.contextPath}/showOrderHistoryDetail/"
+																	+ v.orderHeaderId);
+													dataTable.row
+															.add(
+																	[
+																			i + 1,
+																			v.distEngName,
+																			v.orderType,
+																			v.prevPendingCrateBal,
+																			v.prevPendingAmt,
+																			v.orderTotal,
+																			result ])
+															.draw();
+												});
 
 							});
 		}

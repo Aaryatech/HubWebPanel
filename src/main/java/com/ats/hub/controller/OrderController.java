@@ -48,7 +48,7 @@ public class OrderController {
 
 		ModelAndView model = new ModelAndView("order/orderHistory");
 		try {
- 
+
 			Locale locale = LocaleContextHolder.getLocale();
 
 			System.err.println("current language is - " + locale.toString());
@@ -74,9 +74,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/getOrderByDate", method = RequestMethod.GET)
 	@ResponseBody
-	public GetOrderHub getOrderByDate(HttpServletRequest request, HttpServletResponse response) {
-
-		GetOrderHub orderHeader = new GetOrderHub();
+	public List<GetOrderHub> getOrderByDate(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 
@@ -87,22 +85,20 @@ public class OrderController {
 			map.add("date", DateConvertor.convertToYMD(date));
 			map.add("distId", distId);
 
-			orderHeader = rest.postForObject(Constants.url + "getOrderHistoryDistwise", map, GetOrderHub.class);
-			
-		/*	orderHeader.getGetOrderDetailList();*/
+			GetOrderHub[] orderList = rest.postForObject(Constants.url + "getOrderHistoryDistwise", map,
+					GetOrderHub[].class);
+			orderHubList = new ArrayList<GetOrderHub>(Arrays.asList(orderList));
+			System.err.println("orderHubList " + orderHubList.toString());
+
+			/* orderHeader.getGetOrderDetailList(); */
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return orderHeader;
+		return orderHubList;
 	}
 
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/showTodaysOrder", method = RequestMethod.GET)
 	public ModelAndView showTodaysOrder(HttpServletRequest request, HttpServletResponse response) {
 
@@ -262,9 +258,9 @@ public class OrderController {
 
 			String ordIds = sb.toString();
 			ordIds = ordIds.substring(0, ordIds.length() - 1);
-			
+
 			System.out.println("ordIds" + ordIds);
-			
+
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
 			map.add("orderStatus", 1);
@@ -282,30 +278,30 @@ public class OrderController {
 
 		return "redirect:/showUpdateOrderStatus";
 	}
-	
-	
-	//  ajax call
-	
+
+	// ajax call
+
 	@RequestMapping(value = "/getGraphDataForDistwiseOrderHistory", method = RequestMethod.GET)
 	@ResponseBody
-	public List<DistwiseOrderHistory> getGraphDataForDistwiseOrderHistory(HttpServletRequest request, HttpServletResponse response) {
+	public List<DistwiseOrderHistory> getGraphDataForDistwiseOrderHistory(HttpServletRequest request,
+			HttpServletResponse response) {
 
 		System.out.println("inside Ajax call  tempAjaxcall");
 
-		List<DistwiseOrderHistory> list= new ArrayList<>();
+		List<DistwiseOrderHistory> list = new ArrayList<>();
 
 		try {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			HttpSession session = request.getSession();
 
-			int hubId =	(Integer) session.getAttribute("hubId");
-			
-			map.add("hubId", hubId);
-			DistwiseOrderHistory[] getHubUser = rest.postForObject(Constants.url + "/getGraphDataForDistwiseOrderHistory",map, DistwiseOrderHistory[].class);
-			list = new ArrayList<DistwiseOrderHistory>(Arrays.asList(getHubUser));
-		
-			System.out.println("ajax data" + list);
+			int hubId = (Integer) session.getAttribute("hubId");
 
+			map.add("hubId", hubId);
+			DistwiseOrderHistory[] getHubUser = rest.postForObject(
+					Constants.url + "/getGraphDataForDistwiseOrderHistory", map, DistwiseOrderHistory[].class);
+			list = new ArrayList<DistwiseOrderHistory>(Arrays.asList(getHubUser));
+
+			System.out.println("ajax data" + list);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -313,37 +309,76 @@ public class OrderController {
 
 		return list;
 	}
-	
-	//CatwiseTrend
-	
+
+	// CatwiseTrend
+
 	@RequestMapping(value = "/getCatwiseTrend", method = RequestMethod.GET)
 	@ResponseBody
 	public CatwiseTrend getCatwiseTrend(HttpServletRequest request, HttpServletResponse response) {
 
 		System.out.println("inside Ajax call  catewise trand");
 
-		CatwiseTrend catwiseTrend =new CatwiseTrend();
+		CatwiseTrend catwiseTrend = new CatwiseTrend();
 
 		try {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			HttpSession session = request.getSession();
 
-			int hubId =	(Integer) session.getAttribute("hubId");
-			
-			map.add("hubId", hubId);	
+			int hubId = (Integer) session.getAttribute("hubId");
+
+			map.add("hubId", hubId);
 			map.add("days", 7);
 
-			catwiseTrend = rest.postForObject(Constants.url + "/getCatwiseTrend",map, CatwiseTrend.class);
+			catwiseTrend = rest.postForObject(Constants.url + "/getCatwiseTrend", map, CatwiseTrend.class);
 
-		
 			System.out.println("ajax catewise trend data" + catwiseTrend);
-
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return catwiseTrend;
+	}
+
+	@RequestMapping(value = "/showOrderHistoryDetail/{orderHeaderId}", method = RequestMethod.GET)
+	public ModelAndView showOrderHistoryDetail(@PathVariable int orderHeaderId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("order/orderHistoryDetail");
+		try {
+
+			Date now = new Date();
+
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			map.add("orderHeaderId", orderHeaderId);
+
+			System.out.println("orderDate" + sdf.format(now));
+
+			res = rest.postForObject(Constants.url + "/getOrderByOrderHeaderId", map, GetOrderHub.class);
+
+			model.addObject("orderHeader", res);
+			model.addObject("orderDetail", res.getGetOrderDetailList());
+			model.addObject("orderDate", sdf.format(now));
+
+			model.addObject("langSelected", langSelected);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
 	}
 
 }

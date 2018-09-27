@@ -81,6 +81,7 @@
 												id="selAll" /> All</th>
 											<th><spring:message code="label.srNo" /></th>
 											<th><spring:message code="label.distName" /></th>
+											<th><spring:message code="label.orderType" /></th>
 											<th><spring:message code="label.distCratesPending" /></th>
 											<th><spring:message code="label.distAmtPending" /></th>
 											<th><spring:message code="label.orderTotal" /></th>
@@ -104,7 +105,14 @@
 
 													</c:if></td>
 
-
+												<td><c:choose>
+														<c:when test="${orderHubList.orderType==1}">
+															<spring:message code="label.special" />
+														</c:when>
+														<c:when test="${orderHubList.orderType==0}">
+															<spring:message code="label.regular" />
+														</c:when>
+													</c:choose></td>
 
 												<td align="right"><c:out
 														value="${orderHubList.prevPendingCrateBal}" /></td>
