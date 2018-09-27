@@ -16,8 +16,8 @@
 
 		<div id="main-menu" class="main-menu collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="${pageContext.request.contextPath}/translate">
-						<i class="menu-icon fa fa-dashboard"></i> <spring:message
+				<li><a href="${pageContext.request.contextPath}/home"> <i
+						class="menu-icon fa fa-dashboard"></i> <spring:message
 							code="label.dashboard" />
 				</a></li>
 
