@@ -109,7 +109,7 @@
 							<div class="col-md-3">
 
 								<select id="distIdList" name="distIdList" class="standardSelect"
-									tabindex="1">
+									tabindex="1" style="width: 100%;">
 									<option value=""></option>
 
 									<c:forEach items="${distList}" var="distList">

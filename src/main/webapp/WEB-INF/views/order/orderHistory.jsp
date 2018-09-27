@@ -79,6 +79,7 @@
 								<input type="text" id="date" name="date" />
 
 							</div>
+							<input type="hidden" id="langSelected" name="langSelected" />
 
 
 							<spring:message code="label.selectDist" var="selectDist" />
@@ -103,6 +104,7 @@
 								</select>
 
 							</div>
+
 							<div class="col-lg-2" align="center">
 
 
@@ -134,51 +136,6 @@
 											<th><spring:message code="label.action" /></th>
 										</tr>
 									</thead>
-									<tbody>
-
-										<c:forEach items="${orderList}" var="orderList"
-											varStatus="count">
-											<tr>
-
-												<td><c:out value="${count.index+1}" /></td>
-
-												<td><c:if test="${langSelected == 0}">
-														<c:out value="${orderList.distEngName}" />
-
-													</c:if> <c:if test="${langSelected == 1}">
-														<c:out value="${orderList.distMarName}" />
-
-													</c:if></td>
-												<td><c:choose>
-														<c:when test="${orderList.orderType==1}">
-															<spring:message code="label.special" />
-														</c:when>
-														<c:when test="${orderList.orderType==0}">
-															<spring:message code="label.regular" />
-														</c:when>
-													</c:choose></td>
-
-
-												<td align="right"><c:out
-														value="${orderList.prevPendingCrateBal}" /></td>
-
-												<td align="right"><c:out
-														value="${orderList.prevPendingAmt}" /></td>
-												<td align="right"><c:out
-														value="${orderList.orderTotal}" /></td>
-												<td>
-													<div class="fa-hover col-lg-3 col-md-6">
-														<a
-															href="${pageContext.request.contextPath}/showTodayOrder/${orderList.orderHeaderId}"><i
-															class="fa  fa-stack-exchange"></i> <span
-															class="text-muted"></span></a>
-													</div>
-												</td>
-
-											</tr>
-										</c:forEach>
-
-									</tbody>
 
 								</table>
 							</div>
@@ -187,178 +144,6 @@
 
 
 
-					<%-- 
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title"><spring:message
-									code="label.orderHistory" /></strong>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-4">
-								<div>
-									<div class="input-group" style="align-items: center;">
-
-
-										<spring:message code="label.orderDate" />
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" type="text" disabled />
-
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-
-										<spring:message code="label.orderDeliveryDate" />
-										&nbsp; <input class="form-control" name="orderDeliveryDate"
-											id="orderDeliveryDate" type="text" disabled />
-
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderTotal"
-											id="orderTotal" type="text" disabled />
-
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-
-
-						<div class="form-group"></div>
-						<div class="form-group">
-
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distCratesPending" />
-										&nbsp; <input class="form-control" name="prevPendingCrateBal"
-											id="prevPendingCrateBal" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.cratesIssued" />
-										&nbsp; <input class="form-control" name="cratesIssued"
-											id="cratesIssued" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.cratesReceived" />
-										&nbsp; <input class="form-control" name="cratesReceived"
-											id="cratesReceived" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.cratesBalance" />
-										&nbsp; <input class="form-control" name="cratesBalance"
-											id="cratesBalance" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.distAmtPending" />
-										&nbsp; <input class="form-control" name="prevPendingAmt"
-											id="prevPendingAmt" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-3">
-
-								<div>
-
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderTotal1"
-											id="orderTotal1" type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.amtReceived" />
-										&nbsp; <input class="form-control" name="amtReceived"
-											id="amtReceived" type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.amountBalanced" />
-										&nbsp; <input class="form-control" name="amountBalanced"
-											id="amountBalanced" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-
-								<thead>
-									<tr>
-										<th><spring:message code="label.srNo" /></th>
-										<th><spring:message code="label.itemName" /></th>
-										<th><spring:message code="label.wt" /></th>
-										<th><spring:message code="label.uom" /></th>
-										<th><spring:message code="label.orderQty" /></th>
-										<th><spring:message code="label.deliverQty" /></th>
-										<th><spring:message code="label.item" /></th>
-									</tr>
-								</thead>
-
-
-							</table>
-						</div>
-					</div> --%>
 				</div>
 
 
@@ -415,6 +200,7 @@
 			alert("cxcgxc");
 			var date = $("#date").val();
 			var distId = $("#distId").val();
+			var langSelected=${langSelected};
 
 			alert("date" + date);
 			alert("distId" + distId);
@@ -433,28 +219,6 @@
 							function(data) {
 								alert(data);
 
-								/* alert(data.getOrderDetailList);
-
-								if (data == "") {
-									alert("No records found !!");
-
-								}
-
-								document.getElementById("orderDate").value = data.orderDate;
-
-								document.getElementById("orderTotal").value = data.orderTotal;
-								document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
-								document.getElementById("cratesIssued").value = data.cratesIssued;
-								document.getElementById("cratesReceived").value = data.cratesReceived;
-								document.getElementById("cratesBalance").value = (data.prevPendingCrateBal
-										+ data.cratesIssued - data.cratesReceived);
-
-								document.getElementById("prevPendingAmt").value = data.prevPendingAmt;
-								document.getElementById("orderTotal1").value = data.orderTotal;
-								document.getElementById("amtReceived").value = data.amtReceived;
-								document.getElementById("amountBalanced").value = (data.prevPendingAmt
-										+ data.orderTotal - data.amtReceived); */
-
 								var dataTable = $('#bootstrap-data-table')
 										.DataTable();
 								$
@@ -462,21 +226,50 @@
 												data,
 												function(i, v) {
 
-													var str = "Get Detail";
+													var str = "<i class='fa  fa-stack-exchange'></i>";
 													var result = str
 															.link("${pageContext.request.contextPath}/showOrderHistoryDetail/"
 																	+ v.orderHeaderId);
+													var modType;
+													if (v.orderType == 0) {
+														modType = "Regular";
+													} else if (v.orderType == 1) {
+														modType = "Special";
+													}
+
+													
+													if (langSelected== 0) {
+													
 													dataTable.row
 															.add(
 																	[
 																			i + 1,
 																			v.distEngName,
-																			v.orderType,
+																			modType,
 																			v.prevPendingCrateBal,
 																			v.prevPendingAmt,
 																			v.orderTotal,
 																			result ])
 															.draw();
+													
+													}
+													else if(langSelected==1)
+														{
+														
+
+														dataTable.row
+																.add(
+																		[
+																				i + 1,
+																				v.distMarName,
+																				modType,
+																				v.prevPendingCrateBal,
+																				v.prevPendingAmt,
+																				v.orderTotal,
+																				result ])
+																.draw();
+														
+														}
 												});
 
 							});
