@@ -113,9 +113,9 @@
 									<div>
 										<div class="input-group" style="align-items: center;">
 											<spring:message code="label.itemTotal" />
-											&nbsp; <input class="form-control" name="orderDate"
-												id="orderDate" type="text" value="${orderDetail.size()}"
-												disabled /> <span class="error" aria-live="polite"></span>
+											&nbsp; <input class="form-control" name="size" id="size"
+												type="text" value="${orderDetail.size()}" disabled /> <span
+												class="error" aria-live="polite"></span>
 										</div>
 									</div>
 								</div>
@@ -125,8 +125,8 @@
 										<div class="input-group" style="align-items: center;">
 
 											<spring:message code="label.orderTotal" />
-											&nbsp; <input class="form-control" name="orderDeliveryDate"
-												id="orderDeliveryDate" type="text"
+											&nbsp; <input class="form-control" name="orderTotal"
+												id="orderTotal" type="text"
 												value="${orderHeader.orderTotal}" disabled />
 
 										</div>
@@ -142,8 +142,8 @@
 									<div>
 										<div class="input-group" style="align-items: center;">
 											<spring:message code="label.distCratesPending" />
-											&nbsp; <input class="form-control" name="orderDate"
-												id="orderDate" type="text"
+											&nbsp; <input class="form-control" name="prevPendingCrateBal"
+												id="prevPendingCrateBal" type="text"
 												value="${orderHeader.prevPendingCrateBal}" disabled /> <span
 												class="error" aria-live="polite"></span>
 										</div>

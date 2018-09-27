@@ -165,9 +165,9 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.cratesBalance" />
 										&nbsp; <input class="form-control" name="cratesBalance"
-											value="${orderHeader.prevPendingCrateBal}" id="cratesBalance"
-											type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
+											value="${orderHeader.prevPendingCrateBal+orderHeader.cratesIssued-orderHeader.cratesReceived}"
+											id="cratesBalance" type="text" disabled /> <span
+											class="error" aria-live="polite"></span>
 									</div>
 								</div>
 							</div>
@@ -222,7 +222,8 @@
 									<div class="input-group" style="align-items: center;">
 										<spring:message code="label.amountBalanced" />
 										&nbsp; <input class="form-control" name="amountBalanced"
-											id="amountBalanced" value="${orderHeader.balAmount}"
+											id="amountBalanced"
+											value="${orderHeader.prevPendingAmt+orderHeader.orderTotal-orderHeader.amtReceived}"
 											type="text" disabled /> <span class="error"
 											aria-live="polite"></span>
 									</div>
