@@ -82,9 +82,9 @@
 											<th><spring:message code="label.srNo" /></th>
 											<th><spring:message code="label.distName" /></th>
 											<th><spring:message code="label.orderType" /></th>
-											<th><spring:message code="label.distCratesPending" /></th>
-											<th><spring:message code="label.distAmtPending" /></th>
-											<th><spring:message code="label.orderTotal" /></th>
+											<th align="right"><spring:message code="label.distCratesPending" /></th>
+											<th align="right"><spring:message code="label.distAmtPending" /></th>
+											<th align="right"><spring:message code="label.orderTotal" /></th>
 
 										</tr>
 									</thead>

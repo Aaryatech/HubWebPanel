@@ -202,8 +202,8 @@
 			var distId = $("#distId").val();
 			var langSelected=${langSelected};
 
-			alert("date" + date);
-			alert("distId" + distId);
+		/* 	alert("date" + date);
+			alert("distId" + distId); */
 
 			$
 					.getJSON(
@@ -217,7 +217,7 @@
 
 							},
 							function(data) {
-								alert(data);
+							/* 	alert(data); */
 
 								var dataTable = $('#bootstrap-data-table')
 										.DataTable();

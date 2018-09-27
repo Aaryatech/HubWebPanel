@@ -163,7 +163,7 @@
 
 
 						<div class="card-body">
-							<table id="bootstrap-data-table"
+							<table id="bootstrap-data-table1"
 								class="table table-striped table-bordered">
 
 								<thead>
@@ -259,15 +259,15 @@
 
 	<script type="text/javascript">
 		function callSearch() {
-			alert("cxcgxc");
+			/* 	alert("cxcgxc"); */
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var distIdList = $("#distIdList").val();
 
 			var langSelected = ${langSelected};
 
-			alert("distIdList" + distIdList);
-			alert("langSelected" + langSelected);
+			/* 	alert("distIdList" + distIdList);
+				alert("langSelected" + langSelected); */
 
 			$.getJSON('${getItemByDate}',
 
@@ -291,7 +291,7 @@
 
 				if (langSelected == 0) {
 
-					var dataTable = $('#bootstrap-data-table').DataTable();
+					var dataTable = $('#bootstrap-data-table1').DataTable();
 					$.each(data, function(i, v) {
 						dataTable.row.add(
 								[ i + 1, v.itemEngName, v.orderQty,
@@ -299,7 +299,7 @@
 					});
 
 				} else if (langSelected == 1) {
-					var dataTable = $('#bootstrap-data-table').DataTable();
+					var dataTable = $('#bootstrap-data-table1').DataTable();
 					$.each(data, function(i, v) {
 						dataTable.row.add(
 								[ i + 1, v.itemMarName, v.orderQty,
@@ -310,6 +310,7 @@
 			});
 		}
 	</script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#bootstrap-data-table1').DataTable({
@@ -366,8 +367,9 @@
 			var fromDate = document.getElementById("fromDate").value;
 			var toDate = document.getElementById("toDate").value;
 
-			window.open('${pageContext.request.contextPath}/showItemwiseDistPdf/'
-					+ fromDate + '/' + toDate);
+			window
+					.open('${pageContext.request.contextPath}/showItemwiseDistPdf/'
+							+ fromDate + '/' + toDate);
 			document.getElementById("expExcel").disabled = true;
 
 		}
