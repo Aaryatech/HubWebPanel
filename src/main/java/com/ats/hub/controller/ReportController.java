@@ -418,7 +418,7 @@ public class ReportController {
 	@ResponseBody
 	public List<ItemwiseDistReport> getItemByDate(HttpServletRequest request, HttpServletResponse response) {
 
-		List<ItemwiseDistReport> itemList = new ArrayList<ItemwiseDistReport>();
+		 itemList = new ArrayList<ItemwiseDistReport>();
 		try {
 
 			String fromDate = request.getParameter("fromDate");
