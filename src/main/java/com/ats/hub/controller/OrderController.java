@@ -2,6 +2,7 @@ package com.ats.hub.controller;
 
 import java.text.SimpleDateFormat;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -117,7 +118,11 @@ public class OrderController {
 				langSelected = 1;
 			}
 
-			GetOrderHub[] getOrder = rest.getForObject(Constants.url + "/getOrderByTypeAndStatus", GetOrderHub[].class);
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("orderStatusList", 0);
+
+			GetOrderHub[] getOrder = rest.postForObject(Constants.url + "/getOrderByTypeAndStatus", map,
+					GetOrderHub[].class);
 			orderHubList = new ArrayList<GetOrderHub>(Arrays.asList(getOrder));
 			model.addObject("orderList", orderHubList);
 			model.addObject("orderDate", sdf.format(now));
