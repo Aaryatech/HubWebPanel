@@ -222,7 +222,7 @@
 									</div>
 
 
-									<div class="col-md-1">
+									<div class="col-md-2">
 
 										<input type="radio" name="userType" id="userType" value="0"
 											checked>

@@ -197,7 +197,8 @@
 										placeholder="Mobile No. / Distributor Name">
 
 									<h4 class="mb-0">
-										<span style="font-size: 35px;">Find Distributor</span>
+										<span style="font-size: 35px;"><spring:message
+												code="label.findDist" /></span>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
 										<font color="white"></font>
@@ -215,7 +216,7 @@
 					<div class="col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-header">
-								<strong>Distributor And Order Total</strong>
+								<strong><spring:message code="label.distOrderTotal" /></strong>
 							</div>
 							<div class="card-body card-block">
 
@@ -229,7 +230,7 @@
 					<div class="col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-header">
-								<strong>Category And Order Qty</strong>
+								<strong><spring:message code="label.catAndQty" /></strong>
 							</div>
 							<div class="card-body card-block">
 
@@ -244,7 +245,7 @@
 					<div class="col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-header">
-								<strong>Categorywise Trend</strong>
+								<strong><spring:message code="label.catTrend" /></strong>
 							</div>
 							<div class="card-body card-block">
 
