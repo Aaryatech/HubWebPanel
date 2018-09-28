@@ -88,180 +88,189 @@
 					<div class="col-xs-12 col-sm-12">
 
 						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-2">
-								<div class="card-body pb-0" align="center">
+							<a href="${pageContext.request.contextPath}/showTodaysOrder">
+								<div class="card text-white bg-flat-color-2">
+									<div class="card-body pb-0" align="center">
 
-									<h4 class="mb-0">
-										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+										<h4 class="mb-0">
+
 											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderCount}</span>
-										</a>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"><spring:message
-												code="label.totalOrders" /></font>
-									</p>
 
+										</h4>
+										<p style="font-size: 18px; font-weight: bold; color: white;">
+											<font color="white"><spring:message
+													code="label.totalOrders" /></font>
+										</p>
+
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 
 
 						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-2">
-								<div class="card-body pb-0" align="center">
+							<a href="${pageContext.request.contextPath}/showTodaysOrder">
+								<div class="card text-white bg-flat-color-2">
+									<div class="card-body pb-0" align="center">
 
-									<h4 class="mb-0">
-										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+										<h4 class="mb-0">
+
 											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderTotal}</span>
-										</a>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"><spring:message
-												code="label.orderTotal" /></font>
-									</p>
 
+										</h4>
+										<p style="font-size: 18px; font-weight: bold; color: white;">
+											<font color="white"><spring:message
+													code="label.orderTotal" /></font>
+										</p>
+
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 
 						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-2">
-								<div class="card-body pb-0" align="center">
+							<a href="${pageContext.request.contextPath}/showTodaysOrder">
 
-									<h4 class="mb-0">
-										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+								<div class="card text-white bg-flat-color-2">
+									<div class="card-body pb-0" align="center">
+
+										<h4 class="mb-0">
+
 											<span class="count" style="font-size: 50px;">${dashBoard.todaysSpOrdTotAndCount.orderCount}</span>
-										</a>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"><spring:message
-												code="label.specialOrder" /></font>
-									</p>
 
+										</h4>
+										<p style="font-size: 18px; font-weight: bold; color: white;">
+											<font color="white"><spring:message
+													code="label.specialOrder" /></font>
+										</p>
+
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 					</div>
 
 					<div class="col-xs-12 col-sm-12">
+						<a href="${pageContext.request.contextPath}/showDistListNoOrder">
+							<div class="col-sm-6 col-lg-4">
+								<div class="card text-white bg-flat-color-3">
+									<div class="card-body pb-0" align="center">
 
-						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-3">
-								<div class="card-body pb-0" align="center">
+										<h4 class="mb-0">
 
-									<h4 class="mb-0">
-										<a
-											href="${pageContext.request.contextPath}/showDistListNoOrder">
 											<span class="count" style="font-size: 50px;">${noOrderDistCount}</span>
-										</a>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"><spring:message
-												code="label.noOrder" /></font>
-									</p>
 
-								</div>
-							</div>
-						</div>
-
-
-
-						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-3">
-								<div class="card-body pb-0" align="center">
-
-									<h4 class="mb-0">
-										<a
-											href="${pageContext.request.contextPath}/showUpdateOrderStatus">
-											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
-										</a>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"><spring:message
-												code="label.oForwardPending" /></font>
-									</p>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-lg-4">
-							<div class="card text-white bg-flat-color-3">
-								<div class="card-body pb-1" align="center">
-									<input type="text" id="dist" name="dist"
-										style="color: red; width: 100%;" value="" onchange="getDist()"
-										title="Search by mob no or dist name"
-										placeholder="Mobile No. / Distributor Name">
-
-									<h4 class="mb-0">
-										<span style="font-size: 35px;"><spring:message
-												code="label.findDist" /></span>
-									</h4>
-									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white"></font>
-									</p>
-
-								</div>
-							</div>
-						</div>
-
-
-
+										</h4>
+										<p style="font-size: 18px; font-weight: bold; color: white;">
+											<font color="white"><spring:message
+													code="label.noOrder" /></font>
+										</p>
+						</a>
 					</div>
 
+				</div>
+			</div>
 
-					<div class="col-xs-12 col-sm-12">
-						<div class="card">
-							<div class="card-header">
-								<strong><spring:message code="label.distOrderTotal" /></strong>
-							</div>
-							<div class="card-body card-block">
 
-								<div id="columnchart_material"></div>
 
-							</div>
+			<div class="col-sm-6 col-lg-4">
+				<a href="${pageContext.request.contextPath}/showUpdateOrderStatus">
+					<div class="card text-white bg-flat-color-3">
+						<div class="card-body pb-0" align="center">
+
+							<h4 class="mb-0">
+
+								<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
+
+							</h4>
+							<p style="font-size: 18px; font-weight: bold; color: white;">
+								<font color="white"><spring:message
+										code="label.oForwardPending" /></font>
+							</p>
+
 						</div>
 					</div>
+				</a>
+			</div>
+			<spring:message code="label.hsContactNo" var="hsContactNo" />
+			<spring:message code="label.distName" var="distName" />
 
+			<div class="col-sm-6 col-lg-4">
+				<div class="card text-white bg-flat-color-3">
+					<div class="card-body pb-1" align="center">
+						<input type="text" id="dist" name="dist"
+							style="color: red; width: 100%;" value="" onchange="getDist()"
+							title="Search by mob no or dist name"
+							placeholder="${hsContactNo} / ${distName}">
 
-					<div class="col-xs-12 col-sm-12">
-						<div class="card">
-							<div class="card-header">
-								<strong><spring:message code="label.catAndQty" /></strong>
-							</div>
-							<div class="card-body card-block">
+						<h4 class="mb-0">
+							<span style="font-size: 35px;"><spring:message
+									code="label.findDist" /></span>
+						</h4>
+						<p style="font-size: 18px; font-weight: bold; color: white;">
+							<font color="white"></font>
+						</p>
 
-								<div id="columnchart_material2"></div>
-
-							</div>
-						</div>
 					</div>
+				</div>
+			</div>
 
 
 
-					<div class="col-xs-12 col-sm-12">
-						<div class="card">
-							<div class="card-header">
-								<strong><spring:message code="label.catTrend" /></strong>
-							</div>
-							<div class="card-body card-block">
+		</div>
 
 
-								<div id="linechart_material"
-									style="width: 900px;; height: 700px;"></div>
+		<div class="col-xs-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<strong><spring:message code="label.distOrderTotal" /></strong>
+				</div>
+				<div class="card-body card-block">
 
-							</div>
-						</div>
-					</div>
-
-
+					<div id="columnchart_material"></div>
 
 				</div>
 			</div>
 		</div>
+
+
+		<div class="col-xs-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<strong><spring:message code="label.catAndQty" /></strong>
+				</div>
+				<div class="card-body card-block">
+
+					<div id="columnchart_material2"></div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-xs-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<strong><spring:message code="label.catTrend" /></strong>
+				</div>
+				<div class="card-body card-block">
+
+
+					<div id="linechart_material" style="width: 900px;; height: 700px;"></div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+	</div>
+	</div>
 	</div>
 
 
