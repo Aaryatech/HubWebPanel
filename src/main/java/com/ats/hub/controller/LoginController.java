@@ -61,7 +61,7 @@ public class LoginController {
 
 			session.setAttribute("user", logResHub.getHubUser());
 			session.setAttribute("hubId", logResHub.getHubUser().getHubId());
-			
+
 			System.err.println("logResHubUser " + logResHub.toString());
 
 			return "redirect:/home";
@@ -83,12 +83,11 @@ public class LoginController {
 
 		ModelAndView model = new ModelAndView("home");
 		try {
-			
-			
+
 			HttpSession session = request.getSession();
 
-			int hubId =	(Integer) session.getAttribute("hubId");
-			
+			int hubId = (Integer) session.getAttribute("hubId");
+
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
 			Date now = new Date();
@@ -100,8 +99,7 @@ public class LoginController {
 			map.add("orderType", 0);
 			map.add("hubId", hubId); // to be set by geeting hub id from session
 
-			DashboardData dashBoard = rest.postForObject(Constants.url + "/getHubDashBoard", map,
-					DashboardData.class);
+			DashboardData dashBoard = rest.postForObject(Constants.url + "/getHubDashBoard", map, DashboardData.class);
 
 			System.err.println("HubDashboardData " + dashBoard.toString());
 			model.addObject("dashBoard", dashBoard);
@@ -123,8 +121,7 @@ public class LoginController {
 			 * 
 			 * model.addObject("catwiseHubOrdQty",catwiseHubOrdQtyList);
 			 */
-			
-			
+
 			Locale locale = LocaleContextHolder.getLocale();
 
 			System.err.println("current language is - " + locale.toString());
@@ -135,9 +132,7 @@ public class LoginController {
 				langSelected = 1;
 			}
 
-			
 			model.addObject("langSelected", langSelected);
-
 
 		} catch (Exception e) {
 
@@ -152,36 +147,37 @@ public class LoginController {
 	// getCatOrdQty
 
 	@RequestMapping(value = "/getCatOrdQty", method = RequestMethod.GET)
-	@ResponseBody public List<CategoryDistReport> getcatData(HttpServletRequest request, HttpServletResponse response) {
-		
+	@ResponseBody
+	public List<CategoryDistReport> getcatData(HttpServletRequest request, HttpServletResponse response) {
+
 		List<CategoryDistReport> catwiseHubOrdQtyList = new ArrayList<CategoryDistReport>();
 
 		System.err.println("In Ajax call /getCatOrdQty ");
 		try {
-		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-		
-		HttpSession session = request.getSession();
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
-		int hubId =	(Integer) session.getAttribute("hubId");
-		
-		Date now = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String date = sdf.format(now.getTime());
+			HttpSession session = request.getSession();
 
-		map.add("curDate", date);
+			int hubId = (Integer) session.getAttribute("hubId");
 
-		map.add("hubId", hubId); // to be set by geeting hub id from session
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String date = sdf.format(now.getTime());
 
-		CategoryDistReport[] catwiseHubOrdQty = rest.postForObject(Constants.url + "/getHubReportCatwise", map,
-				CategoryDistReport[].class);
-		catwiseHubOrdQtyList = new ArrayList<CategoryDistReport>(Arrays.asList(catwiseHubOrdQty));
+			map.add("curDate", date);
 
-		System.err.println("catwiseHubOrdQty   in Ajax" + catwiseHubOrdQtyList.toString());
-		}catch (Exception e) {
-			
+			map.add("hubId", hubId); // to be set by geeting hub id from session
+
+			CategoryDistReport[] catwiseHubOrdQty = rest.postForObject(Constants.url + "/getHubReportCatwise", map,
+					CategoryDistReport[].class);
+			catwiseHubOrdQtyList = new ArrayList<CategoryDistReport>(Arrays.asList(catwiseHubOrdQty));
+
+			System.err.println("catwiseHubOrdQty   in Ajax" + catwiseHubOrdQtyList.toString());
+		} catch (Exception e) {
+
 			System.err.println("catwiseHubOrdQty   in Ajax" + e.getMessage());
 			e.printStackTrace();
-			
+
 		}
 		return catwiseHubOrdQtyList;
 
@@ -220,6 +216,52 @@ public class LoginController {
 
 		return model;
 
+	}
+
+	@RequestMapping(value = "/showDistListNoOrder", method = RequestMethod.GET)
+	public ModelAndView showDistListNoOrder(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("order/noOrderDistList");
+		try {
+
+			Locale locale = LocaleContextHolder.getLocale();
+
+			System.err.println("current language is - " + locale.toString());
+
+			int langSelected = 0;
+
+			if (locale.toString().equalsIgnoreCase("mr")) {
+				langSelected = 1;
+			}
+
+			HttpSession session = request.getSession();
+
+			int hubId = (Integer) session.getAttribute("hubId");
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String date = sdf.format(now.getTime());
+
+			map.add("curDate", date);
+
+			map.add("orderType", 0);
+			map.add("hubId", hubId); // to be set by geeting hub id from session
+
+			DashboardData dashBoard = rest.postForObject(Constants.url + "/getHubDashBoard", map, DashboardData.class);
+
+			System.err.println("HubDashboardData " + dashBoard.toString());
+			model.addObject("distList", dashBoard.getNoOrderDistList());
+			model.addObject("orderDate", sdf.format(now));
+
+			model.addObject("langSelected", langSelected);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
 	}
 
 }

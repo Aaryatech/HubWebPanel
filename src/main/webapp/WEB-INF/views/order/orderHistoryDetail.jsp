@@ -73,7 +73,8 @@
 					<div class="card">
 						<div class="card-header">
 							<strong class="card-title"><spring:message
-									code="label.orderHistory" /></strong>
+									code="label.orderHistory" />&nbsp; &nbsp; &nbsp; &nbsp; <spring:message
+									code="label.distName" />: ${orderHeader.distEngName}</strong>
 						</div>
 						<div class="form-group"></div>
 						<div class="form-group">

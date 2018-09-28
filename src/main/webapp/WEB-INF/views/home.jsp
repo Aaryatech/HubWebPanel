@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 
 <!doctype html>
 <html>
@@ -60,10 +62,10 @@
 	<c:url var="getChartData" value="/getGraphDataForDistwiseOrderHistory"></c:url>
 
 	<c:url var="getCatOrdQty" value="/getCatOrdQty"></c:url>
-	
+
 	<c:url var="getCatwiseTrend" value="/getCatwiseTrend"></c:url>
-	
-	
+
+
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -90,10 +92,13 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderCount}</span>
+										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderCount}</span>
+										</a>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white">Total Orders</font>
+										<font color="white"><spring:message
+												code="label.totalOrders" /></font>
 									</p>
 
 								</div>
@@ -107,10 +112,13 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderTotal}</span>
+										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrdTotAndCount.orderTotal}</span>
+										</a>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white">Order Total</font>
+										<font color="white"><spring:message
+												code="label.orderTotal" /></font>
 									</p>
 
 								</div>
@@ -123,10 +131,13 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">${dashBoard.todaysSpOrdTotAndCount.orderCount}</span>
+										<a href="${pageContext.request.contextPath}/showTodaysOrder">
+											<span class="count" style="font-size: 50px;">${dashBoard.todaysSpOrdTotAndCount.orderCount}</span>
+										</a>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white">Special Order</font>
+										<font color="white"><spring:message
+												code="label.specialOrder" /></font>
 									</p>
 
 								</div>
@@ -142,10 +153,14 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">${noOrderDistCount}</span>
+										<a
+											href="${pageContext.request.contextPath}/showDistListNoOrder">
+											<span class="count" style="font-size: 50px;">${noOrderDistCount}</span>
+										</a>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white">No Orders</font>
+										<font color="white"><spring:message
+												code="label.noOrder" /></font>
 									</p>
 
 								</div>
@@ -159,10 +174,14 @@
 								<div class="card-body pb-0" align="center">
 
 									<h4 class="mb-0">
-										<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
+										<a
+											href="${pageContext.request.contextPath}/showUpdateOrderStatus">
+											<span class="count" style="font-size: 50px;">${dashBoard.todaysOrderPending.orderCount}</span>
+										</a>
 									</h4>
 									<p style="font-size: 18px; font-weight: bold; color: white;">
-										<font color="white">Order Forward Pending</font>
+										<font color="white"><spring:message
+												code="label.oForwardPending" /></font>
 									</p>
 
 								</div>
@@ -230,7 +249,8 @@
 							<div class="card-body card-block">
 
 
-								<div id="linechart_material" style="width: 900px;; height: 700px;"></div>
+								<div id="linechart_material"
+									style="width: 900px;; height: 700px;"></div>
 
 							</div>
 						</div>
@@ -245,7 +265,7 @@
 
 
 
-<script
+	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
@@ -269,7 +289,7 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
-	
+
 	<script>
 		(function($) {
 			"use strict";
@@ -289,25 +309,24 @@
 		})(jQuery);
 	</script>
 	<script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en,mr', 
-            includedLanguages: 'mr,en', 
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
-        var a = document.querySelector("#google_translate_element");
-        a.selectedIndex=1;
-        a.dispatchEvent(new Event('change'));
-        
-        $('.google_translate_element').each(function(){
-            id=$(this).data('label-for');
-            $('#'+id).val( $(this).text() );
-         });
-        
-        
-    }
-</script>
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage : 'en,mr',
+				includedLanguages : 'mr,en',
+				layout : google.translate.TranslateElement.InlineLayout.SIMPLE,
+				autoDisplay : false
+			}, 'google_translate_element');
+			var a = document.querySelector("#google_translate_element");
+			a.selectedIndex = 1;
+			a.dispatchEvent(new Event('change'));
+
+			$('.google_translate_element').each(function() {
+				id = $(this).data('label-for');
+				$('#' + id).val($(this).text());
+			});
+
+		}
+	</script>
 
 	<script>
 		function setData() {
@@ -382,7 +401,11 @@
 							data.addColumn('number', 'Order2');
 							data.addColumn('number', 'Order3');
 
-							var lan = ${langSelected};
+							var lan = $
+							{
+								langSelected
+							}
+							;
 							//alert(lan);
 							if (lan == 0) {
 								$.each(jsonData, function(i, obj) {
@@ -437,7 +460,11 @@
 
 							data.addColumn('string', 'Category');
 							data.addColumn('number', 'Order Qty');
-							var lan = ${langSelected};
+							var lan = $
+							{
+								langSelected
+							}
+							;
 							//alert(lan);
 							if (lan == 0) {
 								$.each(jsonData, function(i, obj) {
@@ -459,7 +486,7 @@
 
 							var options = {
 								title : '',
-							
+
 								is3D : true
 							};
 							var chart = new google.charts.Bar(document
@@ -473,11 +500,11 @@
 
 		}
 	</script>
-	
-	
-	
-	
-<script>
+
+
+
+
+	<script>
 		function getChart3() {
 
 			google.charts.load('current', {
@@ -495,102 +522,107 @@
 					var data = new google.visualization.DataTable();
 					data.addColumn('string', 'Day');
 					//data.addColumn('number', 'Cat 1');
-    					
 
 					$.each(jsonData.catList, function(k, obj) {
-						catName=obj.catEngName;
+						catName = obj.catEngName;
 						//alert(i);
 						data.addColumn('number', obj.catEngName);
-				});
-	                data.addRows(jsonData.orderList.length);
-	                 
+					});
+					data.addRows(jsonData.orderList.length);
+
 					$.each(jsonData.orderList, function(i, o) {
-						data.setCell(i,0,o.date);
-					//alert("i "+i);
+						data.setCell(i, 0, o.date);
+						//alert("i "+i);
 						$.each(o.orderQty, function(j, q) {
 							//alert("j "+j);
-							data.setCell(i,j+1,q.toString());
-					
+							data.setCell(i, j + 1, q.toString());
+
 						});
-						
-						});
-					
+
+					});
+
 					//alert(JSON.stringify(data));
 					var options = {
-							chart : {
-								title : '',
-								subtitle : '',
-						
-								chartArea:{left:0,top:0,width:"100%",height:"100%"}
-							 
-								
+						chart : {
+							title : '',
+							subtitle : '',
+
+							chartArea : {
+								left : 0,
+								top : 0,
+								width : "100%",
+								height : "100%"
 							}
-				
-						};
 
-						var chart = new google.charts.Line(document
-								.getElementById('linechart_material'));
+						}
 
-						chart.draw(data, google.charts.Line.convertOptions(options));
-					
-					
+					};
+
+					var chart = new google.charts.Line(document
+							.getElementById('linechart_material'));
+
+					chart
+							.draw(data, google.charts.Line
+									.convertOptions(options));
+
 					// Line Chart catewise trend 30/60/90 days
 
-				/* 	google.charts.load('current', {
-						'packages' : [ 'line' ]
-					});
-					google.charts.setOnLoadCallback(drawChartOld);
+					/* 	google.charts.load('current', {
+							'packages' : [ 'line' ]
+						});
+						google.charts.setOnLoadCallback(drawChartOld);
 
-					function drawChartOld() {
+						function drawChartOld() {
 
-						var data = new google.visualization.DataTable();
-						data.addColumn('number', 'Day');
-						data.addColumn('number', 'Cat 1');
-						data.addColumn('number', 'Cat 2');
-						data.addColumn('number', 'Cat 3');
-						data.addColumn('number', 'Cat 4');
+							var data = new google.visualization.DataTable();
+							data.addColumn('number', 'Day');
+							data.addColumn('number', 'Cat 1');
+							data.addColumn('number', 'Cat 2');
+							data.addColumn('number', 'Cat 3');
+							data.addColumn('number', 'Cat 4');
 
-						data.addRows([ [ 1, 3700.8, 8000.8, 8900.5, 6922.5 ],
-								[ 2, 3000.9, 6900.5, 3009.5, 8902.5 ],
-								[ 3, 4500.4, 5007, 4009.5, 9901.5 ],
-								[ 4, 3600.7, 1800.8, 5009.5, 1090.5 ],
-								[ 5, 4000.9, 2000.5, 1900.5, 6025 ],
-								[ 6, 5000.8, 4500.8, 4902.5, 8009.5 ]
+							data.addRows([ [ 1, 3700.8, 8000.8, 8900.5, 6922.5 ],
+									[ 2, 3000.9, 6900.5, 3009.5, 8902.5 ],
+									[ 3, 4500.4, 5007, 4009.5, 9901.5 ],
+									[ 4, 3600.7, 1800.8, 5009.5, 1090.5 ],
+									[ 5, 4000.9, 2000.5, 1900.5, 6025 ],
+									[ 6, 5000.8, 4500.8, 4902.5, 8009.5 ]
 
-						]);
+							]);
 
-						var options = {
-							chart : {
-								title : '',
-								subtitle : ''
-							}
+							var options = {
+								chart : {
+									title : '',
+									subtitle : ''
+								}
 
-						};
+							};
 
-						alert(JSON.stringify(data));
-						 
-						var chart = new google.charts.Line(document
-								.getElementById('linechart_material'));
+							alert(JSON.stringify(data));
+							 
+							var chart = new google.charts.Line(document
+									.getElementById('linechart_material'));
 
-						chart.draw(data, google.charts.Line.convertOptions(options));
- 		
-					}
-					*/
+							chart.draw(data, google.charts.Line.convertOptions(options));
 					
+						}
+					 */
 
 				});
 			}
 
 		}
 	</script>
-	
+
 
 	<script type="text/javascript">
 		function getDist() {
 
 			var dist = document.getElementById("dist").value;
 
-			window.open('${pageContext.request.contextPath}/searchDist/'+dist);
+			window
+					.open('${pageContext.request.contextPath}/searchDist/'
+							+ dist);
 
 		}
 	</script>
