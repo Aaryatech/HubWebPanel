@@ -32,7 +32,6 @@ import com.ats.hub.model.ErrorMessage;
 import com.ats.hub.model.GetOrder;
 import com.ats.hub.model.GetOrderHub;
 import com.ats.hub.model.report.CatwiseTrend;
-import com.ats.hub.model.report.DistReportByDate;
 import com.ats.hub.model.report.DistwiseOrderHistory;
 
 @Controller
