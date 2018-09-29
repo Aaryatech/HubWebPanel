@@ -208,10 +208,10 @@
 						<div class="col-sm-6 col-lg-4">
 							<div class="card text-white bg-flat-color-3">
 								<div class="card-body pb-1" align="center">
-									<input type="text" id="dist" name="dist"
+								<b>	<input type="text" id="dist" name="dist"
 										style="color: red; width: 100%;" value="" onchange="getDist()"
 										title="Search by mob no or dist name"
-										placeholder="   ${hsContactNo} / ${distName}">
+										placeholder="   ${hsContactNo} / ${distName}"></b>
 
 									<h4 class="mb-0">
 										<span style="font-size: 35px;"><spring:message

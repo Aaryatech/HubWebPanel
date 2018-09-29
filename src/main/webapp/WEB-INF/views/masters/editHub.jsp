@@ -251,7 +251,7 @@
 								<div class="col-lg-12" align="center">
 									<button type="submit" class="btn btn-primary"
 										style="align-content: center; width: 226px; margin-left: 80px;">
-										<spring:message code="label.submit" />
+										<spring:message code="label.updateMyProfile" />
 									</button>
 								</div>
 							</form>
