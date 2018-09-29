@@ -133,7 +133,7 @@
 
 
 						<div class="col-sm-6 col-lg-4"
-							onclick="showTodaysOrder(${dashBoard.todaysOrdTotAndCount.orderCount})"
+							onclick="showTodaysOrder(${dashBoard.todaysSpOrdTotAndCount.orderCount})"
 							style="cursor: pointer;">
 
 							<div class="card text-white bg-flat-color-2">
@@ -637,12 +637,15 @@
 	<script type="text/javascript">
 		
 		function showTodaysOrder(count){
+			alert("count"+count);
 			if(count>0){
+				
 			
 			window.open('${pageContext.request.contextPath}/showTodaysOrder',"_self");
 			}
 		}
 		function showNoOrderDist(count){
+			alert("count"+count);
 			
 			if(count>0){
 			
@@ -650,6 +653,7 @@
 		}
 		}
 		function showUpdateOrderDist(count){
+			alert("count"+count);
 			if(count>0){
 				window.open('${pageContext.request.contextPath}/showUpdateOrderStatus',"_self");
 			}
