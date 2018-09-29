@@ -637,7 +637,7 @@
 	<script type="text/javascript">
 		
 		function showTodaysOrder(count){
-			alert("count"+count);
+			
 			if(count>0){
 				
 			
@@ -645,7 +645,6 @@
 			}
 		}
 		function showNoOrderDist(count){
-			alert("count"+count);
 			
 			if(count>0){
 			
@@ -653,7 +652,7 @@
 		}
 		}
 		function showUpdateOrderDist(count){
-			alert("count"+count);
+			
 			if(count>0){
 				window.open('${pageContext.request.contextPath}/showUpdateOrderStatus',"_self");
 			}
