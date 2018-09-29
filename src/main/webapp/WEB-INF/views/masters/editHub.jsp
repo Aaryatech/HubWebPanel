@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit Hub User</title>
+<title>My Profile</title>
 
 
 <link rel="apple-touch-icon"

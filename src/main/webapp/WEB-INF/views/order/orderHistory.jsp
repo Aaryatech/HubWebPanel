@@ -197,13 +197,14 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 	<script type="text/javascript">
 		function callSearch() {
-			alert("cxcgxc");
+			/* 	alert("cxcgxc"); */
 			var date = $("#date").val();
 			var distId = $("#distId").val();
-			var langSelected=${langSelected};
+			var langSelected = ${langSelected};
+			
 
-		/* 	alert("date" + date);
-			alert("distId" + distId); */
+			/* 	alert("date" + date);
+				alert("distId" + distId); */
 
 			$
 					.getJSON(
@@ -217,7 +218,11 @@
 
 							},
 							function(data) {
-							/* 	alert(data); */
+								/* 	alert(data); */
+								if (data == "") {
+									alert("No records found !!");
+
+								}
 
 								var dataTable = $('#bootstrap-data-table')
 										.DataTable();
@@ -237,25 +242,21 @@
 														modType = "Special";
 													}
 
-													
-													if (langSelected== 0) {
-													
-													dataTable.row
-															.add(
-																	[
-																			i + 1,
-																			v.distEngName,
-																			modType,
-																			v.prevPendingCrateBal,
-																			v.prevPendingAmt,
-																			v.orderTotal,
-																			result ])
-															.draw();
-													
-													}
-													else if(langSelected==1)
-														{
-														
+													if (langSelected == 0) {
+
+														dataTable.row
+																.add(
+																		[
+																				i + 1,
+																				v.distEngName,
+																				modType,
+																				v.prevPendingCrateBal,
+																				v.prevPendingAmt,
+																				v.orderTotal,
+																				result ])
+																.draw();
+
+													} else if (langSelected == 1) {
 
 														dataTable.row
 																.add(
@@ -268,8 +269,8 @@
 																				v.orderTotal,
 																				result ])
 																.draw();
-														
-														}
+
+													}
 												});
 
 							});

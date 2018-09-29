@@ -112,19 +112,25 @@
 
 
 					</ul></li>
+					
+						<li class="menu-item-has-children dropdown"><a
+					href="${pageContext.request.contextPath}/editHubUser/1"> <i
+						class="menu-icon fa fa-table"></i> <spring:message
+							code="label.userProfile" />
+				</a></li>
 
-				<li class="menu-item-has-children dropdown"><a href="#"
+				<%-- 	<li class="menu-item-has-children dropdown"><a
+					href="${pageContext.request.contextPath}/editHubUser/1"
 					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="true"> <i class="menu-icon fa fa-table"></i> <spring:message
-							code="label.userProfile" />
-				</a>
-					<ul class="sub-menu children dropdown-menu ">
+							code="label.userProfile" /> --%>
+				</a> <%-- 	<ul class="sub-menu children dropdown-menu ">
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/editHubUser/1"><spring:message
 									code="label.userProfile" /></a></li>
 
 
-					</ul>
+					</ul> --%>
 			</ul>
 
 		</div>

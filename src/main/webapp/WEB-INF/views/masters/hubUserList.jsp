@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Data Table</title>
+<title>Hub User List</title>
 
 
 <link rel="apple-touch-icon"

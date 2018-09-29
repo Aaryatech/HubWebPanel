@@ -235,9 +235,10 @@
 									<div class="col-md-3">
 										<div class="input-group">
 											<input type="radio" checked name="lang" id="lang" value="0"
-												onchange="openDiv(0)"> English <input type="radio"
-												name="lang" id="lang" value="1" onchange="openDiv(1)">
-											Marathi
+												onchange="openDiv(0)"> English
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+												type="radio" name="lang" id="lang" value="1"
+												onchange="openDiv(1)"> Marathi
 										</div>
 									</div>
 								</div>

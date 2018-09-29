@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>View Todays Order</title>
+<title>Forward To Mahasangh</title>
 
 
 <link rel="apple-touch-icon"
