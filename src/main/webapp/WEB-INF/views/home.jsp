@@ -87,6 +87,9 @@
 
 					<div class="col-xs-12 col-sm-12">
 
+
+					<input type="hidden" id="lang" name="lang" value="${langSelected}">
+
 						<div class="col-sm-6 col-lg-4"
 							onclick="showTodaysOrder(${dashBoard.todaysOrdTotAndCount.orderCount})"
 							style="cursor: pointer;">
@@ -294,19 +297,11 @@
 
 
 	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/chart-js/Chart.bundle.js"></script>
-	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/dashboard.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/widgets.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+	
+	
 
 	<script>
 		(function($) {
@@ -402,6 +397,9 @@
 	<script>
 		function getChart1() {
 
+			
+			var lang = document.getElementById("lang").value;
+
 			google.charts.load('current', {
 				'packages' : [ 'bar' ]
 			});
@@ -421,13 +419,8 @@
 							data.addColumn('number', 'Order2');
 							data.addColumn('number', 'Order3');
 
-							var lan = $
-							{
-								langSelected
-							}
-							;
-							//alert(lan);
-							if (lan == 0) {
+						
+							if (lang == 0) {
 								$.each(jsonData, function(i, obj) {
 
 									data.addRow([ obj.distEngName, obj.order1,
@@ -464,6 +457,8 @@
 	<script>
 		function getChart2() {
 
+			var lang = document.getElementById("lang").value;
+
 			google.charts.load('current', {
 				'packages' : [ 'bar' ]
 			});
@@ -480,13 +475,8 @@
 
 							data.addColumn('string', 'Category');
 							data.addColumn('number', 'Order Qty');
-							var lan = $
-							{
-								langSelected
-							}
-							;
-							//alert(lan);
-							if (lan == 0) {
+							
+							if (lang == 0) {
 								$.each(jsonData, function(i, obj) {
 
 									data
@@ -527,6 +517,8 @@
 	<script>
 		function getChart3() {
 
+			var lang = document.getElementById("lang").value;
+
 			google.charts.load('current', {
 				'packages' : [ 'line' ]
 			});
@@ -545,8 +537,16 @@
 
 					$.each(jsonData.catList, function(k, obj) {
 						catName = obj.catEngName;
-						//alert(i);
+						
+
+						if(lang==0){
 						data.addColumn('number', obj.catEngName);
+						}else {
+							
+							data.addColumn('number', obj.catMarName);
+									
+						}
+						
 					});
 					data.addRows(jsonData.orderList.length);
 
@@ -581,8 +581,7 @@
 					var chart = new google.charts.Line(document
 							.getElementById('linechart_material'));
 
-					chart
-							.draw(data, google.charts.Line
+					chart.draw(data, google.charts.Line
 									.convertOptions(options));
 
 					// Line Chart catewise trend 30/60/90 days
