@@ -80,9 +80,7 @@
 									code="label.orderHistory" /></a></li>
 
 
-
 					</ul></li>
-
 
 
 
@@ -106,10 +104,6 @@
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showCatwiseReport"><spring:message
 									code="label.catReport" /></a></li>
-
-
-
-
 
 					</ul></li>
 					
