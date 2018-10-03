@@ -88,8 +88,8 @@
 					<div class="col-xs-12 col-sm-12">
 
 
-					<input type="hidden" id="lang" name="lang" value="${langSelected}">
-
+						<input type="hidden" id="lang" name="lang" value="${langSelected}">
+								
 						<div class="col-sm-6 col-lg-4"
 							onclick="showTodaysOrder(${dashBoard.todaysOrdTotAndCount.orderCount})"
 							style="cursor: pointer;">
@@ -211,7 +211,7 @@
 						<div class="col-sm-6 col-lg-4">
 							<div class="card text-white bg-flat-color-3">
 								<div class="card-body pb-1" align="center">
-								<b>	<input type="text" id="dist" name="dist"
+									<b> <input type="text" id="dist" name="dist"
 										style="color: red; width: 100%;" value="" onchange="getDist()"
 										title="Search by mob no or dist name"
 										placeholder="   ${hsContactNo} / ${distName}"></b>
@@ -270,8 +270,7 @@
 							<div class="card-body card-block">
 
 
-								<div id="linechart_material"
-									style="width: 900px;; height: 700px;"></div>
+								<div id="linechart_material"></div>
 
 							</div>
 						</div>
@@ -300,8 +299,8 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/dashboard.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/widgets.js"></script>
-	
-	
+
+
 
 	<script>
 		(function($) {
@@ -565,14 +564,7 @@
 					var options = {
 						chart : {
 							title : '',
-							subtitle : '',
-
-							chartArea : {
-								left : 0,
-								top : 0,
-								width : "100%",
-								height : "100%"
-							}
+							subtitle : ''
 
 						}
 
@@ -663,6 +655,34 @@
 			window.open('${pageContext.request.contextPath}/searchDist/'+dist);
 
 		} 
+	 
+	 
+	 
+	 
+	 
+	 
+	 function validate(evt) {
+		  var theEvent = evt || window.event;
+
+		  // Handle paste
+		  if (theEvent.type === 'paste') {
+		      key = event.clipboardData.getData('text/plain');
+		  } else {
+		  // Handle key press
+		      var key = theEvent.keyCode || theEvent.which;
+		      key = String.fromCharCode(key);
+		  }
+		  var regex = /[0-9]|\./;
+		  if( !regex.test(key) ) {
+		    theEvent.returnValue = false;
+		    if(theEvent.preventDefault) theEvent.preventDefault();
+		  }
+		  
+	
+
+		  
+		}
+	 
 	</script>
 
 </body>
