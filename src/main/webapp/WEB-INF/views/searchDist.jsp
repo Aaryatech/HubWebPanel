@@ -193,6 +193,7 @@
 											type="text" value="${distAdd}" disabled />
 
 									</div>
+									&nbsp;
 									<%-- <div class="col-md-2">
 										<c:if test="${langSelected==0}">
 									${dist.distAddEng}
@@ -203,7 +204,7 @@
 									</div>
  --%>
 								</div>
-								&nbsp;
+
 
 								<div class="row">
 									<div class="col-md-2">
@@ -267,6 +268,7 @@
 									<div class="form-group"></div>
 									<div class="row">
 
+
 										<div class="col-md-2">
 											<spring:message code="label.date" />
 										</div>
@@ -285,9 +287,7 @@
 										</div>
 									</div>
 								</div>
-
-
-								<input type="hidden" id="distId" name="distId"
+								&nbsp; <input type="hidden" id="distId" name="distId"
 									value="${dist.distId}">
 
 								<div class="card">
