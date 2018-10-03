@@ -150,27 +150,50 @@
 										<spring:message code="label.userName" />
 									</div>
 									<div class="col-md-2">
-										<c:if test="${langSelected==0}">
-									${dist.distEngName}
-									</c:if>
-										<c:if test="${langSelected==1}">
-									${dist.distMarName}
-									</c:if>
+
+										<c:set var="distName" value="-"></c:set>
+										<c:if test="${langSelected == 0}">
+											<c:set var="distName" value="${dist.distEngName}"></c:set>
+										</c:if>
+										<c:if test="${langSelected == 1}">
+											<c:set var="distName" value="${dist.distMarName}"></c:set>
+
+										</c:if>
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${distName}" disabled />
 
 									</div>
-										<spring:message code="label.hsContactNo" var="selHub" />
-<input type="hidden" id="hu" value="${selHub}"/>
+									<spring:message code="label.hsContactNo" var="selHub" />
+									<input type="hidden" id="hu" value="${selHub}" />
 
 									<div class="col-md-2">
 										<spring:message code="label.hsContactNo" />
 
 									</div>
-									<div class="col-md-2">${dist.distContactNo}</div>
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.distContactNo}" disabled />
+									</div>
 
 									<div class="col-md-2">
 										<spring:message code="label.address" />
 									</div>
+
 									<div class="col-md-2">
+
+										<c:set var="distAdd" value="-"></c:set>
+										<c:if test="${langSelected == 0}">
+											<c:set var="distAdd" value="${dist.distAddEng}"></c:set>
+										</c:if>
+										<c:if test="${langSelected == 1}">
+											<c:set var="distAdd" value="${dist.distAddMar}"></c:set>
+
+										</c:if>
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${distAdd}" disabled />
+
+									</div>
+									<%-- <div class="col-md-2">
 										<c:if test="${langSelected==0}">
 									${dist.distAddEng}
 									</c:if>
@@ -178,7 +201,7 @@
 									${dist.distAddMar}
 									</c:if>
 									</div>
-
+ --%>
 								</div>
 								&nbsp;
 
@@ -186,18 +209,31 @@
 									<div class="col-md-2">
 										<spring:message code="label.routeSeqNo" />
 									</div>
-									<div class="col-md-2">${dist.routeDistSeqNo}</div>
 
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.routeDistSeqNo}" disabled />
+									</div>
+									<%-- 	<div class="col-md-2">${dist.routeDistSeqNo}</div>
+ --%>
 									<div class="col-md-2">
 										<spring:message code="label.distCratesPending" />
 									</div>
-									<div class="col-md-2">${dist.distCratesPending}</div>
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.distCratesPending}" disabled />
+									</div>
+									<%-- 		<div class="col-md-2">${dist.distCratesPending}</div> --%>
 
 
 									<div class="col-md-2">
 										<spring:message code="label.distCratesLimit" />
 									</div>
-									<div class="col-md-2">${dist.distCratesLimit}</div>
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.distCratesLimit}" disabled />
+									</div>
+									<%-- <div class="col-md-2">${dist.distCratesLimit}</div> --%>
 								</div>
 								&nbsp;
 								<div class="row">
@@ -205,17 +241,24 @@
 										<spring:message code="label.distAmtPending" />
 									</div>
 
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.distAmtPending}" disabled />
+									</div>
 
-									<div class="col-md-2">${dist.distAmtPending}</div>
 
 									<div class="col-md-2">
 										<spring:message code="label.distAmtLimit" />
 									</div>
+									<div class="col-md-2">
+										<input class="form-control" name="orderDate" id="orderDate"
+											type="text" value="${dist.distAmtLimit}" disabled />
 
 
-									<div class="col-md-2">${dist.distAmtLimit}</div>
+									</div>
 
 								</div>
+								&nbsp;
 								<div class="card">
 									<div class="card-header">
 										<strong class="card-title"><spring:message
@@ -253,9 +296,9 @@
 												code="label.orderHistory" /></strong>
 									</div> --%>
 									<div class="form-group"></div>
-									
 
-							<%-- 		<div class="form-group"></div>
+
+									<%-- 		<div class="form-group"></div>
 									<div class="form-group">
 
 										<div class="col-lg-3">
@@ -363,14 +406,14 @@
 
 											<thead>
 												<tr>
-												<th><spring:message code="label.srNo" /></th>
-											<th><spring:message code="label.distName" /></th>
-											<th><spring:message code="label.orderType" /></th>
+													<th><spring:message code="label.srNo" /></th>
+													<th><spring:message code="label.distName" /></th>
+													<th><spring:message code="label.orderType" /></th>
 
-											<th><spring:message code="label.distCratesPending" /></th>
-											<th><spring:message code="label.distAmtPending" /></th>
-											<th><spring:message code="label.orderTotal" /></th>
-											<th><spring:message code="label.action" /></th>
+													<th><spring:message code="label.distCratesPending" /></th>
+													<th><spring:message code="label.distAmtPending" /></th>
+													<th><spring:message code="label.orderTotal" /></th>
+													<th><spring:message code="label.action" /></th>
 												</tr>
 											</thead>
 
@@ -464,9 +507,9 @@
 			//dataTable.row($(this).parents('tr')).remove().draw(false);
 			var date = $("#date").val();
 			var distId = $("#distId").val();
-			
+
 			//var hu = $("#hu").val();
-			
+
 			//alert("Hu "+hu);
 
 			$
@@ -489,40 +532,39 @@
 
 								}
 
-								
-		var dataTable = $('#bootstrap-data-table')
-		.DataTable();
-		
-$
-		.each(
-				data,
-				function(i, v) {
-					var orderType;
-					if(v.orderType==0){
-						orderType="Regular";
-					}else{
-						orderType="Special";
-	 				}
+								var dataTable = $('#bootstrap-data-table')
+										.DataTable();
 
-					var str = "Detail";
-					var result = str
-							.link("${pageContext.request.contextPath}/showOrderHistoryDetail/"
-									+ v.orderHeaderId);
-					dataTable.row
-							.add(
-									[
-											i + 1,
-											v.distEngName,
-											orderType,
-											v.prevPendingCrateBal,
-											v.prevPendingAmt,
-											v.orderTotal,
-											result ])
-							.draw();
-				});
+								$
+										.each(
+												data,
+												function(i, v) {
+													var orderType;
+													if (v.orderType == 0) {
+														orderType = "Regular";
+													} else {
+														orderType = "Special";
+													}
 
-});
-}
+													var str = "Detail";
+													var result = str
+															.link("${pageContext.request.contextPath}/showOrderHistoryDetail/"
+																	+ v.orderHeaderId);
+													dataTable.row
+															.add(
+																	[
+																			i + 1,
+																			v.distEngName,
+																			orderType,
+																			v.prevPendingCrateBal,
+																			v.prevPendingAmt,
+																			v.orderTotal,
+																			result ])
+															.draw();
+												});
+
+							});
+		}
 	</script>
 
 
