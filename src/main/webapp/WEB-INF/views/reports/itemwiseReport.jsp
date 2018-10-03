@@ -137,13 +137,12 @@
 								</select>
 
 							</div>
-							<div class="col-md-1"></div>
-
+						
 							<div class="col-md-3">
 
 								<button type="button" class="btn btn-primary"
 									onclick="callSearch()"
-									style="align-content: center; width: 150px; margin-left: 80px;">
+									style="align-content: center; width: 150px; ">
 									<spring:message code="label.search" />
 								</button>
 
