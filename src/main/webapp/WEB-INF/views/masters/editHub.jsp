@@ -218,7 +218,7 @@
 
 									<c:choose>
 										<c:when test="${editHs.isAdmin==1}">
-											<div class="col-md-1">
+											<div class="col-md-2">
 
 												<input type="radio" name="userType" id="userType" value="0">
 												<spring:message code="label.staff" />
@@ -234,7 +234,7 @@
 											</div>
 										</c:when>
 										<c:when test="${editHs.isAdmin==0}">
-											<div class="col-md-1">
+											<div class="col-md-2">
 
 												<input type="radio" name="userType" id="userType" value="0"
 													checked>
